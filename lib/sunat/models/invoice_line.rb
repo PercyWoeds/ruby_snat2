@@ -36,7 +36,7 @@ module SUNAT
     include HasTaxTotals
     
     property :id,                     String
-    property :invoiced_quantity,      Quantity
+    property :quantity,               Quantity
     property :line_extension_amount,  PaymentAmount    # total
     property :price,                  PaymentAmount    # price
     property :pricing_reference,      PricingReference # list price with tax
@@ -54,25 +54,31 @@ module SUNAT
    
     def build_xml(xml)
       xml['cac'].InvoiceLine do
-        xml['cbc'].ID id
-        
-        invoiced_quantity.build_xml(xml, :InvoicedQuantity) if invoiced_quantity.present?
-        line_extension_amount.build_xml(xml, :LineExtensionAmount) if line_extension_amount.present?
-        pricing_reference.build_xml(xml) if pricing_reference.present?
-        
-        item.build_xml(xml) unless item.nil?
-
-        tax_totals.each do |tax_total|
-          tax_total.build_xml(xml)
-        end
-        
-        xml['cac'].Price do
-          price.build_xml xml, :PriceAmount
-        end
+        build_xml_generic_payload(xml)
+        quantity.build_xml(xml, :InvoicedQuantity) if quantity.present?
       end
     end
 
     protected
+
+    # Provide the middle part of the invoice line. Useful
+    # for other models that use the invoice line.
+    def build_xml_generic_payload(xml)
+      xml['cbc'].ID id
+      
+      line_extension_amount.build_xml(xml, :LineExtensionAmount) if line_extension_amount.present?
+      pricing_reference.build_xml(xml) if pricing_reference.present?
+      
+      item.build_xml(xml) unless item.nil?
+
+      tax_totals.each do |tax_total|
+        tax_total.build_xml(xml)
+      end
+      
+      xml['cac'].Price do
+        price.build_xml xml, :PriceAmount
+      end
+    end
 
 
     def parse_attributes(attrs = {})
@@ -104,7 +110,7 @@ module SUNAT
         else
           unit
         end
-        self.invoiced_quantity = {quantity:qty, unit_code:code}
+        self.quantity = {quantity:qty, unit_code:code}
       end
     end
 

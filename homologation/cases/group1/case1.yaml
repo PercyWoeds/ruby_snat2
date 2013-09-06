@@ -1,0 +1,22 @@
+---
+# Group1 - Case1 - Factura 1 con 3 items
+invoice:
+  id: "FF11-00000001"
+ 
+  customer:
+    ruc: '20382170114'
+    name: 'CECI FARMA IMPORT S.R.L.'
+
+  lines:
+    - quantity: 200
+      price: 
+      tax_totals:
+  
+
+    - quantity: 200
+      price:
+
+    - quantity: 200
+      price:
+
+...

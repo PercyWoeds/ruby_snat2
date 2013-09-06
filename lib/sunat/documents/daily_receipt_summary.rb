@@ -39,17 +39,15 @@ module SUNAT
       self.lines << line
     end
     
-    def to_xml
-      super do |xml|
-        notes.each do |note|
-          xml['cbc'].Note note
-        end
-        
-        accounting_supplier_party.build_xml xml, :AccountingSupplierParty
-        
-        lines.each do |line|
-          line.build_xml xml
-        end
+    def build_xml(xml)
+      notes.each do |note|
+        xml['cbc'].Note note
+      end
+      
+      accounting_supplier_party.build_xml xml, :AccountingSupplierParty
+      
+      lines.each do |line|
+        line.build_xml xml
       end
     end
     

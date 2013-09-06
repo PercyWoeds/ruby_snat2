@@ -1,5 +1,5 @@
 module SUNAT
-  class MonetaryTotal
+  class AdditionalMonetaryTotal
     include Model
     
     property :id,               String
@@ -12,9 +12,9 @@ module SUNAT
       xml['sac'].AdditionalMonetaryTotal do
         xml['cbc'].ID id
         
-        payable_amount.build_xml(xml, :PayableAmount) if payable_amount.present?
+        payable_amount.build_xml(xml,   :PayableAmount) if payable_amount.present?
         reference_amount.build_xml(xml, :ReferenceAmount) if reference_amount.present?
-        total_amount.build_xml(xml, :ReferenceAmount) if total_amount.present?
+        total_amount.build_xml(xml,     :ReferenceAmount) if total_amount.present?
         
         xml['cbc'].Percent(percent) if percent.present?
       end

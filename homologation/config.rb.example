@@ -14,5 +14,15 @@ SUNAT.configure do |config|
     s.cert_file   = File.join(Dir.pwd, 'keys', 'sunat.crt')
     s.pk_file     = File.join(Dir.pwd, 'keys', 'sunat_decrypted.key')
   end
+
+  config.supplier do |s|
+    s.ruc        = "20100454523"
+    s.name       = "SOPORTE TECNOLOGICO EIRL"
+    s.address_id = "070101"
+    s.street     = "Calle los Olivos 234"
+    s.city       = "Lima"
+    s.district   = "Callao"
+    s.country    = "PE"
+  end
 end
 

@@ -41,6 +41,20 @@ Prepare the SUNAT library by defining the configuration somewhere in your projec
       # Password-less private key used to sign certificate
       s.pk_file     = File.join(Dir.pwd, 'config', 'keys', 'sunat.key')
     end
+
+    # General Company details to be included in every document generated.
+    # Only used if no alternative is provided.
+    config.supplier do |s|
+      s.ruc        = "20100454523"
+      s.name       = "SOPORTE TECNOLOGICO EIRL"
+      s.address_id = "070101"
+      s.street     = "Calle los Olivos 234"
+      s.city       = "Lima"
+      s.district   = "Callao"
+      s.country    = "PE"
+    end
+
+
   end
 
 
@@ -71,7 +85,10 @@ Every model can be serialized and de-serialized from JSON. This is extremely use
 
 ## Homologation
 
-SUNAT requires that each document you'll be sending goes through an homologation process. See the examples directory for sample code that will help you get started.
+SUNAT requires that all clients of their system first go through a homolgation process to test all possible combinations of invoices, receipts, credit and debit notes, and summary documents.
+
+Its an increadibly teadious process made more frustrating by the fact you probably only need a couple of standard documents for your project. Fortunately, this library makes the process a bit simpler by including the default set of test cases. Simply enter the `homologation` directory, create your own `config.rb` file, and call rake. All of the available yaml definitions in the `cases` directory will be compiled and sent to SUNAT using your own details.
+
 
 
 
@@ -82,3 +99,11 @@ SUNAT requires that each document you'll be sending goes through an homologation
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+
+## Authors
+
+Creation of the sunay-ruby library was sponsored by Cabify.
+
+
+

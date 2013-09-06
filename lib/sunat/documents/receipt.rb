@@ -4,9 +4,11 @@ module SUNAT
   # used to generate an XML document suitable for presentation.
   # Represents a legal payment for SUNAT. Spanish: Boleta
   #
-  
-  class Receipt < Document
-    extend PaymentDocument
+  # A receipt is pretty much identical to an Invoice. The only
+  # difference being that it uses a different ID format and
+  # document type code.
+  #
+  class Receipt < Invoice
     
     DOCUMENT_TYPE_CODE = '03' # sunat code in catalog #1
 

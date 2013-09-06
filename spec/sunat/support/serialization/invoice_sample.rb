@@ -6,7 +6,7 @@ Invoice.new.tap do |invoice|
   # invoice.additional_monetary_totals << MonetaryTotal.new({
   #   id: '1001',
   #   payable_amount:   PaymentAmount.new(currency: 'PEN', value: 10000),
-  #   reference_amunt:  PaymentAmount.new(currency: 'PEN', value: 10000),
+  #   reference_amount: PaymentAmount.new(currency: 'PEN', value: 10000),
   #   total_amount:     PaymentAmount.new(currency: 'PEN', value: 20000),
   # })
   # 

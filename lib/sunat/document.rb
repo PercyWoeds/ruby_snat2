@@ -6,17 +6,13 @@ module SUNAT
     include Model
 
     DEFAULT_CUSTOMIZATION_ID = "1.0"
-    RUC_DOCUMENT_CODE = "6"
-    DNI_DOCUMENT_CODE = "1"
 
-    property :id,                         String # Usually: serial + correlative number
-    property :issue_date,                 Date
-    property :customization_id,           String
-    property :accounting_supplier_party,  AccountingParty
-    property :additional_monetary_totals, [MonetaryTotal]
-    property :additional_properties,      [AdditionalProperty]
+    property :id,                    String # Usually: serial + correlative number
+    property :issue_date,            Date
+    property :customization_id,      String
+    property :supplier,              AccountingSupplierParty
+    property :additional_properties, [AdditionalProperty]
 
-    validates :accounting_supplier_party, existence: true
 
     def self.xml_root(root_name)
       define_method :xml_root do
@@ -28,7 +24,10 @@ module SUNAT
       super(*args)
       self.issue_date ||= Date.today
       self.additional_properties ||= []
-      self.additional_monetary_totals ||= []
+    end
+
+    def supplier
+      read_attribute(:supplier) || AccountingSupplierParty.new(SUNAT::SUPPLIER)
     end
 
     def file_name
@@ -37,21 +36,6 @@ module SUNAT
 
     def operation_list
       raise "should be implemented in the real document"
-    end
-
-    def ruc=(ruc_number)
-      self.accounting_supplier_party ||= SUNAT::AccountingParty.new
-      self.accounting_supplier_party.account_id = ruc_number
-      self.accounting_supplier_party.additional_account_id = RUC_DOCUMENT_CODE
-    end
-
-    def ruc
-      self.accounting_supplier_party.account_id
-    end
-
-    def legal_name=(name)
-      self.accounting_supplier_party ||= AccountingParty.new
-      self.accounting_supplier_party.build_party_with_legal_name(name)
     end
 
     def customization_id
@@ -85,10 +69,18 @@ module SUNAT
       # of this document
       xml_document = XMLDocument.new(self)
       xml = xml_document.build_xml(&block)
+      
       # We pass a decorator to xml_signer, to allow it to use some generators
       # of xml_document
       xml_signer = XMLSigner.new(xml_document)
       xml_signer.sign(xml)
+
+      # Pass control over to the xml builder
+      build_xml(xml)
+    end
+
+    def build_xml(xml)
+      raise "This method must be overriden!"
     end
 
     # returns a savon response (an httpi response)

@@ -1,6 +1,7 @@
-# The Default Signature and Certificate is initially empty
-SUNAT::SIGNATURE = SUNAT::Signature.new
+# The Default Signature, Certificate, and Supplier are initially empty
+SUNAT::SIGNATURE   = SUNAT::Signature.new
 SUNAT::CREDENTIALS = SUNAT::Credentials.new
+SUNAT::SUPPLIER    = SUNAT::Supplier.new
 
 class SUNAT::ConfigurationDSL  
   def credentials
@@ -10,6 +11,11 @@ class SUNAT::ConfigurationDSL
   def signature
     yield SUNAT::SIGNATURE
   end
+
+  def supplier
+    yield SUNAT::SUPPLIER
+  end
+
 end
 
 # Allow override the default signature and certificate in a DSL-like style
