@@ -15,7 +15,7 @@ Invoice.new.tap do |invoice|
   invoice.ruc         = "20100113612"
   invoice.legal_name  = "K&G Laboratorios"
   
-  invoice.accounting_customer_party = {ruc: '20382170114', name: 'CECI FARMA IMPORT S.R.L.'}
+  invoice.customer = {ruc: '20382170114', name: 'CECI FARMA IMPORT S.R.L.'}
   
   invoice.lines << {
     :quantity => 300,
