@@ -1,3 +1,4 @@
+require 'forwardable'
 module SUNAT
   module Attributes
     include Enumerable

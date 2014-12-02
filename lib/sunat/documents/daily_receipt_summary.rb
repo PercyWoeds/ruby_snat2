@@ -9,12 +9,15 @@ module SUNAT
     SUMMARY_TYPE = 'RC' # Look Sunat's Programmer's manual page 6
     
     xml_root :SummaryDocuments
-    
+
     property :id,                   String
     property :reference_date,       Date
     property :lines,                [SummaryDocumentsLine]
     property :notes,                [String]
-    
+    property :ruc,                  String
+    property :legal_name,           String
+    property :correlative_number,   String
+
     validates :lines, not_empty: true
     
     def initialize(*args)

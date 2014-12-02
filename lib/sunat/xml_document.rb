@@ -1,7 +1,7 @@
 module SUNAT
   # decorator for Documents
   class XMLDocument < SimpleDelegator
-    
+
     XML_NAMESPACE       = 'urn:oasis:names:specification:ubl:schema:xsd:Invoice-2'
     DS_NAMESPACE        = 'http://www.w3.org/2000/09/xmldsig#'
     CAC_NAMESPACE       = 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2'
@@ -88,7 +88,10 @@ module SUNAT
     end
     
     def build_additional_information_extension(xml)
-      return if additional_monetary_totals.empty? or additional_monetary_totals.empty?
+
+      p self
+
+      return if additional_monetary_totals.empty?
       
       build_extension xml do
         xml['sac'].AdditionalInformation do                  
