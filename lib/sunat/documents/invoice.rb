@@ -21,10 +21,10 @@ module SUNAT
     property :lines,                           [InvoiceLine]
     property :tax_totals,                      [TaxTotal]
     property :legal_monetary_total,            PaymentAmount
-    property :additional_monetary_totals,      [AdditionalMonetaryTotal]
     property :despatch_document_references,    [ReferralGuideline] # Spanish: Guías de remisión
     property :additional_document_references,  [DocumentReference]
-
+    property :ruc,                             String
+    property :legal_name,                      String
     
     validates :id, presence:true, format: { with: Proc.new{ self.class::ID_FORMAT } }
     validates :document_currency_code, existence: true, currency_code: true

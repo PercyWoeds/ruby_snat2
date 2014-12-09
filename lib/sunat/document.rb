@@ -7,12 +7,12 @@ module SUNAT
 
     DEFAULT_CUSTOMIZATION_ID = "1.0"
 
-    property :id,                    String # Usually: serial + correlative number
-    property :issue_date,            Date
-    property :customization_id,      String
-    property :supplier,              AccountingSupplierParty
-    property :additional_properties, [AdditionalProperty]
-
+    property :id,                         String # Usually: serial + correlative number
+    property :issue_date,                 Date
+    property :customization_id,           String
+    property :accounting_supplier_party,  AccountingSupplierParty
+    property :additional_properties,      [AdditionalProperty]
+    property :additional_monetary_totals, [AdditionalMonetaryTotal]
 
     def self.xml_root(root_name)
       define_method :xml_root do
@@ -24,10 +24,11 @@ module SUNAT
       super(*args)
       self.issue_date ||= Date.today
       self.additional_properties ||= []
+      self.additional_monetary_totals ||= []
     end
 
-    def supplier
-      read_attribute(:supplier) || AccountingSupplierParty.new(SUNAT::SUPPLIER)
+    def accounting_supplier_party
+      get_attribute(:accounting_supplier_party) || AccountingSupplierParty.new(SUNAT::SUPPLIER.as_hash)
     end
 
     def file_name
@@ -64,19 +65,23 @@ module SUNAT
       @signature ||= SUNAT::SIGNATURE
     end
 
-    def to_xml(&block)
+    def to_xml
       # We create a decorator responsible to build the xml in top
       # of this document
       xml_document = XMLDocument.new(self)
-      xml = xml_document.build_xml(&block)
-      
-      # We pass a decorator to xml_signer, to allow it to use some generators
-      # of xml_document
-      xml_signer = XMLSigner.new(xml_document)
-      xml_signer.sign(xml)
 
-      # Pass control over to the xml builder
-      build_xml(xml)
+      xml_document.build_xml do |xml|
+
+        # We pass a decorator to xml_signer, to allow it to use some generators
+        # of xml_document
+        #xml_signer = XMLSigner.new(xml_document)
+        #xml_signer.sign(xml)
+
+        # Pass control over to the xml builder
+        build_xml(xml)
+
+        # Rerturn completed xml object
+      end
     end
 
     def build_xml(xml)
