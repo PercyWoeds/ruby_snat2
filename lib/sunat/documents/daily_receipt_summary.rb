@@ -50,7 +50,7 @@ module SUNAT
       accounting_supplier_party.build_xml xml
       
       lines.each do |line|
-        #line.build_xml xml
+        line.build_xml xml
       end
     end
     

@@ -39,6 +39,10 @@ module SUNAT
       raise "should be implemented in the real document"
     end
 
+    def operation
+      raise "Implment in child document"
+    end
+
     def customization_id
       self['customization_id'] ||= DEFAULT_CUSTOMIZATION_ID
     end
@@ -70,18 +74,15 @@ module SUNAT
       # of this document
       xml_document = XMLDocument.new(self)
 
-      xml_document.build_xml do |xml|
-
-        # We pass a decorator to xml_signer, to allow it to use some generators
-        # of xml_document
-        #xml_signer = XMLSigner.new(xml_document)
-        #xml_signer.sign(xml)
-
-        # Pass control over to the xml builder
+       # Pass control over to the xml builder
+      res = xml_document.build_xml do |xml|
         build_xml(xml)
-
-        # Rerturn completed xml object
       end
+
+      # We pass a decorator to xml_signer, to allow it to use some generators
+      # of xml_document
+      xml_signer = XMLSigner.new(xml_document)
+      xml_signer.sign(res.to_xml)
     end
 
     def build_xml(xml)

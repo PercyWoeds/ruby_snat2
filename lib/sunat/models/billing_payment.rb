@@ -11,8 +11,8 @@ module SUNAT
     def build_xml(xml)
       xml['sac'].BillingPayment do
         paid_amount.build_xml xml, :PaidAmount
+        xml['cbc'].InstructionID instruction_id
       end
-      xml['cbc'].InstructionID instruction_id
     end
 
   end
