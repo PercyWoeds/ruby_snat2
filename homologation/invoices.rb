@@ -21,5 +21,3 @@ doc.ruc            = doc.signature.party_id
 doc.legal_name     = doc.signature.party_name
 
 doc.id = "FF11-000001"
-
-

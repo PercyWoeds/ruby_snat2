@@ -101,7 +101,7 @@ module SUNAT
             :identification_code => attrs.delete(:country)
           }
         end
-        part.postal_addresses << pa
+        party.postal_addresses << pa
       end
 
       attrs

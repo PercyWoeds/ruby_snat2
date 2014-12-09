@@ -20,5 +20,5 @@ bin
 SECRET.md
 .ruby-version
 homologation/config.rb
-keys/*
+keys
 homologation/keys

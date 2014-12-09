@@ -27,12 +27,10 @@ doc.add_line do |line|
   line.add_billing_payment('01', 3500)
 end
 
+doc.correlative_number = "001"
+
 # Document prepared! Try sending.
 puts "Sending document..."
-doc.correlative_number = "001"
-res = doc.deliver!
-
+#res = doc.deliver!
+puts doc.to_xml
 puts "DONE!"
-
-
-
