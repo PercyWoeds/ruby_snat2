@@ -65,22 +65,23 @@ module SUNAT
       @signature ||= SUNAT::SIGNATURE
     end
 
-    def to_xml(&block)
+    def to_xml
       # We create a decorator responsible to build the xml in top
       # of this document
       xml_document = XMLDocument.new(self)
-      xml = xml_document.build_xml(&block)
 
-      # We pass a decorator to xml_signer, to allow it to use some generators
-      # of xml_document
-      #xml_signer = XMLSigner.new(xml_document)
-      #xml_signer.sign(xml)
+      xml_document.build_xml do |xml|
 
-      # Pass control over to the xml builder
-      build_xml(xml)
+        # We pass a decorator to xml_signer, to allow it to use some generators
+        # of xml_document
+        #xml_signer = XMLSigner.new(xml_document)
+        #xml_signer.sign(xml)
 
-      # Rerturn completed xml object
-      xml
+        # Pass control over to the xml builder
+        build_xml(xml)
+
+        # Rerturn completed xml object
+      end
     end
 
     def build_xml(xml)
