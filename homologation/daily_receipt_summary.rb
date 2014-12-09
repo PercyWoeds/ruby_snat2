@@ -27,6 +27,11 @@ doc.add_line do |line|
   line.add_billing_payment('01', 3500)
 end
 
+doc.add_line do |line|
+  line.add_tax_total :isc, 0, 'PEN'
+  line.add_allowance_charge(3000, 'PEN')
+end
+
 doc.correlative_number = "001"
 
 # Document prepared! Try sending.

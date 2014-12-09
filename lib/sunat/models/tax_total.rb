@@ -22,6 +22,7 @@ module SUNAT
     property :sub_totals, [TaxSubTotal]
     
     def initialize(*args)
+      self.sub_totals ||=[]
       super(parse_attributes(*args))
     end
     
@@ -35,7 +36,7 @@ module SUNAT
     end
     
     def tax_amount
-      read_attribute(:tax_amount) || calculate_total
+      get_attribute(:tax_amount) || calculate_total
     end
 
     private
