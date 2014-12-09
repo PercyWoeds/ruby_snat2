@@ -42,7 +42,7 @@ module SUNAT
   # Models
   autoload :AccountingCustomerParty,   "sunat/models/accounting_customer_party"
   autoload :AccountingSupplierParty,   "sunat/models/accounting_supplier_party"
-  autoload :AdditionalMonetaryTotal,   "sunat/models/monetary_total"
+  autoload :AdditionalMonetaryTotal,   "sunat/models/additional_monetary_total"
   autoload :AdditionalProperty,        "sunat/models/additional_property"
   autoload :AllowanceCharge,           "sunat/models/allowance_charge"
   autoload :AlternativeConditionPrice, "sunat/models/alternative_condition_price"
