@@ -7,7 +7,7 @@ SUNAT.configure do |config|
     c.username  = ENV['SUNAT_USERNAME']
     c.password  = ENV['SUNAT_PASSWORD']
   end
-  
+
   config.signature do |s|
     s.party_id    = "20100454523"
     s.party_name  = "SOPORTE TECNOLOGICO EIRL"

@@ -24,9 +24,9 @@ module SUNAT
     property :despatch_document_references,    [ReferralGuideline] # Spanish: Guías de remisión
     property :additional_document_references,  [DocumentReference]
     property :ruc,                             String
-    property :legal_name,                      String
-    
-    validates :id, presence:true, format: { with: Proc.new{ self.class::ID_FORMAT } }
+    property :legal_name,                      String		
+
+		validates :id, presence:true, format: { with: Proc.new{ self.class::ID_FORMAT } }
     validates :document_currency_code, existence: true, currency_code: true
     validates :invoice_type_code, tax_document_type_code: true
 
@@ -58,7 +58,7 @@ module SUNAT
       xml['cbc'].InvoiceTypeCode      invoice_type_code
       xml['cbc'].DocumentCurrencyCode document_currency_code
       
-      supplier.build_xml xml
+      accounting_supplier_party.build_xml xml
       
       # sunat says if no customer exists, we must use a dash
       if customer.present?

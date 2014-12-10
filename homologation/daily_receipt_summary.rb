@@ -16,10 +16,10 @@ require './config'
 
 doc = SUNAT::DailyReceiptSummary.new
 
-doc.reference_date = Date.new(2013, 8, 27)
+doc.reference_date = Time.today
 doc.ruc            = doc.signature.party_id
 doc.legal_name     = doc.signature.party_name
-
+doc.
 doc.add_line do |line|
   line.serial_id = 'BB01'
   line.start_id  = '1'
@@ -28,7 +28,7 @@ doc.add_line do |line|
 end
 
 doc.add_line do |line|
-  line.add_tax_total :isc, 0, 'PEN'
+  line.add_tax_total(:isc, 0, 'PEN')
   line.add_allowance_charge(3000, 'PEN')
 end
 

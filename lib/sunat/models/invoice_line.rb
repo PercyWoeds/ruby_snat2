@@ -70,10 +70,12 @@ module SUNAT
       pricing_reference.build_xml(xml) if pricing_reference.present?
       
       item.build_xml(xml) unless item.nil?
-
-      tax_totals.each do |tax_total|
-        tax_total.build_xml(xml)
-      end
+			
+			unless tax_totals.nil?
+      	tax_totals.each do |tax_total|
+        	tax_total.build_xml(xml)
+      	end
+			end
       
       xml['cac'].Price do
         price.build_xml xml, :PriceAmount

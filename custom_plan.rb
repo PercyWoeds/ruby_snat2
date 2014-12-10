@@ -44,7 +44,7 @@ class CustomPlan < Zeus::Plan
 
   def rake
     Rake.application.run
-  end
+	end
 
 end
 
