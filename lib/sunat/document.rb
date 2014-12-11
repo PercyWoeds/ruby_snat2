@@ -9,6 +9,7 @@ module SUNAT
 
     property :id,                         String # Usually: serial + correlative number
     property :issue_date,                 Date
+    property :reference_date,             Date
     property :customization_id,           String
     property :accounting_supplier_party,  AccountingSupplierParty
     property :additional_properties,      [AdditionalProperty]
@@ -23,6 +24,7 @@ module SUNAT
     def initialize(*args)
       super(*args)
       self.issue_date ||= Date.today
+      self.reference_date ||= Date.today
       self.additional_properties ||= []
       self.additional_monetary_totals ||= []
     end

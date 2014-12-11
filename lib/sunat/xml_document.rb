@@ -77,6 +77,7 @@ module SUNAT
       xml['cbc'].CustomizationID      CUSTOMIZATION_ID
       xml['cbc'].ID                   self.id
       xml['cbc'].IssueDate            format_date(self.issue_date)
+      xml['cbc'].ReferenceDate        format_date(self.reference_date)
     end
     
     def build_ubl_extensions(xml)

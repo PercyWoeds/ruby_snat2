@@ -20,6 +20,11 @@ doc.reference_date = Date.new(2014, 12, 1)
 doc.ruc            = doc.signature.party_id
 doc.legal_name     = doc.signature.party_name
 
+doc.notes = [
+  "Just testing",
+  "Notes"
+]
+
 doc.add_line do |line|
   line.serial_id = 'BB01'
   line.start_id  = '1'
