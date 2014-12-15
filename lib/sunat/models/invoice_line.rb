@@ -49,9 +49,18 @@ module SUNAT
     }
     
     def initialize(*args)
+      self.tax_totals ||= []
       super(parse_attributes(*args))
     end
-   
+
+    def add_tax_total(tax_name, amount)      
+      tax_total = TaxTotal.new({
+        :amount => amount,
+        :type => tax_name
+      })
+      tax_totals << tax_total
+    end
+
     def build_xml(xml)
       xml['cac'].InvoiceLine do
         build_xml_generic_payload(xml)

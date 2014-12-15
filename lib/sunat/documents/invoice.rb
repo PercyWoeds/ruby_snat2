@@ -72,7 +72,7 @@ module SUNAT
       end
 
       xml['cac'].LegalMonetaryTotal do
-        legal_monetary_total.build xml, :PayableAmount
+        legal_monetary_total.build_xml xml, :PayableAmount
       end if legal_monetary_total.present?
       
       lines.each do |line|

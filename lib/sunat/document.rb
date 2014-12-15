@@ -42,7 +42,7 @@ module SUNAT
     end
 
     def operation
-      raise "Implment in child document"
+      raise "Implement in child document"
     end
 
     def customization_id
