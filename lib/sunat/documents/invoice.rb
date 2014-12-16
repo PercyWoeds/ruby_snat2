@@ -32,10 +32,10 @@ module SUNAT
 
     def initialize(*args)
       self.lines ||= []
+      self.invoice_type_code ||= self.class::DOCUMENT_TYPE_CODE
       self.tax_totals ||= []
       self.despatch_document_references ||= []
       self.additional_document_references ||= []
-      self.invoice_type_code ||= self.class::DOCUMENT_TYPE_CODE
       super(*args)
     end
     
@@ -54,8 +54,12 @@ module SUNAT
       self.lines << line
     end
 
-    def build_xml(xml)
+    def build_own_xml(xml)
       xml['cbc'].InvoiceTypeCode      invoice_type_code
+    end
+
+    def build_xml(xml)
+      build_own_xml xml
       xml['cbc'].DocumentCurrencyCode document_currency_code
       
       accounting_supplier_party.build_xml xml

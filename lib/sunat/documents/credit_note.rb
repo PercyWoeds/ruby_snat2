@@ -1,7 +1,13 @@
 module SUNAT
   class CreditNote < Invoice
 
+    XML_NAMESPACE       = 'urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2'
+    XSI_SCHEMA_LOCATION = nil
+
     ID_FORMAT = /[FB][A-Z\d]{3}-\d{1,8}/
+    DOCUMENT_TYPE_CODE = '07' # NOTA DE CREDITO
+
+    xml_root :CreditNote
 
     property :discrepancy_response,      DiscrepancyResponse
     property :requested_monetary_total,  PaymentAmount
@@ -16,6 +22,10 @@ module SUNAT
       end if requested_monetary_total.present?
 
       discrepancy_response.build_xml(xml) unless discrepancy_response.nil?
+    end
+
+    def build_own(xml)
+
     end
 
     def add_line(&block)
