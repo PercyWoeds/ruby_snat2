@@ -49,7 +49,7 @@ module SUNAT
     }
     
     def initialize(*args)
-      self.tax_totals ||= []
+      self.tax_totals ||=[]
       super(parse_attributes(*args))
     end
 

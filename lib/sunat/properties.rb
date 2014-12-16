@@ -51,7 +51,7 @@ module SUNAT
       def search_property(name)        
         name = name.to_sym
         
-        if properties[name]
+        if !properties.nil? && properties[name]
           properties[name]
         elsif superclass.respond_to?(:search_property)
           superclass.search_property(name)
