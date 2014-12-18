@@ -1,7 +1,7 @@
 module SUNAT
   class DebitNote < CreditNote
 
-    ID_FORMAT = /[FB][A-Z\d]{3}-\d{1,8}/
+    ID_FORMAT = /\A[F][A-Z\d]{3}-\d{1,8}\Z/
     DOCUMENT_TYPE_CODE = '08' # NOTA DE CREDITO
 
     xml_root :DebitNote

@@ -47,4 +47,8 @@ doc.legal_monetary_total = SUNAT::PaymentAmount.new(5000)
 
 doc.id = "FF11-000001"
 
-File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
+if doc.valid?
+  File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
+else
+  puts "Invalid document, ignoring output"
+end

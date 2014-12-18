@@ -18,7 +18,7 @@ module SUNAT
     property :legal_name,           String
     property :correlative_number,   String
 
-    validates :lines, not_empty: true
+    validates :lines, presence: true
     
     def initialize(*args)
       super(*args)

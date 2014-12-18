@@ -1,19 +1,27 @@
+#
+# Boleta de Ventas
+#
+# Set environment variables, then run:
+#
+#    ruby receipt.rb
+#
+
 lib = File.expand_path('../../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'sunat'
 require './config'
 
+
 # Group 1
 
-doc = SUNAT::CreditNote.new
+doc = SUNAT::Receipt.new
 
 doc.ruc            = doc.signature.party_id
 doc.legal_name     = doc.signature.party_name
 
-doc.requested_monetary_total = SUNAT::PaymentAmount.new(3000)
-
 doc.add_line do |line|
+
   line.price = SUNAT::PaymentAmount.new(3000)
 
   line.quantity = SUNAT::Quantity.new
@@ -37,9 +45,7 @@ end
 
 doc.legal_monetary_total = SUNAT::PaymentAmount.new(5000)
 
-doc.id = "F001-211"
-
-File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
+doc.id = "B001-564"
 
 if doc.valid?
   File::open("output.xml", "w") { |file| file.write(doc.to_xml) }

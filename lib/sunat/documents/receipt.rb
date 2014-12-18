@@ -12,7 +12,7 @@ module SUNAT
     
     DOCUMENT_TYPE_CODE = '03' # sunat code in catalog #1
 
-    ID_FORMAT = /B[A-Z\d]{3}-\d{1,8}/
-    
+    ID_FORMAT = /\AB[A-Z\d]{3}-\d{1,8}\Z/
+
   end
 end

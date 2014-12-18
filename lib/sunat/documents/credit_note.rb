@@ -4,7 +4,7 @@ module SUNAT
     XML_NAMESPACE       = 'urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2'
     XSI_SCHEMA_LOCATION = nil
 
-    ID_FORMAT = /[FB][A-Z\d]{3}-\d{1,8}/
+    ID_FORMAT = /\A[F][A-Z\d]{3}-\d{1,8}\Z/
     DOCUMENT_TYPE_CODE = '07' # NOTA DE CREDITO
 
     xml_root :CreditNote

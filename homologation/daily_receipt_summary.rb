@@ -30,17 +30,16 @@ doc.add_line do |line|
   line.start_id  = '1'
   line.end_id    = '123'
   line.add_billing_payment('01', 3500)
-end
-
-doc.add_line do |line|
   line.add_tax_total(:isc, 0, 'PEN')
   line.add_allowance_charge(3000, 'PEN')
 end
 
 doc.correlative_number = "001"
 
-# Document prepared! Try sending.
-puts "Sending document..."
-#res = doc.deliver!
-puts doc.to_xml
-puts "DONE!"
+if doc.valid?
+  File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
+else
+  puts "Invalid document, ignoring output"
+  puts doc.errors.full_messages
+  puts doc.lines.count
+end

@@ -9,7 +9,7 @@ module SUNAT
     
     DOCUMENT_TYPE_CODE = '01' # sunat code in catalog #1
     
-    ID_FORMAT = /F[A-Z\d]{3}-\d{1,8}/
+    ID_FORMAT = /\AF[A-Z\d]{3}-\d{1,8}\Z/
 
     include HasTaxTotals
 
@@ -24,9 +24,11 @@ module SUNAT
     property :despatch_document_references,    [ReferralGuideline] # Spanish: Guías de remisión
     property :additional_document_references,  [DocumentReference]
     property :ruc,                             String
-    property :legal_name,                      String		
+    property :legal_name,                      String
 
-		validates :id, presence:true, format: { with: Proc.new{ self.class::ID_FORMAT } }
+    validate :id_valid?
+    validates :id, presence:true
+		# validates :id, format: { with: Proc.new{} }
     validates :document_currency_code, existence: true, currency_code: true
     validates :invoice_type_code, tax_document_type_code: true
 
@@ -39,6 +41,13 @@ module SUNAT
       super(*args)
     end
     
+    def id_valid?
+      valid = (self.class::ID_FORMAT =~ self.id) == 0
+      if !valid
+        errors.add(:id, "doesn't match regexp #{self.class::ID_FORMAT}")
+      end
+    end
+
     def file_name
       document_type_code = self.class::DOCUMENT_TYPE_CODE
       "#{ruc}-#{document_type_code}-#{id}"
