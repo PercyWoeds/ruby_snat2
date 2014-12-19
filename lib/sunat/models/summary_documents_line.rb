@@ -17,6 +17,8 @@ module SUNAT
     [:line_id, :serial_id, :start_id, :end_id].each do |field|
       validates field, existence: true, presence: true
     end
+
+    TABLE_HEADERS = ["Codigo de documento", "Cantidad total"]
     
     validates :document_type_code, tax_document_type_code: true
     
@@ -61,6 +63,10 @@ module SUNAT
       end
     end
     
+    def build_pdf_table_row(pdf)
+      ["032", "302 PEN"]
+    end
+
     def build_xml(xml)
       xml['sac'].SummaryDocumentsLine do
         xml['cbc'].LineID                 line_id

@@ -6,8 +6,8 @@ require 'sunat/version'
 Gem::Specification.new do |spec|
   spec.name          = "sunat"
   spec.version       = SUNAT::VERSION
-  spec.authors       = ["Sam Lown"]
-  spec.email         = ["me@samlown.com"]
+  spec.authors       = ["Sam Lown", "Alejandro Perezpayá"]
+  spec.email         = ["me@samlown.com", "aleejandro@perezpaya.net"]
   spec.description   = %q{Generate declarations suitable for presenting to SUNAT in Peru.}
   spec.summary       = %q{Provides a series of models that can be both serialized to JSON for later usage, and generate XML documents that can be presented to SUNAT.}
   spec.homepage      = ""
@@ -21,6 +21,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activemodel", "~> 3.0"
   spec.add_dependency "nokogiri"
   spec.add_dependency "rubyzip"
+  spec.add_dependency "prawn", "~> 1.3.0"
+  spec.add_dependency "prawn-table"
   spec.add_dependency "savon"
 
   spec.add_development_dependency "bundler", "~> 1.3"

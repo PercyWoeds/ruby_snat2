@@ -11,4 +11,6 @@ require 'active_support/json'
 
 require 'openssl'
 require 'nokogiri'
+require 'prawn'
+require 'prawn/table'
 require 'savon'

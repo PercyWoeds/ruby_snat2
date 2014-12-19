@@ -34,16 +34,43 @@ module SUNAT
     end
 
     def file_name
-      raise "should be implemented in the real document"
+      raise "Implement in child document"
     end
 
     def operation_list
-      raise "should be implemented in the real document"
+      raise "Implement in child document"
     end
 
     def operation
       raise "Implement in child document"
     end
+
+    def build_pdf_header(pdf)
+      pdf.text "My Wonderful Company Header"
+      pdf
+    end
+
+    def build_pdf_body(pdf)
+      raise "Implement in child document"
+    end
+
+    def build_pdf_footer(pdf)
+      pdf.text "This is an ugly footer"
+      pdf
+    end
+
+    def build_pdf
+      Prawn::Document.generate("pdf_output/#{file_name}.pdf") do |pdf|
+        pdf = build_pdf_header(pdf)
+        pdf = build_pdf_body(pdf)
+        build_pdf_footer(pdf)
+      end
+    end
+
+    def to_pdf
+      build_pdf
+    end
+
 
     def customization_id
       self['customization_id'] ||= DEFAULT_CUSTOMIZATION_ID

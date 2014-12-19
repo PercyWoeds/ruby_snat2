@@ -66,6 +66,17 @@ module SUNAT
       @current_line_number += 1
       @current_line_number
     end
+
+    def build_pdf_body(pdf)
+      table_content = [SummaryDocumentsLine::TABLE_HEADERS]
+      
+      lines.each do |line|
+        table_content << line.build_pdf_table_row(pdf)
+      end
+      
+      pdf.table table_content
+      pdf
+    end
     
   end
 end
