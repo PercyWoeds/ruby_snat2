@@ -13,12 +13,14 @@ module SUNAT
     property :billing_payments,   [BillingPayment]
     property :allowance_charges,  [AllowanceCharge]
     property :tax_totals,         [TaxTotal]
+    property :item,               Item
+    property :quantity,           Quantity
     
     [:line_id, :serial_id, :start_id, :end_id].each do |field|
       validates field, existence: true, presence: true
     end
 
-    TABLE_HEADERS = ["ITEM", "CANTIDAD"]
+    TABLE_HEADERS = ["ITEM", "CANTIDAD", "UNIDAD", "DESCRIPTION", "VALOR TOTAL"]
     
     validates :document_type_code, tax_document_type_code: true
     
@@ -66,7 +68,10 @@ module SUNAT
     def build_pdf_table_row(pdf)
       row = []
       row << self.line_id
-      row << self.total_amount.value
+      row << self.quantity.quantity
+      row << self.quantity.unit_code
+      row << "#{self.item.description} - #{self.item.id}"
+      row << "#{self.total_amount.value} #{self.total_amount.currency}"
       row
     end
 

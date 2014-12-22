@@ -11,9 +11,11 @@ module SUNAT
     property :issue_date,                 Date
     property :reference_date,             Date
     property :customization_id,           String
+    property :document_type_name,         String
     property :accounting_supplier_party,  AccountingSupplierParty
     property :additional_properties,      [AdditionalProperty]
     property :additional_monetary_totals, [AdditionalMonetaryTotal]
+    property :address,                    String
 
     def self.xml_root(root_name)
       define_method :xml_root do
@@ -37,6 +39,10 @@ module SUNAT
       raise "Implement in child document"
     end
 
+    def address
+      get_attribute(:address) || "#{supplier.street}, #{supplier.district} (#{supplier.city})"
+    end
+
     def operation_list
       raise "Implement in child document"
     end
@@ -46,7 +52,10 @@ module SUNAT
     end
 
     def build_pdf_header(pdf)
-      pdf.text "My Wonderful Company Header"
+      pdf.text "Cabify", :size => 40,
+                         :style => :bold
+      pdf.text "#{address}", :size => 16,
+                         :style => :bold
       pdf.bounding_box([325, 725], :width => 200, :height => 70) do
         pdf.stroke_bounds
         pdf.move_down 15
@@ -61,12 +70,21 @@ module SUNAT
       pdf
     end
 
+    def build_pdf_header_extension(pdf)
+      raise "Implement in child document"
+    end
+
     def build_pdf_body(pdf)
       raise "Implement in child document"
     end
 
     def build_pdf_footer(pdf)
-      pdf.text "This is an ugly footer"
+      pdf.bounding_box([0, 50], :width => 535, :height => 50) do
+        pdf.stroke_bounds
+        pdf.text "#{self.legal_name}", :align => :center,
+                                       :valign => :center,
+                                       :style => :bold
+      end
       pdf
     end
 
@@ -108,6 +126,10 @@ module SUNAT
 
     def signature
       @signature ||= SUNAT::SIGNATURE
+    end
+
+    def supplier
+      @supplier ||= SUNAT::SUPPLIER
     end
 
     def to_xml

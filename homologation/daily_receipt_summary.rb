@@ -25,13 +25,23 @@ doc.notes = [
   "Notes"
 ]
 
-doc.add_line do |line|
-  line.serial_id = 'BB01'
-  line.start_id  = '1'
-  line.end_id    = '123'
-  line.add_billing_payment('01', 3500)
-  line.add_tax_total(:isc, 0, 'PEN')
-  line.add_allowance_charge(3000, 'PEN')
+(1..40).each do |i|
+
+  doc.add_line do |line|
+    line.serial_id = 'BB01'
+    line.start_id  = '1'
+    line.end_id    = '123'
+    line.add_billing_payment('01', 3500)
+    line.add_tax_total(:isc, 0, 'PEN')
+    line.add_allowance_charge(3000, 'PEN')
+    line.item = SUNAT::Item.new
+    line.item.description = "Cabify Journey In Rolls Royce"
+    line.item.id = "ROLLS2014"
+    line.quantity = SUNAT::Quantity.new
+    line.quantity.quantity = 1
+    line.quantity.unit_code = "JOURNEY"
+  end
+
 end
 
 doc.correlative_number = "001"

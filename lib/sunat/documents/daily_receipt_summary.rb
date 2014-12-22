@@ -11,7 +11,6 @@ module SUNAT
     xml_root :SummaryDocuments
 
     property :id,                   String
-    property :document_type_name,   String
     property :reference_date,       Date
     property :lines,                [SummaryDocumentsLine]
     property :notes,                [String]
