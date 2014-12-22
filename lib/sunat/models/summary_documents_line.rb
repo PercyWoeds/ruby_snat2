@@ -18,7 +18,7 @@ module SUNAT
       validates field, existence: true, presence: true
     end
 
-    TABLE_HEADERS = ["Codigo de documento", "Cantidad total"]
+    TABLE_HEADERS = ["ITEM", "CANTIDAD"]
     
     validates :document_type_code, tax_document_type_code: true
     
@@ -64,7 +64,10 @@ module SUNAT
     end
     
     def build_pdf_table_row(pdf)
-      ["032", "302 PEN"]
+      row = []
+      row << self.line_id
+      row << self.total_amount.value
+      row
     end
 
     def build_xml(xml)

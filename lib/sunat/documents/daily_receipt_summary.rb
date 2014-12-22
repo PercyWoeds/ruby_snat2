@@ -11,6 +11,7 @@ module SUNAT
     xml_root :SummaryDocuments
 
     property :id,                   String
+    property :document_type_name,   String
     property :reference_date,       Date
     property :lines,                [SummaryDocumentsLine]
     property :notes,                [String]
@@ -25,6 +26,7 @@ module SUNAT
       self.notes  ||= []
       self.lines  ||= []
       self.id     ||= default_id
+      self.document_type_name ||= "Resumenes Diarios"
     end
     
     def operation
@@ -68,13 +70,14 @@ module SUNAT
     end
 
     def build_pdf_body(pdf)
+
       table_content = [SummaryDocumentsLine::TABLE_HEADERS]
       
       lines.each do |line|
         table_content << line.build_pdf_table_row(pdf)
       end
-      
-      pdf.table table_content
+
+      pdf.table table_content, :position => :center
       pdf
     end
     

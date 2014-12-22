@@ -47,6 +47,17 @@ module SUNAT
 
     def build_pdf_header(pdf)
       pdf.text "My Wonderful Company Header"
+      pdf.bounding_box([325, 725], :width => 200, :height => 70) do
+        pdf.stroke_bounds
+        pdf.move_down 15
+        pdf.font "Helvetica", :style => :bold do
+          pdf.text "R.U.C #{self.ruc}", :align => :center
+          pdf.text "#{self.document_type_name.upcase}", :align => :center
+          pdf.text "#{self.id}", :align => :center,
+                                 :style => :bold
+        end
+      end
+      pdf.move_down 25
       pdf
     end
 
@@ -61,6 +72,7 @@ module SUNAT
 
     def build_pdf
       Prawn::Document.generate("pdf_output/#{file_name}.pdf") do |pdf|
+        pdf.font "Helvetica"
         pdf = build_pdf_header(pdf)
         pdf = build_pdf_body(pdf)
         build_pdf_footer(pdf)
