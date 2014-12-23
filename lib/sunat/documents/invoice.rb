@@ -26,6 +26,8 @@ module SUNAT
     property :ruc,                             String
     property :legal_name,                      String
 
+    property :client_data,                     Array
+
     validate :id_valid?
     validates :id, presence:true
 		# validates :id, format: { with: Proc.new{} }
@@ -39,6 +41,7 @@ module SUNAT
       self.despatch_document_references ||= []
       self.additional_document_references ||= []
       self.document_type_name ||= "Factura Electronica"
+      self.client_data ||= []
       super(*args)
     end
     
@@ -67,6 +70,28 @@ module SUNAT
     def build_pdf_body(pdf)
       pdf.font "Helvetica", :size => 8
       
+      rows = self.client_data
+
+      if rows.count
+
+        table_middle = rows.count/2
+
+        (0..(table_middle-1)).each do |i|
+          rows[i] += rows.delete_at table_middle
+        end
+
+        pdf.table(rows, {
+          :position => :center,
+          :cell_style => {:border_width => 0},
+          :width => pdf.bounds.width
+        }) do 
+          columns([0, 2]).font_style = :bold
+        end
+
+        pdf.move_down 20
+
+      end
+
       headers = []
       table_content = []
       

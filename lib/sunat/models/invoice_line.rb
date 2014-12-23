@@ -48,7 +48,13 @@ module SUNAT
       :service => "ZZ"
     }
 
-    TABLE_HEADERS = ["ITEM", "CANTIDAD", "UNIDAD", "DESCRIPTION", "PRECIO UNITARIO (incluye IGV)"]
+    TABLE_HEADERS = ["ITEM",
+                     "CANTIDAD",
+                     "UNIDAD",
+                     "DESCRIPTION",
+                     "PRECIO UNITARIO",
+                     "VALOR UNITARIO",
+                     "VALOR TOTAL"]
     
     def initialize(*args)
       self.tax_totals ||=[]
@@ -69,8 +75,9 @@ module SUNAT
       row << self.quantity.quantity
       row << self.quantity.unit_code
       row << "#{self.item.description} - #{self.item.id}"
-      row << "#{self.pricing_reference.alternative_condition_price.price_amount.value}"
-      row << "#{self.price}"
+      row << "#{self.pricing_reference.alternative_condition_price.price_amount.to_s}"
+      row << "#{self.price.to_s}"
+      row << "#{self.line_extension_amount.to_s}"
     end
 
     def build_xml(xml)

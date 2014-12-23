@@ -55,13 +55,13 @@ module SUNAT
 
     def build_pdf_header(pdf)
       if self.company_logo_path.nil?
-        pdf.text "Cabify", :size => 40,
-                           :style => :bold
+        pdf.text "#{self.company_name}", :size => 40,
+                                         :style => :bold
       else
-        pdf.image "#{self.company_logo_path}"
+        pdf.image "#{self.company_logo_path}", :width => 200
       end
-
-      pdf.text "#{address}", :size => 16,
+      pdf.move_down 4
+      pdf.text "#{address}", :size => 12,
                          :style => :bold
       pdf.bounding_box([325, 725], :width => 200, :height => 70) do
         pdf.stroke_bounds

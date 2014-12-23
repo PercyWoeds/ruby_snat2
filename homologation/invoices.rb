@@ -29,7 +29,7 @@ doc.company_logo_path = "#{File.dirname(__FILE__)}/logo.png"
 
     line.quantity = SUNAT::Quantity.new
     line.quantity.quantity = 250
-    line.quantity.unit_code = "NIU"
+    line.quantity.unit_code = "JOURNEYS"
     line.line_extension_amount = SUNAT::PaymentAmount.new(4000)
 
     line.pricing_reference = SUNAT::PricingReference.new
@@ -46,6 +46,17 @@ doc.company_logo_path = "#{File.dirname(__FILE__)}/logo.png"
 
   end
 end
+
+doc.client_data = [
+  ["Cliente", "CABIFY"],
+  ["Direccion", "Calle amapolas"],
+  ["Identificacion", "1231232103"],
+  ["Fecha de emision", "DATERINO"],
+  ["Fecha de vencimiento", "DATERINO"],
+  ["Forma de pago", "Contado"],
+  ["Tipo de moneda", "SOLESSSSSS"],
+  ["Damn", "Fella"]
+]
 
 doc.legal_monetary_total = SUNAT::PaymentAmount.new(5000)
 
