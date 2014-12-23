@@ -25,7 +25,7 @@ doc.notes = [
   "Notes"
 ]
 
-(1..40).each do |i|
+40.times do
 
   doc.add_line do |line|
     line.serial_id = 'BB01'

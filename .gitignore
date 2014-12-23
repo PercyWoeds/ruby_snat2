@@ -22,5 +22,5 @@ SECRET.md
 homologation/config.rb
 keys
 homologation/keys
-.swp
-.pdf
+*.swp
+*.pdf

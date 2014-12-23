@@ -11,6 +11,8 @@ module SUNAT
     property :issue_date,                 Date
     property :reference_date,             Date
     property :customization_id,           String
+    property :company_logo_path,          String
+    property :company_name,               String
     property :document_type_name,         String
     property :accounting_supplier_party,  AccountingSupplierParty
     property :additional_properties,      [AdditionalProperty]
@@ -52,8 +54,13 @@ module SUNAT
     end
 
     def build_pdf_header(pdf)
-      pdf.text "Cabify", :size => 40,
-                         :style => :bold
+      if self.company_logo_path.nil?
+        pdf.text "Cabify", :size => 40,
+                           :style => :bold
+      else
+        pdf.image "#{self.company_logo_path}"
+      end
+
       pdf.text "#{address}", :size => 16,
                          :style => :bold
       pdf.bounding_box([325, 725], :width => 200, :height => 70) do

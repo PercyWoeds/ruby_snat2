@@ -38,6 +38,7 @@ module SUNAT
       self.tax_totals ||= []
       self.despatch_document_references ||= []
       self.additional_document_references ||= []
+      self.document_type_name ||= "Factura Electronica"
       super(*args)
     end
     
@@ -61,6 +62,29 @@ module SUNAT
       line = InvoiceLine.new.tap(&block)
       line.id = get_line_number.to_s
       self.lines << line
+    end
+
+    def build_pdf_body(pdf)
+      pdf.font "Helvetica", :size => 8
+      
+      headers = []
+      table_content = []
+      
+      InvoiceLine::TABLE_HEADERS.each do |header|
+        cell = pdf.make_cell(:content => header)
+        cell.background_color = "FFFFCC"
+        headers << cell
+      end
+
+      table_content << headers
+      
+      lines.each do |line|
+        table_content << line.build_pdf_table_row(pdf)
+      end
+
+      pdf.table table_content, :position => :center,
+                               :header => true
+      pdf
     end
 
     def build_own_xml(xml)

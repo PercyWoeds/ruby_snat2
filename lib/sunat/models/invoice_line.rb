@@ -47,6 +47,8 @@ module SUNAT
       :product => "NIU",
       :service => "ZZ"
     }
+
+    TABLE_HEADERS = ["ITEM", "CANTIDAD", "UNIDAD", "DESCRIPTION", "PRECIO UNITARIO (incluye IGV)"]
     
     def initialize(*args)
       self.tax_totals ||=[]
@@ -59,6 +61,16 @@ module SUNAT
         :type => tax_name
       })
       tax_totals << tax_total
+    end
+
+    def build_pdf_table_row(pdf)
+      row = []
+      row << self.id
+      row << self.quantity.quantity
+      row << self.quantity.unit_code
+      row << "#{self.item.description} - #{self.item.id}"
+      row << "#{self.pricing_reference.alternative_condition_price.price_amount.value}"
+      row << "#{self.price}"
     end
 
     def build_xml(xml)
