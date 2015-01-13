@@ -25,6 +25,10 @@ module SUNAT
       end
     end
 
+    def not_implemented_exception
+      "Implement in child document"
+    end
+
     def initialize(*args)
       super(*args)
       self.issue_date ||= Date.today
@@ -38,19 +42,27 @@ module SUNAT
     end
 
     def file_name
-      raise "Implement in child document"
+      raise not_implemented_exception
     end
 
     def address
       get_attribute(:address) || "#{supplier.street}, #{supplier.district} (#{supplier.city})"
     end
 
+    def calculate
+      raise not_implemented_exception
+    end
+
+    def recalculate
+      calculate
+    end
+
     def operation_list
-      raise "Implement in child document"
+      raise not_implemented_exception
     end
 
     def operation
-      raise "Implement in child document"
+      raise not_implemented_exception
     end
 
     def build_pdf_header(pdf)
@@ -78,11 +90,11 @@ module SUNAT
     end
 
     def build_pdf_header_extension(pdf)
-      raise "Implement in child document"
+      raise not_implemented_exception
     end
 
     def build_pdf_body(pdf)
-      raise "Implement in child document"
+      raise not_implemented_exception
     end
 
     def build_pdf_footer(pdf)
@@ -95,8 +107,8 @@ module SUNAT
       pdf
     end
 
-    def build_pdf
-      Prawn::Document.generate("pdf_output/#{file_name}.pdf") do |pdf|
+    def build_pdf(path=false)
+      Prawn::Document.generate(path || "pdf_output/#{file_name}.pdf") do |pdf|
         pdf.font "Helvetica"
         pdf = build_pdf_header(pdf)
         pdf = build_pdf_body(pdf)
@@ -105,9 +117,9 @@ module SUNAT
     end
 
     def to_pdf
+      calculate
       build_pdf
     end
-
 
     def customization_id
       self['customization_id'] ||= DEFAULT_CUSTOMIZATION_ID
@@ -125,9 +137,85 @@ module SUNAT
       end
     end
 
+    def get_additional_properties_by_property(key, value)
+      results = []
+      additional_properties.each do |ap|
+        if ap[key] and (ap[key] == value)
+          results.push ap
+        end
+      end
+      results
+    end
+
+    def get_additional_property_by_id(id)
+      get_additional_properties_by_property(:id, id)[0]
+    end
+
+    def remove_additional_properties_by_property(key, value)
+      results = []
+      additional_properties.each do |ap|
+        if ap[key] and (ap[key] != value)
+          results.push ap
+        end
+      end
+      self.additional_properties = results
+      results
+    end
+
+    def modify_additional_property_by_id(ap)
+      remove_additional_properties_by_property(:id, ap[:id])
+      add_additional_property ap
+    end
+
+    def add_additional_monetary_total(options)
+      id = options[:id]
+      payable_amount = options[:payable_amount]
+      reference_amount = options[:reference_amount]
+      total_amount = options[:total_amount]
+      percent = options[:percent]
+
+      self.additional_monetary_totals << AdditionalMonetaryTotal.new.tap do |amt|
+        amt.id = id                             if id
+        amt.payable_amount = payable_amount     if payable_amount
+        amt.reference_amount = reference_amount if reference_amount
+        amt.total_amount = total_amount         if total_amount
+        amt.percent = percent                   if percent
+      end
+    end
+
+    def get_monetary_totals_by_property(key, value)
+      results = []
+      additional_monetary_totals.each do |amt|
+        if amt[key] and (amt[key] == value)
+          results.push amt
+        end
+      end
+      results
+    end
+
+    def get_monetary_total_by_id(id)
+      get_monetary_totals_by_property(:id, id)[0]
+    end
+
+    def remove_monetary_totals_by_property(key, value)
+      results = []
+      additional_monetary_totals.each do |amt|
+        if amt[key] and (amt[key] != value)
+          results.push amt
+        end
+      end
+      self.additional_monetary_totals = results
+      results
+    end
+
+    def modify_monetary_total_by_id(amt)
+      remove_monetary_totals_by_property(:id, amt[:id])
+      add_additional_monetary_total amt
+    end
+
     # The signature here is for two reasons:
     #   1. easy call of the global SUNAT::SIGNATURE
-    #   2. possible dependency injection of a signature in a test vía stubs
+    #   2. possible dependency injection of a signature in a test via stubs
     #
     attr_accessor :signature
 
@@ -140,6 +228,7 @@ module SUNAT
     end
 
     def to_xml
+      calculate
       # We create a decorator responsible to build the xml in top
       # of this document
       xml_document = XMLDocument.new(self)

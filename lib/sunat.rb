@@ -28,6 +28,7 @@ module SUNAT
   autoload :Property,    "sunat/property"
   autoload :Validations, "sunat/validations"
   autoload :Model,       "sunat/model"
+  autoload :Helpers,     "sunat/helpers"
 
   # Base Document
   autoload :Document, "sunat/document"

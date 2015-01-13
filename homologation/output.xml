@@ -1,8 +1,42 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
-<SummaryDocuments xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:sunat:names:specification:ubl:peru:schema:xsd:InvoiceSummary-1 D:\UBL_SUNAT\SUNAT_xml_20110112\20110112\xsd\maindoc\UBLPE-InvoiceSummary-1.0.xsd">
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:sunat:names:specification:ubl:peru:schema:xsd:InvoiceSummary-1 D:\UBL_SUNAT\SUNAT_xml_20110112\20110112\xsd\maindoc\UBLPE-InvoiceSummary-1.0.xsd">
   <ext:UBLExtensions>
     <ext:UBLExtension>
-      <ext:ExtensionContent><ds:Signature Id="IDSignKG"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><ds:Reference URI=""/><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped- signature"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>etkV/Gzg2SvfQXnvf+2mzA33ABc=</ds:DigestValue></ds:SignedInfo><ds:SignatureValue>ewa8dLFS+9opEifpshotlrdRKKcxEl4ois8ulWaURJ9xk90mRkzvcw+I5rEChMAcq2akxKLDWJiGiFCxQpYNeLiG5cQHr6RcwGODQUo64FW1ayuLhwj17/ibozlQUeSlGMf7blFSMKFMapoeM3ARH05ggyfwJd/TKkEWjKXb9zI=</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509SubjectName>C=PE,ST=Callao,L=Lima,O=MAXI MOBILITY PERU S.A.C.,OU=20548704261,CN=Cabify,emailAddress=dev@cabify.com</ds:X509SubjectName><ds:X509Certificate>-----BEGIN CERTIFICATE-----
+      <ext:ExtensionContent>
+        <sac:AdditionalInformation>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1001</cbc:ID>
+            <cbc:PayableAmount currencyId="PEN">94530.0</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1002</cbc:ID>
+            <cbc:PayableAmount currencyId="PEN">94530.0</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1003</cbc:ID>
+            <cbc:PayableAmount currencyId="PEN">94530.0</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1004</cbc:ID>
+            <cbc:PayableAmount currencyId="PEN">30000.0</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>1005</cbc:ID>
+            <cbc:PayableAmount currencyId="PEN">30000.0</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalMonetaryTotal>
+            <cbc:ID>2005</cbc:ID>
+            <cbc:PayableAmount currencyId="PEN">94530.0</cbc:PayableAmount>
+          </sac:AdditionalMonetaryTotal>
+          <sac:AdditionalProperty>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Value>TRESCIENTOS MIL Y 00/100 NUEVOS SOLES</cbc:Value>
+          </sac:AdditionalProperty>
+        </sac:AdditionalInformation>
+      </ext:ExtensionContent>
+    </ext:UBLExtension>
+    <ext:UBLExtension>
+      <ext:ExtensionContent><ds:Signature Id="IDSignKG"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><ds:Reference URI=""/><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped- signature"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>CljYNTeK2g+cfIK5LoVRiHiow/A=</ds:DigestValue></ds:SignedInfo><ds:SignatureValue>dJ6tEo6loqs3XXH35791lVxdI60Yl6j7tFHPWpNXbG/shYDdk/sCOFqJ95BjvAaloLWBYhoJQbklUF7xfUg8BaQaCb46V+dMPKj+EUOfP40lmpBqDCQQ5Uv5VooLO9HRS55ldCWQCO8H0y3Mz/qPb/eI+eEDeeSIeY4req+KKj0=</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509SubjectName>C=PE,ST=Callao,L=Lima,O=MAXI MOBILITY PERU S.A.C.,OU=20548704261,CN=Cabify,emailAddress=dev@cabify.com</ds:X509SubjectName><ds:X509Certificate>-----BEGIN CERTIFICATE-----
 MIICpzCCAhACCQC8OAkAPryy6jANBgkqhkiG9w0BAQUFADCBlzELMAkGA1UEBhMC
 UEUxDzANBgNVBAgTBkNhbGxhbzENMAsGA1UEBxMETGltYTEiMCAGA1UEChMZTUFY
 SSBNT0JJTElUWSBQRVJVIFMuQS5DLjEUMBIGA1UECxMLMjA1NDg3MDQyNjExDzAN
@@ -24,9 +58,9 @@ rQMFAoe1w6IIq3U=
   </ext:UBLExtensions>
   <cbc:UBLVersionID>2.0</cbc:UBLVersionID>
   <cbc:CustomizationID>1.0</cbc:CustomizationID>
-  <cbc:ID>RC-20141218</cbc:ID>
-  <cbc:IssueDate>2014-12-18</cbc:IssueDate>
-  <cbc:ReferenceDate>2014-12-01</cbc:ReferenceDate>
+  <cbc:ID>FF11-000001</cbc:ID>
+  <cbc:IssueDate>2015-01-13</cbc:IssueDate>
+  <cbc:ReferenceDate>2015-01-13</cbc:ReferenceDate>
   <cac:Signature>
     <cbc:ID>IDSignKG</cbc:ID>
     <cac:SignatoryParty>
@@ -43,8 +77,8 @@ rQMFAoe1w6IIq3U=
       </cac:ExternalReference>
     </cac:DigitalSignatureAttachment>
   </cac:Signature>
-  <cbc:Note>Just testing</cbc:Note>
-  <cbc:Note>Notes</cbc:Note>
+  <cbc:InvoiceTypeCode>01</cbc:InvoiceTypeCode>
+  <cbc:DocumentCurrencyCode>PEN</cbc:DocumentCurrencyCode>
   <cac:AccountingSupplierParty>
     <cbc:CustomerAssignedAccountID>201548704261</cbc:CustomerAssignedAccountID>
     <cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
@@ -64,34 +98,1398 @@ rQMFAoe1w6IIq3U=
       </cac:PartyLegalEntity>
     </cac:Party>
   </cac:AccountingSupplierParty>
-  <sac:SummaryDocumentsLine>
-    <cbc:LineID>1</cbc:LineID>
-    <cbc:DocumentTypeCode>03</cbc:DocumentTypeCode>
-    <sac:DocumentSerialID>BB01</sac:DocumentSerialID>
-    <sac:StartDocumentNumberID>1</sac:StartDocumentNumberID>
-    <sac:EndDocumentNumberID>123</sac:EndDocumentNumberID>
-    <sac:TotalAmount currencyId="PEN">65.0</sac:TotalAmount>
+  <cac:AccountingCustomerParty>-</cac:AccountingCustomerParty>
+  <cac:LegalMonetaryTotal>
+    <cbc:PayableAmount currencyId="PEN">300000.0</cbc:PayableAmount>
+  </cac:LegalMonetaryTotal>
+  <cac:InvoiceLine>
+    <cbc:ID>1</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
     <cac:TaxTotal>
-      <cbc:TaxAmount currencyId="PEN">0.0</cbc:TaxAmount>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
       <cac:TaxSubTotal>
-        <cbc:TaxAmount currencyId="PEN">0.0</cbc:TaxAmount>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
         <cac:TaxCategory>
-          <cbc:TierRange>01</cbc:TierRange>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
           <cac:TaxScheme>
-            <cbc:ID>2000</cbc:ID>
-            <cbc:Name>ISC</cbc:Name>
-            <cbc:TaxTypeCode>EXC</cbc:TaxTypeCode>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
           </cac:TaxScheme>
         </cac:TaxCategory>
       </cac:TaxSubTotal>
     </cac:TaxTotal>
-    <cac:AllowanceCharge>
-      <cbc:ChargeIndicator>true</cbc:ChargeIndicator>
-      <cbc:Amount currencyId="PEN">30.0</cbc:Amount>
-    </cac:AllowanceCharge>
-    <sac:BillingPayment>
-      <cbc:PaidAmount currencyId="PEN">35.0</cbc:PaidAmount>
-      <cbc:InstructionID>01</cbc:InstructionID>
-    </sac:BillingPayment>
-  </sac:SummaryDocumentsLine>
-</SummaryDocuments>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>2</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>3</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>4</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>5</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>6</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>7</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>8</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>9</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>10</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>11</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>12</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>13</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>14</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>15</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>16</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>17</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>18</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>19</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>20</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>21</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>22</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>23</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>24</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>25</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>26</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>27</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>28</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>29</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>30</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>31</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>32</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>33</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>34</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>35</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>36</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>37</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>38</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>39</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <cac:InvoiceLine>
+    <cbc:ID>40</cbc:ID>
+    <cbc:LineExtensionAmount currencyId="PEN">30.0</cbc:LineExtensionAmount>
+    <cac:PricingReference>
+      <cac:AlternativeConditionPrice>
+        <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+        <cbc:PriceTypeCode>01</cbc:PriceTypeCode>
+      </cac:AlternativeConditionPrice>
+    </cac:PricingReference>
+    <cac:Item>
+      <cbc:Description>Cabify Journey In Rolls Royce</cbc:Description>
+      <cac:SellersItemIdentification>
+        <cbc:ID>ROLLS2014</cbc:ID>
+      </cac:SellersItemIdentification>
+    </cac:Item>
+    <cac:TaxTotal>
+      <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+      <cac:TaxSubTotal>
+        <cbc:TaxAmount currencyId="PEN">3.0</cbc:TaxAmount>
+        <cac:TaxCategory>
+          <cbc:TaxExemptionReasonCode>10</cbc:TaxExemptionReasonCode>
+          <cac:TaxScheme>
+            <cbc:ID>1000</cbc:ID>
+            <cbc:Name>IGV</cbc:Name>
+            <cbc:TaxTypeCode>VAT</cbc:TaxTypeCode>
+          </cac:TaxScheme>
+        </cac:TaxCategory>
+      </cac:TaxSubTotal>
+    </cac:TaxTotal>
+    <cac:Price>
+      <cbc:PriceAmount currencyId="PEN">30.0</cbc:PriceAmount>
+    </cac:Price>
+    <cbc:InvoicedQuantity unitCode="JOURNEYS">250</cbc:InvoicedQuantity>
+  </cac:InvoiceLine>
+  <ext:UBLExtension>
+    <ext:ExtensionContent>
+      <sac:AdditionalInformation>
+        <sac:AdditionalMonetaryTotal>
+          <cbc:ID>1001</cbc:ID>
+          <cbc:PayableAmount currencyId="PEN">94530.0</cbc:PayableAmount>
+        </sac:AdditionalMonetaryTotal>
+        <sac:AdditionalMonetaryTotal>
+          <cbc:ID>1002</cbc:ID>
+          <cbc:PayableAmount currencyId="PEN">94530.0</cbc:PayableAmount>
+        </sac:AdditionalMonetaryTotal>
+        <sac:AdditionalMonetaryTotal>
+          <cbc:ID>1003</cbc:ID>
+          <cbc:PayableAmount currencyId="PEN">94530.0</cbc:PayableAmount>
+        </sac:AdditionalMonetaryTotal>
+        <sac:AdditionalMonetaryTotal>
+          <cbc:ID>1004</cbc:ID>
+          <cbc:PayableAmount currencyId="PEN">30000.0</cbc:PayableAmount>
+        </sac:AdditionalMonetaryTotal>
+        <sac:AdditionalMonetaryTotal>
+          <cbc:ID>1005</cbc:ID>
+          <cbc:PayableAmount currencyId="PEN">30000.0</cbc:PayableAmount>
+        </sac:AdditionalMonetaryTotal>
+        <sac:AdditionalMonetaryTotal>
+          <cbc:ID>2005</cbc:ID>
+          <cbc:PayableAmount currencyId="PEN">94530.0</cbc:PayableAmount>
+        </sac:AdditionalMonetaryTotal>
+      </sac:AdditionalInformation>
+    </ext:ExtensionContent>
+  </ext:UBLExtension>
+</Invoice>

@@ -69,15 +69,33 @@ module SUNAT
       tax_totals << tax_total
     end
 
+    def calculate_tax_total
+      result = 0
+      tax_totals.each do |total|
+        result += total.tax_amount.value
+      end
+      result
+    end
+
+    def calculate_tax_sub_total
+      result = 0
+
+      tax_totals.each do |total|
+        result += total.sub_total
+      end
+
+      result
+    end
+
     def build_pdf_table_row(pdf)
       row = []
       row << self.id
       row << self.quantity.quantity
       row << self.quantity.unit_code
       row << "#{self.item.description} - #{self.item.id}"
-      row << "#{self.pricing_reference.alternative_condition_price.price_amount.to_s}"
       row << "#{self.price.to_s}"
-      row << "#{self.line_extension_amount.to_s}"
+      row << "#{self.pricing_reference.alternative_condition_price.price_amount.to_s}"
+      row << "#{self.pricing_reference.alternative_condition_price.price_amount.to_f * self.quantity.quantity}"
     end
 
     def build_xml(xml)

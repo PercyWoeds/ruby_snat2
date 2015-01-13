@@ -30,7 +30,6 @@ module SUNAT
 
     validate :id_valid?
     validates :id, presence:true
-		# validates :id, format: { with: Proc.new{} }
     validates :document_currency_code, existence: true, currency_code: true
     validates :invoice_type_code, tax_document_type_code: true
 
@@ -60,6 +59,89 @@ module SUNAT
     def operation
       :send_bill
     end
+
+    def calculate
+      modify_additional_property_by_id({
+        :id => "1000",
+        :value => SUNAT::Helpers.textify(total_price.to_s.to_f).upcase
+      })
+
+      modify_monetary_total_by_id({
+        :id => "1001",
+        :payable_amount => SUNAT::PaymentAmount.new(9453000),
+        :name => "Flesipolla"
+      })
+
+      modify_monetary_total_by_id({
+        :id => "1002",
+        :payable_amount => SUNAT::PaymentAmount.new(9453000)
+      })
+
+      modify_monetary_total_by_id({
+        :id => "1003",
+        :payable_amount => SUNAT::PaymentAmount.new(9453000)
+      })
+
+      modify_monetary_total_by_id({
+        :id => "1004",
+        :payable_amount => SUNAT::PaymentAmount.new(calculate_tax_total)
+      })
+
+      modify_monetary_total_by_id({
+        :id => "1005",
+        :payable_amount => SUNAT::PaymentAmount.new(calculate_sub_total)
+      })
+
+      modify_monetary_total_by_id({
+        :id => "2005",
+        :payable_amount => SUNAT::PaymentAmount.new(9453000)
+      })
+
+    end
+
+    def total_price
+      operation = 0
+      lines.each do |line|
+        operation += line.price.value * line.quantity.quantity
+      end
+      SUNAT::PaymentAmount.new(operation)
+    end
+
+    def calculate_tax_total
+      total = 0
+
+      if self.lines.count
+        self.lines.each do |line|
+          total += line.calculate_tax_total * line.quantity.quantity
+        end
+      end
+
+      total
+    end
+
+    def calculate_sub_total
+      subtotal = 0
+
+      if self.lines.count
+        self.lines.each do |line|
+          subtotal += line.calculate_tax_sub_total * line.quantity.quantity
+        end
+      end
+
+      subtotal
+    end
+
+    def calculated_tax_totals
+      totals = []
+
+      if self.lines.count
+        self.lines.each do |line|
+          totals.push line.calculate_tax_total * line.quantity.quantity
+        end
+      end
+
+      totals
+    end
     
     def add_line(&block)
       line = InvoiceLine.new.tap(&block)
@@ -70,7 +152,7 @@ module SUNAT
     def build_pdf_body(pdf)
       pdf.font "Helvetica", :size => 8
       
-      rows = self.client_data
+      rows = client_data
 
       if rows.count
 
@@ -109,7 +191,33 @@ module SUNAT
 
       pdf.table table_content, :position => :center,
                                :header => true
+      
+      pdf.move_down 20
+      wordified_price = get_additional_property_by_id("1000")
+      pdf.text "<b>SON:</b> #{wordified_price.value}",
+                :align => :left, :inline_format => true
+      pdf.text "TOTAL: #{total_price.to_s}"
+
+      pdf.move_up 25
+
+      pdf.table [
+        ["Sub total", get_monetary_total_by_id("1005").payable_amount.to_s],
+        ["Operaciones gravadas", get_monetary_total_by_id("1001").payable_amount.to_s],
+        ["Operaciones inafectas", get_monetary_total_by_id("1002").payable_amount.to_s],
+        ["Operaciones exoneradas", get_monetary_total_by_id("1003").payable_amount.to_s],
+        ["Operaciones gratuitas", get_monetary_total_by_id("1004").payable_amount.to_s],
+        ["Total descuentos", get_monetary_total_by_id("2005").payable_amount.to_s],
+        ["Monto del total", get_additional_property_by_id("1000").value]
+      ], {
+        :position => :right,
+        :cell_style => {:border_width => 1},
+        :width => pdf.bounds.width/2
+      } do 
+        columns([0, 2]).font_style = :bold
+      end
+
       pdf
+
     end
 
     def build_own_xml(xml)

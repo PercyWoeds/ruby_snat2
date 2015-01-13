@@ -39,8 +39,18 @@ module SUNAT
       get_attribute(:tax_amount) || calculate_total
     end
 
+    def sub_total
+      result = 0
+      
+      sub_totals.each do |s|
+        result += s.tax_amount.value
+      end
+
+      result
+    end
+
     private
-    
+
     def calculate_total
       amount = 0
       sub_totals.each do |sub|

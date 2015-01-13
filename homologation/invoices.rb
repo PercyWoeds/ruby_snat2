@@ -30,7 +30,7 @@ doc.company_logo_path = "#{File.dirname(__FILE__)}/logo.png"
     line.quantity = SUNAT::Quantity.new
     line.quantity.quantity = 250
     line.quantity.unit_code = "JOURNEYS"
-    line.line_extension_amount = SUNAT::PaymentAmount.new(4000)
+    line.line_extension_amount = SUNAT::PaymentAmount.new(3000)
 
     line.pricing_reference = SUNAT::PricingReference.new
     line.pricing_reference.alternative_condition_price = SUNAT::AlternativeConditionPrice.new
@@ -40,31 +40,39 @@ doc.company_logo_path = "#{File.dirname(__FILE__)}/logo.png"
     line.item.description = "Cabify Journey In Rolls Royce"
     line.item.id = "ROLLS2014"
 
-    line.add_tax_total(:igv, 3000)
-    line.add_tax_total(:isc, 5000)
-
+    line.add_tax_total(:igv, 300)
+    # line.add_tax_total(:isc, 5000)
 
   end
 end
 
+doc.add_additional_property({
+  :id => "1000",
+  :value => "Biatch pls"
+})
+
+doc.add_additional_monetary_total({
+  :id => "1001",
+  :payable_amount => SUNAT::PaymentAmount.new(2000)
+})
+
 doc.client_data = [
   ["Cliente", "CABIFY"],
-  ["Direccion", "Calle amapolas"],
+  ["Direccion", "Calle Amapolas Verdes 5, Winterfell"],
   ["Identificacion", "1231232103"],
-  ["Fecha de emision", "DATERINO"],
-  ["Fecha de vencimiento", "DATERINO"],
+  ["Fecha de emision", "01-01-2015"],
+  ["Fecha de vencimiento", "01-01-2015"],
   ["Forma de pago", "Contado"],
-  ["Tipo de moneda", "SOLESSSSSS"],
-  ["Damn", "Fella"]
+  ["Tipo de moneda", "Nuevos Soles"]
 ]
 
-doc.legal_monetary_total = SUNAT::PaymentAmount.new(5000)
+doc.legal_monetary_total = SUNAT::PaymentAmount.new(doc.total_price)
 
 doc.id = "FF11-000001"
 
 if doc.valid?
   doc.to_pdf
-  # File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
+  File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
 else
   puts "Invalid document, ignoring output"
   puts doc.errors.full_messages

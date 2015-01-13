@@ -10,7 +10,7 @@ module SUNAT
       xml['sac'].AdditionalProperty do
         xml['cbc'].ID     id
         xml['cbc'].Value  value
-        xml['cbc'].Name   name
+        xml['cbc'].Name   name if name
       end
     end
   end

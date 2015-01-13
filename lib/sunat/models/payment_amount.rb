@@ -30,6 +30,14 @@ module SUNAT
       cents_part = value % 100
       "#{int_part}.#{cents_part}"
     end
+
+    def to_i
+      self.to_s.to_i
+    end
+
+    def to_f
+      self.to_s.to_f
+    end
     
     def xml_namespace
       @xml_namespace ||= 'cbc'
