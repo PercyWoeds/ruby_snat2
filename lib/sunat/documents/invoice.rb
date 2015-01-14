@@ -67,33 +67,32 @@ module SUNAT
       })
 
       modify_monetary_total_by_id({
-        :id => "1001",
-        :payable_amount => SUNAT::PaymentAmount.new(9453000),
-        :name => "Flesipolla"
-      })
-
-      modify_monetary_total_by_id({
-        :id => "1002",
+        :id => SUNAT::ANNEX::CATALOG_14[0],
         :payable_amount => SUNAT::PaymentAmount.new(9453000)
       })
 
       modify_monetary_total_by_id({
-        :id => "1003",
+        :id => SUNAT::ANNEX::CATALOG_14[1],
         :payable_amount => SUNAT::PaymentAmount.new(9453000)
       })
 
       modify_monetary_total_by_id({
-        :id => "1004",
+        :id => SUNAT::ANNEX::CATALOG_14[2],
+        :payable_amount => SUNAT::PaymentAmount.new(9453000)
+      })
+
+      modify_monetary_total_by_id({
+        :id => SUNAT::ANNEX::CATALOG_14[3],
         :payable_amount => SUNAT::PaymentAmount.new(calculate_tax_total)
       })
 
       modify_monetary_total_by_id({
-        :id => "1005",
+        :id => SUNAT::ANNEX::CATALOG_14[4],
         :payable_amount => SUNAT::PaymentAmount.new(calculate_sub_total)
       })
 
       modify_monetary_total_by_id({
-        :id => "2005",
+        :id => SUNAT::ANNEX::CATALOG_14[9],
         :payable_amount => SUNAT::PaymentAmount.new(9453000)
       })
 
