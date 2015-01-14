@@ -26,35 +26,138 @@ doc.company_logo_path = "#{File.dirname(__FILE__)}/../logo.png"
 
 doc.add_line do |line|
 
-	line.price = SUNAT::PaymentAmount.new(3000)
+	line.price = SUNAT::PaymentAmount.new(8305)
 
   line.quantity = SUNAT::Quantity.new
-  line.quantity.quantity = 250
-  line.quantity.unit_code = "JOURNEYS"
-  line.line_extension_amount = SUNAT::PaymentAmount.new(3000)
+  line.quantity.quantity = 2000
+  line.quantity.unit_code = "NIU"
+  line.line_extension_amount = SUNAT::PaymentAmount.new(14949153)
 
   line.pricing_reference = SUNAT::PricingReference.new
   line.pricing_reference.alternative_condition_price = SUNAT::AlternativeConditionPrice.new
-  line.pricing_reference.alternative_condition_price.price_amount = SUNAT::PaymentAmount.new(3000)
+  line.pricing_reference.alternative_condition_price.price_amount = SUNAT::PaymentAmount.new(9800)
+  line.pricing_reference.alternative_condition_price.price_type = '01' #default 01
+
 
   line.item = SUNAT::Item.new
-  line.item.description = "Cabify Journey In Rolls Royce"
-  line.item.id = "ROLLS2014"
+  line.item.description = "Grabadora LG Externo Modelo: GE20LU10"
+  line.item.id = "GLG199"
 
-  line.add_tax_total(:igv, 300)
+  line.add_tax_total(:igv, 2690847)
   # line.add_tax_total(:isc, 5000)
 
 end
 
+
+doc.add_line do |line|
+
+  line.price = SUNAT::PaymentAmount.new(52542)
+
+  line.quantity = SUNAT::Quantity.new
+  line.quantity.quantity = 300
+  line.quantity.unit_code = "NIU"
+  line.line_extension_amount = SUNAT::PaymentAmount.new(13398305)
+
+  line.pricing_reference = SUNAT::PricingReference.new
+  line.pricing_reference.alternative_condition_price = SUNAT::AlternativeConditionPrice.new
+  line.pricing_reference.alternative_condition_price.price_amount = SUNAT::PaymentAmount.new(62000)
+
+
+  line.item = SUNAT::Item.new
+  line.item.description = "Monitor LCD ViewSonic VG2028WM 20"
+  line.item.id = "MVS546"
+
+  line.add_tax_total(:igv, 2690847)
+
+end
+
+
+doc.add_line do |line|
+
+  line.price = SUNAT::PaymentAmount.new(5200)
+
+  line.quantity = SUNAT::Quantity.new
+  line.quantity.quantity = 250
+  line.quantity.unit_code = "NIU"
+  line.line_extension_amount = SUNAT::PaymentAmount.new(1300000)
+
+  line.pricing_reference = SUNAT::PricingReference.new
+  line.pricing_reference.alternative_condition_price = SUNAT::AlternativeConditionPrice.new
+  line.pricing_reference.alternative_condition_price.price_amount = SUNAT::PaymentAmount.new(5200)
+
+
+  line.item = SUNAT::Item.new
+  line.item.description = "Memoria DDR-3 B1333 Kingston"
+  line.item.id = "MPC35"
+
+  line.add_tax_total(:igv, 0)
+
+end
+
+
+doc.add_line do |line|
+
+  line.price = SUNAT::PaymentAmount.new(16610)
+
+  line.quantity = SUNAT::Quantity.new
+  line.quantity.quantity = 500
+  line.quantity.unit_code = "NIU"
+  line.line_extension_amount = SUNAT::PaymentAmount.new(8305085)
+
+  line.pricing_reference = SUNAT::PricingReference.new
+  line.pricing_reference.alternative_condition_price = SUNAT::AlternativeConditionPrice.new
+  line.pricing_reference.alternative_condition_price.price_amount = SUNAT::PaymentAmount.new(19600)
+
+
+  line.item = SUNAT::Item.new
+  line.item.description = "Teclado Microsoft SideWinder X6"
+  line.item.id = "TMS22"
+
+  line.add_tax_total(:igv, 1494915)
+
+end
+
+
+doc.add_line do |line|
+
+  line.price = SUNAT::PaymentAmount.new(16610)
+
+  line.quantity = SUNAT::Quantity.new
+  line.quantity.quantity = 5
+  line.quantity.unit_code = "NIU"
+  line.line_extension_amount = SUNAT::PaymentAmount.new(0)
+
+  line.pricing_reference = SUNAT::PricingReference.new
+  line.pricing_reference.alternative_condition_price = SUNAT::AlternativeConditionPrice.new
+  line.pricing_reference.alternative_condition_price.price_amount = SUNAT::PaymentAmount.new(0)
+
+
+  line.item = SUNAT::Item.new
+  line.item.description = "Web cam Genius iSlim 310VVU"
+  line.item.id = "WCG01"
+
+  line.add_tax_total(:igv, 0, SUNAT::ANNEX::CATALOG_07[9])
+
+end
+
+
 doc.add_additional_property({
-  :id => "1000",
-  :value => "Biatch pls"
+  :id => "192389284",
+  :value => "This is a custom additional property"
 })
 
 doc.add_additional_monetary_total({
-  :id => "1001",
-  :payable_amount => SUNAT::PaymentAmount.new(2000)
+  :id => "623432432",
+  :payable_amount => SUNAT::PaymentAmount.new(2000),
+  :name => "CUSTOM-AMT"
 })
+
+
+# You can add here some cells about your client data
+# and payment data and they will be shown in the PDF
+# in a table before the items table
+# This data is totally customizable and it won't
+# modify the xml
 
 doc.client_data = [
   ["Cliente", "CABIFY"],
@@ -68,7 +171,7 @@ doc.client_data = [
 
 doc.legal_monetary_total = SUNAT::PaymentAmount.new(doc.total_price)
 
-doc.id = "FF11-000001"
+doc.id = "F001-4355"
 
 if doc.valid?
   doc.pdf_path = "invoice.pdf"

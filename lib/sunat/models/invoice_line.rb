@@ -61,11 +61,17 @@ module SUNAT
       super(parse_attributes(*args))
     end
 
-    def add_tax_total(tax_name, amount)      
-      tax_total = TaxTotal.new({
+    def add_tax_total(tax_name, amount, code=nil)      
+      
+      opts = {
         :amount => amount,
-        :type => tax_name
-      })
+        :type => tax_name,
+      }
+
+      opts[:code] = code if code
+
+      tax_total = TaxTotal.new(opts)
+
       tax_totals << tax_total
     end
 
