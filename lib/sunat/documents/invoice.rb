@@ -62,7 +62,7 @@ module SUNAT
 
     def calculate
       modify_additional_property_by_id({
-        :id => "1000",
+        :id => SUNAT::ANNEX::CATALOG_15[0],
         :value => SUNAT::Helpers.textify(total_price.to_s.to_f).upcase
       })
 
@@ -192,21 +192,24 @@ module SUNAT
                                :header => true
       
       pdf.move_down 20
-      wordified_price = get_additional_property_by_id("1000")
-      pdf.text "<b>SON:</b> #{wordified_price.value}",
-                :align => :left, :inline_format => true
-      pdf.text "TOTAL: #{total_price.to_s}"
-
-      pdf.move_up 25
+      
+      wordified_price = get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0])
+      
+      pdf.bounding_box([0, pdf.cursor], :width => 200, :height => 20) do
+        pdf.stroke_bounds
+        pdf.text "<b>SON:</b> #{wordified_price.value}",
+                  :align => :left, :inline_format => true
+        pdf.text "TOTAL: #{total_price.to_s}"
+      end
 
       pdf.table [
-        ["Sub total", get_monetary_total_by_id("1005").payable_amount.to_s],
-        ["Operaciones gravadas", get_monetary_total_by_id("1001").payable_amount.to_s],
-        ["Operaciones inafectas", get_monetary_total_by_id("1002").payable_amount.to_s],
-        ["Operaciones exoneradas", get_monetary_total_by_id("1003").payable_amount.to_s],
-        ["Operaciones gratuitas", get_monetary_total_by_id("1004").payable_amount.to_s],
+        ["Sub total", get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[9]).payable_amount.to_s],
+        ["Operaciones gravadas", get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[0]).payable_amount.to_s],
+        ["Operaciones inafectas", get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[1]).payable_amount.to_s],
+        ["Operaciones exoneradas", get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[2]).payable_amount.to_s],
+        ["Operaciones gratuitas", get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[3]).payable_amount.to_s],
         ["Total descuentos", get_monetary_total_by_id("2005").payable_amount.to_s],
-        ["Monto del total", get_additional_property_by_id("1000").value]
+        ["Monto del total", get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0]).value]
       ], {
         :position => :right,
         :cell_style => {:border_width => 1},
