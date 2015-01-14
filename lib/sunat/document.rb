@@ -18,6 +18,7 @@ module SUNAT
     property :additional_properties,      [AdditionalProperty]
     property :additional_monetary_totals, [AdditionalMonetaryTotal]
     property :address,                    String
+    property :pdf_path,                 String
 
     def self.xml_root(root_name)
       define_method :xml_root do
@@ -108,7 +109,7 @@ module SUNAT
     end
 
     def build_pdf(path=false)
-      Prawn::Document.generate(path || "pdf_output/#{file_name}.pdf") do |pdf|
+      Prawn::Document.generate(path || self.pdf_path || "pdf_output/#{file_name}.pdf") do |pdf|
         pdf.font "Helvetica"
         pdf = build_pdf_header(pdf)
         pdf = build_pdf_body(pdf)
