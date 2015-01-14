@@ -24,4 +24,5 @@ keys
 homologation/keys
 *.swp
 *.pdf
-examples/*.xml
+*.xml
+# force to add a xml file

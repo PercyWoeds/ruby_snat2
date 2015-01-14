@@ -191,16 +191,12 @@ module SUNAT
       pdf.table table_content, :position => :center,
                                :header => true
       
-      pdf.move_down 20
-      
       wordified_price = get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0])
       
-      pdf.bounding_box([0, pdf.cursor], :width => 200, :height => 20) do
-        pdf.stroke_bounds
-        pdf.text "<b>SON:</b> #{wordified_price.value}",
-                  :align => :left, :inline_format => true
-        pdf.text "TOTAL: #{total_price.to_s}"
-      end
+      pdf.stroke_bounds
+      pdf.text "<b>SON:</b> #{wordified_price.value}",
+                :align => :left, :inline_format => true
+      pdf.text "TOTAL: #{total_price.to_s}"
 
       pdf.table [
         ["Sub total", get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[9]).payable_amount.to_s],
