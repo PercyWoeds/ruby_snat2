@@ -221,6 +221,7 @@ doc.invoice_summary = [
   ["Monto del total", doc.get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0]).value]
 ]
 
+
 doc.legal_monetary_total = SUNAT::PaymentAmount.new(doc.total_price)
 
 doc.id = "F001-4355"
