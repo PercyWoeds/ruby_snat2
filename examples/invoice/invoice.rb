@@ -140,18 +140,60 @@ doc.add_line do |line|
 
 end
 
-
+# I add a property
 doc.add_additional_property({
-  :id => "192389284",
-  :value => "This is a custom additional property"
+  :id => SUNAT::ANNEX::CATALOG_15[0],
+  :value => "This is an additional property that I'll replace"
 })
+
+# I modify the additional I want to replace or I simply add a new one
+# Also, using this helper to textify PaymentAmounts we can create montos
+doc.modify_additional_property_by_id({
+  :id => SUNAT::ANNEX::CATALOG_15[0],
+  :value => SUNAT::PaymentAmount.new(42322500).textify.upcase
+})
+
+# I want to add an additional monetary total, so I will use
+# this method to do it
 
 doc.add_additional_monetary_total({
-  :id => "623432432",
-  :payable_amount => SUNAT::PaymentAmount.new(2000),
-  :name => "CUSTOM-AMT"
+  :id => SUNAT::ANNEX::CATALOG_14[0],
+  :payable_amount => SUNAT::PaymentAmount.new(0)
 })
 
+# Ops... I've mistaked, so I want to overwrite a monetary total with
+# this id so I'll use the modify method, that will remove all amt with
+# the Id provided and then add the new one
+
+doc.modify_monetary_total_by_id({
+  :id => SUNAT::ANNEX::CATALOG_14[0],
+  :payable_amount => SUNAT::PaymentAmount.new(34819915)
+})
+
+doc.modify_monetary_total_by_id({
+  :id => SUNAT::ANNEX::CATALOG_14[1],
+  :payable_amount => SUNAT::PaymentAmount.new(0)
+})
+
+doc.modify_monetary_total_by_id({
+  :id => SUNAT::ANNEX::CATALOG_14[2],
+  :payable_amount => SUNAT::PaymentAmount.new(1235000)
+})
+
+doc.modify_monetary_total_by_id({
+  :id => SUNAT::ANNEX::CATALOG_14[3],
+  :payable_amount => SUNAT::PaymentAmount.new(3000)
+})
+
+doc.modify_monetary_total_by_id({
+  :id => SUNAT::ANNEX::CATALOG_14[4],
+  :payable_amount => SUNAT::PaymentAmount.new(0)
+})
+
+doc.modify_monetary_total_by_id({
+  :id => SUNAT::ANNEX::CATALOG_14[9],
+  :payable_amount => SUNAT::PaymentAmount.new(5923051)
+})
 
 # You can add here some cells about your client data
 # and payment data and they will be shown in the PDF
@@ -167,6 +209,16 @@ doc.client_data = [
   ["Fecha de vencimiento", "01-01-2015"],
   ["Forma de pago", "Contado"],
   ["Tipo de moneda", "Nuevos Soles"]
+]
+
+doc.invoice_summary = [
+  ["Operaciones gravadas", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[0]).payable_amount.to_s],
+  ["Operaciones inafectas", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[1]).payable_amount.to_s],
+  ["Operaciones exoneradas", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[2]).payable_amount.to_s],
+  ["Operaciones gratuitas", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[3]).payable_amount.to_s],
+  ["Sub total", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[4]).payable_amount.to_s],
+  ["Total descuentos", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[9]).payable_amount.to_s],
+  ["Monto del total", doc.get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0]).value]
 ]
 
 doc.legal_monetary_total = SUNAT::PaymentAmount.new(doc.total_price)

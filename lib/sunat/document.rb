@@ -50,14 +50,6 @@ module SUNAT
       get_attribute(:address) || "#{supplier.street}, #{supplier.district} (#{supplier.city})"
     end
 
-    def calculate
-      raise not_implemented_exception
-    end
-
-    def recalculate
-      calculate
-    end
-
     def operation_list
       raise not_implemented_exception
     end
@@ -118,7 +110,6 @@ module SUNAT
     end
 
     def to_pdf
-      calculate
       build_pdf
     end
 
@@ -229,7 +220,6 @@ module SUNAT
     end
 
     def to_xml
-      calculate
       # We create a decorator responsible to build the xml in top
       # of this document
       xml_document = XMLDocument.new(self)

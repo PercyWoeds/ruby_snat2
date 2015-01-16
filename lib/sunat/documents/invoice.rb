@@ -27,6 +27,7 @@ module SUNAT
     property :legal_name,                      String
 
     property :client_data,                     Array
+    property :invoice_summary,                 Array
 
     validate :id_valid?
     validates :id, presence:true
@@ -41,6 +42,7 @@ module SUNAT
       self.additional_document_references ||= []
       self.document_type_name ||= "Factura Electronica"
       self.client_data ||= []
+      self.invoice_summary ||= []
       super(*args)
     end
     
@@ -60,70 +62,48 @@ module SUNAT
       :send_bill
     end
 
-    def calculate
-      modify_additional_property_by_id({
-        :id => SUNAT::ANNEX::CATALOG_15[0],
-        :value => SUNAT::Helpers.textify(total_price.to_s.to_f).upcase
-      })
-
-      modify_monetary_total_by_id({
-        :id => SUNAT::ANNEX::CATALOG_14[0],
-        :payable_amount => SUNAT::PaymentAmount.new(9453000)
-      })
-
-      modify_monetary_total_by_id({
-        :id => SUNAT::ANNEX::CATALOG_14[1],
-        :payable_amount => SUNAT::PaymentAmount.new(9453000)
-      })
-
-      modify_monetary_total_by_id({
-        :id => SUNAT::ANNEX::CATALOG_14[2],
-        :payable_amount => SUNAT::PaymentAmount.new(9453000)
-      })
-
-      modify_monetary_total_by_id({
-        :id => SUNAT::ANNEX::CATALOG_14[3],
-        :payable_amount => SUNAT::PaymentAmount.new(calculate_tax_total)
-      })
-
-      modify_monetary_total_by_id({
-        :id => SUNAT::ANNEX::CATALOG_14[4],
-        :payable_amount => SUNAT::PaymentAmount.new(calculate_sub_total)
-      })
-
-      modify_monetary_total_by_id({
-        :id => SUNAT::ANNEX::CATALOG_14[9],
-        :payable_amount => SUNAT::PaymentAmount.new(9453000)
-      })
-
-    end
-
     def total_price
       operation = 0
       lines.each do |line|
-        operation += line.price.value * line.quantity.quantity
+        operation += line.total_price
       end
       SUNAT::PaymentAmount.new(operation)
     end
 
-    def calculate_tax_total
+    def total_alternave_condition_price_amount
+      operation = 0
+      lines.each do |line|
+        operation += line.total_alternave_condition_price_amount
+      end
+      SUNAT::PaymentAmount.new(operation)
+    end
+
+    def total_extension_amount
+      operation = 0
+      lines.each do |line|
+        operation += line.line_extension_amount.value
+      end
+      SUNAT::PaymentAmount.new(operation)
+    end
+
+    def total_tax_totals
       total = 0
 
       if self.lines.count
         self.lines.each do |line|
-          total += line.calculate_tax_total * line.quantity.quantity
+          total += line.calculate_tax_total
         end
       end
 
       total
     end
 
-    def calculate_sub_total
+    def total_sub_totals
       subtotal = 0
 
       if self.lines.count
         self.lines.each do |line|
-          subtotal += line.calculate_tax_sub_total * line.quantity.quantity
+          subtotal += line.calculate_tax_sub_total
         end
       end
 
@@ -190,23 +170,10 @@ module SUNAT
 
       pdf.table table_content, :position => :center,
                                :header => true
-      
-      wordified_price = get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0])
-      
-      pdf.stroke_bounds
-      pdf.text "<b>SON:</b> #{wordified_price.value}",
-                :align => :left, :inline_format => true
-      pdf.text "TOTAL: #{total_price.to_s}"
 
-      pdf.table [
-        ["Sub total", get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[9]).payable_amount.to_s],
-        ["Operaciones gravadas", get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[0]).payable_amount.to_s],
-        ["Operaciones inafectas", get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[1]).payable_amount.to_s],
-        ["Operaciones exoneradas", get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[2]).payable_amount.to_s],
-        ["Operaciones gratuitas", get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[3]).payable_amount.to_s],
-        ["Total descuentos", get_monetary_total_by_id("2005").payable_amount.to_s],
-        ["Monto del total", get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0]).value]
-      ], {
+      pdf.move_down 10
+
+      pdf.table invoice_summary, {
         :position => :right,
         :cell_style => {:border_width => 1},
         :width => pdf.bounds.width/2

@@ -25,10 +25,20 @@ module SUNAT
       xml[xml_namespace].send(tag_name, { currencyId: currency }, to_s)
     end
     
+    def int_part
+      value / 100
+    end
+
+    def cents_part
+      value % 100
+    end
+
     def to_s
-      int_part = value / 100
-      cents_part = value % 100
       "#{int_part}.#{cents_part}"
+    end
+
+    def textify
+      Helpers::textify(self)
     end
 
     def to_i
