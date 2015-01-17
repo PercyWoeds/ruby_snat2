@@ -222,7 +222,7 @@ doc.invoice_summary = [
 ]
 
 
-doc.legal_monetary_total = SUNAT::PaymentAmount.new(doc.total_price)
+doc.legal_monetary_total = SUNAT::PaymentAmount.new(42322500)
 
 doc.id = "F001-4355"
 
