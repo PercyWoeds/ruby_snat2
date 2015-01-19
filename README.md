@@ -16,48 +16,71 @@ Or install it yourself as:
 
     $ gem install sunat
 
+##QuickStart
+Pull this repo and check the **examples** folder.
+In this folder you can find a playground set to test Sunat Invoicing and mess arround with it.
+You can find in each directory some files.
+* **Ruby File** - This is the important file. We use it to create a XML File and also a PDF file
+* **Sunat XML** Example
+* Our **generated XML** - XML File with the data we added in the ruby file
+* Our **generated pdf** - Just a visual reference to our XML File. Made for humans :)
+
+Using this examples you can see how to deal with Sunat.
+
 ## Configuration
 
 Prepare the SUNAT library by defining the configuration somewhere in your project as follows:
 
-  SUNAT.configure do |config|
-    config.credentials do |c|
-      # Regular credentials provided by SUNAT
-      c.ruc       = "123456780"
-      c.username  = "USERNAME"
-      c.password  = "PASSWORD"
+    SUNAT.configure do |config|
+      config.credentials do |c|
+        # Regular credentials provided by SUNAT
+        c.ruc       = "123456780"
+        c.username  = "USERNAME"
+        c.password  = "PASSWORD"
+      end
+      
+      config.signature do |s|
+        # A company ID (Should be RUC)
+        s.party_id    = "20100454523"
+
+        # The name of the company
+        s.party_name  = "SOPORTE TECNOLOGICO EIRL"
+
+        # SUNAT validated certificate
+        s.cert_file   = File.join(Dir.pwd, 'config', 'keys', 'sunat.crt')
+
+        # Password-less private key used to sign certificate
+        s.pk_file     = File.join(Dir.pwd, 'config', 'keys', 'sunat.key')
+      end
+
+      # General Company details to be included in every document generated.
+      # Only used if no alternative is provided.
+      config.supplier do |s|
+        s.ruc        = "20100454523"
+        s.name       = "SOPORTE TECNOLOGICO EIRL"
+        s.address_id = "070101"
+        s.street     = "Calle los Olivos 234"
+        s.city       = "Lima"
+        s.district   = "Callao"
+        s.country    = "PE"
+      end
+
+
     end
-    
-    config.signature do |s|
-      # A company ID (Should be RUC)
-      s.party_id    = "20100454523"
+ 
+ 
+After writing your config file lets proceed with our keys generation
 
-      # The name of the company
-      s.party_name  = "SOPORTE TECNOLOGICO EIRL"
+You can get some certificates to work with using this command
 
-      # SUNAT validated certificate
-      s.cert_file   = File.join(Dir.pwd, 'config', 'keys', 'sunat.crt')
-
-      # Password-less private key used to sign certificate
-      s.pk_file     = File.join(Dir.pwd, 'config', 'keys', 'sunat.key')
-    end
-
-    # General Company details to be included in every document generated.
-    # Only used if no alternative is provided.
-    config.supplier do |s|
-      s.ruc        = "20100454523"
-      s.name       = "SOPORTE TECNOLOGICO EIRL"
-      s.address_id = "070101"
-      s.street     = "Calle los Olivos 234"
-      s.city       = "Lima"
-      s.district   = "Callao"
-      s.country    = "PE"
-    end
-
-
-  end
-
-
+	openssl genrsa -des3 -out server.key 1024
+	openssl genrsa -des3 -out cert.key 1024
+	openssl req -new -key cert.key -out cert.csr
+	openssl rsa -in server.key.org -out server.key
+	openssl rsa -in cert.key -out cert.key
+	openssl x509 -req -days 365 -in cert.csr -signkey cert.key -out cert.crt
+	
+Name them as you want to, but remember to replace your config.rb file to use them. If you want to pass sunat homologation process you should use Sunat approved certificates, you can do it verifying them at their webpage
 
 
 ## Testing
@@ -82,7 +105,6 @@ In Bash:
 
 Every model can be serialized and de-serialized from JSON. This is extremely useful for storing a declaration a more readily usable form.
 
-
 ## Homologation
 
 SUNAT requires that all clients of their system first go through a homolgation process to test all possible combinations of invoices, receipts, credit and debit notes, and summary documents.
@@ -97,8 +119,9 @@ Its an increadibly teadious process made more frustrating by the fact you probab
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+4. Write and fix some tests if you feel like doing it.
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request describing what you've done
 
 
 ## Authors
