@@ -11,7 +11,7 @@ module SUNAT
       if property.nil?
         self[name.to_sym] = value
       else
-        self[property.name] = value.present? ?  property.cast(self, value) : value
+        self[property.name] = value.nil? ?  value : property.cast(self, value)
       end
     end
 
