@@ -9,10 +9,6 @@ describe DailyReceiptSummary do
     DailyReceiptSummary.new
   end
   
-  let :account_supplier do
-    AccountingParty.new
-  end
-  
   describe "#initialize" do
     it "should initialize with no notes." do
       summary.notes.should_not be_nil
@@ -34,14 +30,6 @@ describe DailyReceiptSummary do
       summary.id.should_not be_nil
       summary.id.should start_with("RC-")
       summary.id.should end_with(formatted_date)
-    end
-  end
-  
-  describe "validations" do
-    it "should be valid only with an accounting supplier." do
-      summary.valid?.should eq(false)
-      summary.accounting_supplier_party = account_supplier
-      summary.valid?.should eq(true)
     end
   end
   
