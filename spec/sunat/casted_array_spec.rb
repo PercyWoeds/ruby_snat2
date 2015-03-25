@@ -3,14 +3,7 @@ require 'spec_helper'
 describe SUNAT::CastedArray do
 
   let :owner do
-    mock()
-  end
-
-  let :submodel do
-    Class.new do
-      include SUNAT::Model
-      property :name, String
-    end
+    double()
   end
 
   describe "#initialize" do
@@ -35,7 +28,14 @@ describe SUNAT::CastedArray do
   end
 
   describe "adding to array" do
-
+    
+    let :submodel do
+      Class.new do
+        include SUNAT::Model
+        property :name, String
+      end
+    end
+    
     before :each do
       @prop = SUNAT::Property.new(:item, submodel)
       @obj = SUNAT::CastedArray.new(owner, @prop, [{:name => 'test'}])

@@ -1,4 +1,4 @@
-DailyReceiptSummary.new.tap do |s|
+SUNAT::DailyReceiptSummary.new.tap do |s|
   s.reference_date  = Date.strptime("2012-06-23", "%Y-%m-%d")
   s.notes           = ["nota 1", "nota 2", "nota3"]
   
@@ -10,9 +10,9 @@ DailyReceiptSummary.new.tap do |s|
     line.start_id = "456"
     line.end_id = "764"
     
-    line.add_billing_payment 9823200, "PEN"
-    line.add_billing_payment 0, "PEN"
-    line.add_billing_payment 23200, "PEN"
+    line.add_billing_payment '01', 9823200
+    line.add_billing_payment '02', 0
+    line.add_billing_payment '03', 23200
     
     line.add_allowance_charge 500, "PEN"
     line.add_allowance_discount 0, "PEN"
