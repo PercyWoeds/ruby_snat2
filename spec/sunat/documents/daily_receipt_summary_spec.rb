@@ -32,6 +32,34 @@ describe DailyReceiptSummary do
       summary.id.should end_with(formatted_date)
     end
   end
+
+  describe "#ruc=" do
+    let(:ruc) { "20548704261" }
+
+    it "can add a ruc" do    
+      summary.ruc = ruc
+    
+      summary.ruc.should_not be_nil
+      summary.ruc.should eq(ruc)
+    end
+  
+    xit "should add additional_account_id with a default value when adding a ruc" do
+      summary.ruc = ruc
+    
+      summary.accounting_supplier_party.additional_account_id.should eq(SUNAT::Document::RUC_DOCUMENT_CODE)
+    end
+  end
+  
+  describe "#legal_name" do
+    xit "can add a legal name" do
+      legal_name = "Maxi Mobility"
+    
+      empty_receipt.legal_name = legal_name
+      empty_receipt.accounting_supplier_party.should_not be_nil
+      empty_receipt.accounting_supplier_party.party.should_not be_nil
+      empty_receipt.accounting_supplier_party.party.party_legal_entities.first.registration_name.should == legal_name
+    end
+  end
   
   describe "#add_line" do
     it "should yield a line of SummaryDocumentsLine" do

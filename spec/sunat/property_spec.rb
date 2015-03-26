@@ -3,11 +3,7 @@ require 'spec_helper'
 describe SUNAT::Property do
 
   let :owner do
-    mock()
-  end
-
-  let :klass do
-    SUNAT::Property
+    double()
   end
 
   let :submodel do
@@ -20,70 +16,70 @@ describe SUNAT::Property do
   describe "#initialize" do
 
     it "should copy name and type" do
-      prop = klass.new("name", String)
-      prop.name.should eql(:name)
-      prop.type.should eql(String)
-      prop.use_casted_array?.should be_false
+      prop = SUNAT::Property.new("name", String)
+      expect(prop.name).to eql(:name)
+      expect(prop.type).to eql(String)
+      expect(prop.use_casted_array?).to be false
     end
 
     it "should convert Array to CastedArray type" do
-      prop = klass.new("names", [String])
-      prop.name.should eql(:names)
-      prop.type.should eql(String)
-      prop.use_casted_array?.should be_true
+      prop = SUNAT::Property.new("names", [String])
+      expect(prop.name).to eql(:names)
+      expect(prop.type).to eql(String)
+      expect(prop.use_casted_array?).to be true
     end
 
     it "should accept a default option" do
-      prop = klass.new(:name, String, :default => "Freddo")
-      prop.default.should eql("Freddo")
+      prop = SUNAT::Property.new(:name, String, :default => "Freddo")
+      expect(prop.default).to eql("Freddo")
     end
 
   end
 
   describe "#to_s" do
     it "should use property's name" do
-      prop = klass.new(:name, String)
-      prop.to_s.should eql("name")
+      prop = SUNAT::Property.new(:name, String)
+      expect(prop.to_s).to eql("name")
     end
   end
 
   describe "#to_sym" do
     it "should return the name" do
-      prop = klass.new(:name, String)
-      prop.to_sym.should eql (:name)
+      prop = SUNAT::Property.new(:name, String)
+      expect(prop.to_sym).to eql (:name)
     end
   end
 
   describe "#cast" do
     context "without an array" do
       it "should build a new object" do
-        prop = klass.new(:date, Time)
+        prop = SUNAT::Property.new(:date, Time)
         obj = prop.cast(owner, "2013-06-02T12:00:00")
-        obj.class.should eql(Time)
-        obj.should eql(Time.new("2013-06-02T12:00:00"))
+        expect(obj.class).to eql(Time)
+        expect(obj).to eql(Time.new("2013-06-02T12:00:00"))
       end
 
       it "should assign casted by and property" do
-        prop = klass.new(:item, submodel)
+        prop = SUNAT::Property.new(:item, submodel)
         obj = prop.cast(owner, {:name => 'test'})
-        obj.casted_by.should eql(owner)
-        obj.casted_by_property.should eql(prop)
+        expect(obj.casted_by).to eql(owner)
+        expect(obj.casted_by_property).to eql(prop)
       end
     end
 
     context "with an array" do
       it "should convert regular array to casted array" do
-        prop = klass.new(:dates, [Time])
+        prop = SUNAT::Property.new(:dates, [Time])
         obj = prop.cast(owner, ["2013-06-02T12:00:00"])
-        obj.class.should eql(SUNAT::CastedArray)
-        obj.first.class.should eql(Time)
+        expect(obj.class).to eql(SUNAT::CastedArray)
+        expect(obj.first.class).to eql(Time)
       end
       it "should handle complex objects" do
-        prop = klass.new(:items, [submodel])
+        prop = SUNAT::Property.new(:items, [submodel])
         obj = prop.cast(owner, [{:name => 'test'}])
-        obj.class.should eql(SUNAT::CastedArray)
-        obj.first.class.should eql(submodel)
-        obj.first.name.should eql('test')
+        expect(obj.class).to eql(SUNAT::CastedArray)
+        expect(obj.first.class).to eql(submodel)
+        expect(obj.first.name).to eql('test')
       end
     end
   end

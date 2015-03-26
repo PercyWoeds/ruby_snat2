@@ -4,7 +4,7 @@ describe do
   include ValidationSpecHelpers
   
   let :accounting_party do
-    SUNAT::AccountingParty.new
+    SUNAT::AccountingSupplierParty.new
   end
   
   describe "validations" do
@@ -24,24 +24,24 @@ describe do
 
   describe ".new" do
     it "should build a new accounting party with name and ruc" do
-      ap = SUNAT::AccountingParty.new(:name => "Test Company", :ruc => "123456789")
+      ap = SUNAT::AccountingSupplierParty.new(:name => "Test Company", :ruc => "123456789")
       ap.account_id.should eql("123456789")
-      ap.additional_account_id.should eql(SUNAT::Document::RUC_DOCUMENT_CODE)
+      ap.additional_account_id.should eql(SUNAT::AccountingSupplierParty::RUC_DOCUMENT_CODE)
       ap.party.party_legal_entities.first.registration_name.should eql("Test Company")
     end
 
     it "should build new accounting party with name and dni" do
-      ap = SUNAT::AccountingParty.new(:name => "Test Company", :dni => "123456789")
+      ap = SUNAT::AccountingSupplierParty.new(:name => "Test Company", :dni => "123456789")
       ap.account_id.should eql("123456789")
-      ap.additional_account_id.should eql(SUNAT::Document::DNI_DOCUMENT_CODE)
+      ap.additional_account_id.should eql(SUNAT::AccountingSupplierParty::DNI_DOCUMENT_CODE)
       ap.party.name.should eql("Test Company")
     end
 
     it "should still continue to operatre with normal hash" do
-      ap = SUNAT::AccountingParty.new(:name => "Test Company", :ruc => "123456789")
-      ap = SUNAT::AccountingParty.new(ap.as_json)
+      ap = SUNAT::AccountingSupplierParty.new(:name => "Test Company", :ruc => "123456789")
+      ap = SUNAT::AccountingSupplierParty.new(ap.as_json)
       ap.account_id.should eql("123456789")
-      ap.additional_account_id.should eql(SUNAT::Document::RUC_DOCUMENT_CODE)
+      ap.additional_account_id.should eql(SUNAT::AccountingSupplierParty::RUC_DOCUMENT_CODE)
       ap.party.party_legal_entities.first.registration_name.should eql("Test Company")
     end   
   end

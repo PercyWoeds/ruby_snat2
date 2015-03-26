@@ -22,7 +22,7 @@ describe 'serialization of a receipt' do
   context 'without accounting_customer_party' do
     before :all do
       @receipt = eval_support_script("serialization/receipt_sample")
-      @receipt.accounting_customer_party = nil
+      @receipt.customer = nil
       @xml = Nokogiri::XML(@receipt.to_xml)
     end
     

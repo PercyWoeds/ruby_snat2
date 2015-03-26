@@ -58,14 +58,6 @@ describe SUNAT::Invoice do
     end
     
     describe "#file_name" do    
-      it "should have a voucher_serie" do
-        @invoice.voucher_serie.should_not be_nil
-      end
-    
-      it "should have a voucher_serie of 4 characters" do
-        @invoice.voucher_serie.size.should eq(4)
-      end
-    
       it "include all the parts of the invoice file name" do
         ruc = @invoice.ruc
         kind = @invoice.class::DOCUMENT_TYPE_CODE
