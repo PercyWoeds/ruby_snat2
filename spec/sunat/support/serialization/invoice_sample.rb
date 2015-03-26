@@ -1,3 +1,16 @@
+
+SUNAT.configure do |config|
+  config.supplier do |s|
+    s.name       = "K&G Laboratorios"
+    s.ruc        = "20100113612"
+    s.address_id = "070101"
+    s.street     = "Calle los Olivos 234"
+    s.district   = "Callao"
+    s.city       = "Lima"
+    s.country    = "PE"
+  end
+end
+
 Invoice.new.tap do |invoice|
   invoice.id  = "FF11-00000001"
   
@@ -12,7 +25,6 @@ Invoice.new.tap do |invoice|
   # 
   # invoice.add_additional_property(id: '20000', value: 'COMPROBANTE DE PERCEPCION')
   
-  invoice.ruc         = "20100113612"
   invoice.legal_name  = "K&G Laboratorios"
   
   invoice.customer = {ruc: '20382170114', name: 'CECI FARMA IMPORT S.R.L.'}

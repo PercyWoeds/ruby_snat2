@@ -17,7 +17,6 @@ require './config'
 
 doc = SUNAT::Invoice.new
 
-doc.ruc            = doc.signature.party_id
 doc.legal_name     = doc.signature.party_name
 
 doc.company_logo_path = "#{File.dirname(__FILE__)}/logo.png"

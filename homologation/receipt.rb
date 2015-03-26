@@ -17,7 +17,6 @@ require './config'
 
 doc = SUNAT::Receipt.new
 
-doc.ruc            = doc.signature.party_id
 doc.legal_name     = doc.signature.party_name
 
 doc.add_line do |line|

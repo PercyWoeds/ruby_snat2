@@ -8,7 +8,6 @@ require './config'
 
 doc = SUNAT::CreditNote.new
 
-doc.ruc            = doc.signature.party_id
 doc.legal_name     = doc.signature.party_name
 
 doc.requested_monetary_total = SUNAT::PaymentAmount.new(3000)

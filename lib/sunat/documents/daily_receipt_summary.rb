@@ -14,7 +14,6 @@ module SUNAT
     property :reference_date,       Date
     property :lines,                [SummaryDocumentsLine]
     property :notes,                [String]
-    property :ruc,                  String
     property :legal_name,           String
     property :correlative_number,   String
 
@@ -34,7 +33,7 @@ module SUNAT
     
     def file_name
       formatted_issue_date = issue_date.strftime("%Y%m%d")
-      "#{ruc}-#{SUMMARY_TYPE}-#{formatted_issue_date}-#{correlative_number}"
+      "#{accounting_supplier_party.account_id}-#{SUMMARY_TYPE}-#{formatted_issue_date}-#{correlative_number}"
     end
     
     def add_line(&block)

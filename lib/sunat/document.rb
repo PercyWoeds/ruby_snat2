@@ -72,7 +72,7 @@ module SUNAT
         pdf.stroke_bounds
         pdf.move_down 15
         pdf.font "Helvetica", :style => :bold do
-          pdf.text "R.U.C #{self.ruc}", :align => :center
+          pdf.text "R.U.C #{self.accounting_supplier_party.account_id}", :align => :center
           pdf.text "#{self.document_type_name.upcase}", :align => :center
           pdf.text "#{self.id}", :align => :center,
                                  :style => :bold

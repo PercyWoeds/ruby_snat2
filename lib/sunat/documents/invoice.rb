@@ -23,7 +23,6 @@ module SUNAT
     property :legal_monetary_total,            PaymentAmount
     property :despatch_document_references,    [ReferralGuideline] # Spanish: Guías de remisión
     property :additional_document_references,  [DocumentReference]
-    property :ruc,                             String
     property :legal_name,                      String
 
     property :client_data,                     Array
@@ -55,7 +54,7 @@ module SUNAT
 
     def file_name
       document_type_code = self.class::DOCUMENT_TYPE_CODE
-      "#{ruc}-#{document_type_code}-#{id}"
+      "#{accounting_supplier_party.account_id}-#{document_type_code}-#{id}"
     end
     
     def operation
