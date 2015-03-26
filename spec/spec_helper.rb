@@ -42,7 +42,7 @@ module ValidationSpecHelpers
   def expect_validness(model, key, value, validness)
     model.send("#{key.to_s}=", value)
     model.valid?
-    model.errors.keys.send (validness ? :should_not : :should ), include(key)
+    expect(model.errors.keys).send (validness ? :to_not : :to ), include(key)
   end
 end
 

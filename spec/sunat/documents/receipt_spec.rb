@@ -10,11 +10,11 @@ describe SUNAT::Receipt do
   
   describe "#initialize" do
     it "should begin with the correct DOCUMENT_TYPE_CODE" do
-      receipt.invoice_type_code.should == SUNAT::Receipt::DOCUMENT_TYPE_CODE
+      expect(receipt.invoice_type_code).to eq SUNAT::Receipt::DOCUMENT_TYPE_CODE
     end
     
     it "should begin with a document_currency_code by default" do
-      receipt.document_currency_code.should_not be_nil
+      expect(receipt.document_currency_code).not_to be_nil
     end
   end
 end

@@ -13,17 +13,17 @@ describe SUNAT::CastedArray do
     end
 
     it "should prepare array" do
-      @obj.length.should eql(1)
+      expect(@obj.length).to eql(1)
     end
 
     it "should set owner and property" do
-      @obj.casted_by.should eql(owner)
-      @obj.casted_by_property.should eql(@prop)
+      expect(@obj.casted_by).to eql(owner)
+      expect(@obj.casted_by_property).to eql(@prop)
     end
 
     it "should instantiate and cast each value" do
-      @obj.first.should eql("test")
-      @obj.first.class.should eql(String)
+      expect(@obj.first).to eql("test")
+      expect(@obj.first.class).to eql(String)
     end
   end
 
@@ -43,12 +43,12 @@ describe SUNAT::CastedArray do
 
     it "should cast new items" do
       @obj << {:name => 'test2'}
-      @obj.last.class.should eql(submodel)
-      @obj.first.name.should eql('test')
-      @obj.last.name.should eql('test2')
+      expect(@obj.last.class).to eql(submodel)
+      expect(@obj.first.name).to eql('test')
+      expect(@obj.last.name).to eql('test2')
 
-      @obj.last.casted_by.should eql(owner)
-      @obj.last.casted_by_property.should eql(@prop)
+      expect(@obj.last.casted_by).to eql(owner)
+     expect( @obj.last.casted_by_property).to eql(@prop)
     end
 
   end

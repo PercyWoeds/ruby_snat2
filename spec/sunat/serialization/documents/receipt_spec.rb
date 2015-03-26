@@ -14,8 +14,8 @@ describe 'serialization of a receipt' do
   
     it "should create a //cbc:IssueDate tag with the the current date formatted as %Y-%m-%d" do
       date = @xml.xpath("//cbc:IssueDate")
-      date.count.should >= 0
-      date.text.should eq(Date.today.strftime("%Y-%m-%d"))
+      expect(date.count).to be >= 0
+      expect(date.text).to eq(Date.today.strftime("%Y-%m-%d"))
     end
   end
   
@@ -28,7 +28,7 @@ describe 'serialization of a receipt' do
     
     it 'should show have cac:AccountingCustomerParty tag with a -' do
       accounting_customer_party_tag = @xml.xpath('//cac:AccountingCustomerParty[text()="-"]')
-      accounting_customer_party_tag.count.should == 1
+      expect(accounting_customer_party_tag.count).to eql 1
     end
   end
 

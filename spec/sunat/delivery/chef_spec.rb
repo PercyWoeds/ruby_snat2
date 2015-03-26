@@ -14,8 +14,8 @@ describe Chef do
   describe '#initialize' do
     it "should receive a file_name and xml content" do
       chef = Chef.new @name, @document
-      chef.name.should == @name
-      chef.document.should == @document
+      expect(chef.name).to eq @name
+      expect(chef.document).to eq @document
     end
   end
   
@@ -31,7 +31,7 @@ describe Chef do
     end
     
     it "returns a base64(byte array)" do
-      @is_base_64.call(chef.prepare).should eq(true)
+      expect(@is_base_64.call(chef.prepare)).to be true
     end
   end
   

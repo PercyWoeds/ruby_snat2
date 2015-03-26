@@ -8,12 +8,12 @@ describe SUNAT::SummaryDocumentsLine do
   
   describe "#initialize" do
     it "should initialize with 0 billing_payments." do
-      line.billing_payments.should_not be_nil
-      line.billing_payments.should be_empty
+      expect(line.billing_payments).to_not be_nil
+      expect(line.billing_payments).to be_empty
     end
     
     it "should have a default document_type_code" do
-      line.document_type_code.should == SUNAT::Receipt::DOCUMENT_TYPE_CODE
+      expect(line.document_type_code).to eql SUNAT::Receipt::DOCUMENT_TYPE_CODE
     end
   end
   
@@ -21,24 +21,24 @@ describe SUNAT::SummaryDocumentsLine do
     it 'should add a billing_payment/paid_amount to the line' do
       line.add_billing_payment('01', 1200, "PEN")
       
-      line.billing_payments.size.should eq(1)
-      line.billing_payments.first.should be_kind_of(SUNAT::BillingPayment)
-      line.billing_payments.first.paid_amount.should be_kind_of(SUNAT::PaymentAmount)
-      line.billing_payments.first.should be_valid
-      line.billing_payments.first.instruction_id.should eql('01')
+      expect(line.billing_payments.size).to eq(1)
+      expect(line.billing_payments.first).to be_kind_of(SUNAT::BillingPayment)
+      expect(line.billing_payments.first.paid_amount).to be_kind_of(SUNAT::PaymentAmount)
+      expect(line.billing_payments.first).to be_valid
+      expect(line.billing_payments.first.instruction_id).to eql('01')
     end
 
     it 'should accept ammount without currency' do
       line.add_billing_payment('01', 1200)
-      line.billing_payments.first.should be_valid
-      line.billing_payments.first.paid_amount.currency.should eql('PEN')
+      expect(line.billing_payments.first).to be_valid
+      expect(line.billing_payments.first.paid_amount.currency).to eql('PEN')
     end
   end
   
   describe '#add_allowance_charge & #add_allowance_discount' do
     it 'should add a charge to the line' do
       line.add_allowance_charge(10000, 'USD')
-      line.allowance_charges.size.should == 1
+      expect(line.allowance_charges.size).to eql 1
     end
     
     it 'should set the amount of the charge to the params of the method' do
@@ -46,8 +46,8 @@ describe SUNAT::SummaryDocumentsLine do
       line.add_allowance_charge(v, c)
       
       charge = line.allowance_charges.first
-      charge.amount.currency.should == c
-      charge.amount.value.should == v
+      expect(charge.amount.currency).to eql c
+      expect(charge.amount.value).to eql v
     end
   end
   
@@ -55,7 +55,7 @@ describe SUNAT::SummaryDocumentsLine do
     it 'should set the charge_indicator to "true"' do
       line.add_allowance_charge(10000, 'USD')
       charge = line.allowance_charges.first
-      charge.charge_indicator.should == "true"
+      expect(charge.charge_indicator).to eql "true"
     end
   end
   
@@ -63,7 +63,7 @@ describe SUNAT::SummaryDocumentsLine do
     it 'should set the charge_indicator to "false"' do
       line.add_allowance_discount(10000, 'USD')
       charge = line.allowance_charges.first
-      charge.charge_indicator.should == "false"
+      expect(charge.charge_indicator).to eql "false"
     end
   end
   
@@ -81,7 +81,7 @@ describe SUNAT::SummaryDocumentsLine do
       line.add_tax_total :isc, f, "PEN"
       line.add_tax_total :igv, g, "PEN"
       
-      line.total_amount.value.should eq(amounts.inject(&:+))
+      expect(line.total_amount.value).to eq(amounts.inject(&:+))
     end
         
     it 'should sum all the positive amounts' do

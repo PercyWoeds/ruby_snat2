@@ -10,7 +10,7 @@ describe SUNAT::Invoice do
   
   describe "#initialize" do    
     it "should begins with the correct DOCUMENT_TYPE_CODE" do
-      invoice.invoice_type_code.should eq(SUNAT::Invoice::DOCUMENT_TYPE_CODE)
+      expect(invoice.invoice_type_code).to eq(SUNAT::Invoice::DOCUMENT_TYPE_CODE)
     end
   end
   
@@ -32,22 +32,22 @@ describe SUNAT::Invoice do
   describe "#add_line" do
     it "should yield a line of InvoiceLine" do
       invoice.add_line do |line|
-        line.should be_kind_of(InvoiceLine)
+        expect(line).to be_kind_of(InvoiceLine)
       end
     end
     it "should add a line to the summary lines" do
       initial_lines = invoice.lines.size
       invoice.add_line { }
-      invoice.lines.size.should == initial_lines + 1
+      expect(invoice.lines.size).to eq (initial_lines + 1)
     end
     it "should add a line with a consecutive line_id beginning in 1" do
       invoice.add_line { }
       invoice.add_line { }
       invoice.add_line { }
       
-      invoice.lines[0].id.should == "1"
-      invoice.lines[1].id.should == "2"
-      invoice.lines[2].id.should == "3"
+      expect(invoice.lines[0].id).to eq "1"
+      expect(invoice.lines[1].id).to eq "2"
+      expect(invoice.lines[2].id).to eq "3"
     end
   end
   
@@ -59,11 +59,11 @@ describe SUNAT::Invoice do
     
     describe "#file_name" do    
       it "include all the parts of the invoice file name" do
-        ruc = @invoice.ruc
+        ruc = @invoice.accounting_supplier_party.account_id
         kind = @invoice.class::DOCUMENT_TYPE_CODE
         id = @invoice.id
 
-        @invoice.file_name.should eq("#{ruc}-#{kind}-#{id}")
+        expect(@invoice.file_name).to eq("#{ruc}-#{kind}-#{id}")
       end
     end
   end

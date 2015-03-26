@@ -22,9 +22,9 @@ describe Sender do
   
   describe "#initialize" do  
     it "receives a name and encoded_zip" do
-      sender.name.should == @name
-      sender.encoded_zip.should == @encoded_zip
-      sender.operation.should == @operation
+      expect(sender.name).to eq @name
+      expect(sender.encoded_zip).to eq @encoded_zip
+      expect(sender.operation).to eq @operation
     end
   end
   
@@ -33,9 +33,9 @@ describe Sender do
       if SUNAT::CREDENTIALS.ruc.present?
         sender.connect
         sender.client.operations.tap do |it|        
-          it.should_not be_nil
-          it.should respond_to(:size)
-          it.size.should > 0
+          expect(it).to_not be_nil
+          expect(it).to respond_to(:size)
+          expect(it.size).to be > 0
         end
       end
     end

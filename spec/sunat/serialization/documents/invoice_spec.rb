@@ -13,13 +13,13 @@ describe 'serialization of an invoice' do
   
   it "should create a //cbc:IssueDate tag with the the current date formatted as %Y-%m-%d" do
     date = @xml.xpath("//cbc:IssueDate")
-    date.count.should >= 0
-    date.text.should eq(Date.today.strftime("%Y-%m-%d"))
+    expect(date.count).to be >= 0
+    expect(date.text).to eq(Date.today.strftime("%Y-%m-%d"))
   end
   
-  # it "should insert the payment amount into the xml body" do
-  #   payable_amount_tag = @xml.xpath("//sac:AdditionalMonetaryTotal/cbc:PayableAmount")
-  #   payable_amount_tag.count.should >= 0
-  #   payable_amount_tag.text.should eq(@invoice.additional_monetary_totals.first.payable_amount.to_s)
-  # end
+  it "should insert the payment amount into the xml body" do
+    payable_amount_tag = @xml.xpath("//sac:AdditionalMonetaryTotal/cbc:PayableAmount")
+    expect(payable_amount_tag.count).to be >= 0
+    expect(payable_amount_tag.text).to eq(@invoice.legal_monetary_total.to_s)
+  end
 end

@@ -8,15 +8,15 @@ describe SUNAT::AllowanceCharge do
   
   describe "validations" do
     it "should validate that the charge indicator is true or false and no other string" do
-      allowance_charge.valid?.should eq(false)
+      expect(allowance_charge.valid?).to be false
       allowance_charge.charge_indicator = 'no-valid-word'
-      allowance_charge.valid?.should eq(false)
+      expect(allowance_charge.valid?).to be false
       allowance_charge.charge_indicator = 'true'
-      allowance_charge.valid?.should eq(true)
+      expect(allowance_charge.valid?).to be true
       allowance_charge.charge_indicator = 'no-valid-word'
-      allowance_charge.valid?.should eq(false)
+      expect(allowance_charge.valid?).to be false
       allowance_charge.charge_indicator = 'false'
-      allowance_charge.valid?.should eq(true)
+      expect(allowance_charge.valid?).to be  true
     end
   end
 end

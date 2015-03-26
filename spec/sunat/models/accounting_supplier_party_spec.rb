@@ -25,24 +25,24 @@ describe do
   describe ".new" do
     it "should build a new accounting party with name and ruc" do
       ap = SUNAT::AccountingSupplierParty.new(:name => "Test Company", :ruc => "123456789")
-      ap.account_id.should eql("123456789")
-      ap.additional_account_id.should eql(SUNAT::AccountingSupplierParty::RUC_DOCUMENT_CODE)
-      ap.party.party_legal_entities.first.registration_name.should eql("Test Company")
+      expect(ap.account_id).to eql("123456789")
+      expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::RUC_DOCUMENT_CODE)
+      expect(ap.party.party_legal_entities.first.registration_name).to eql("Test Company")
     end
 
     it "should build new accounting party with name and dni" do
       ap = SUNAT::AccountingSupplierParty.new(:name => "Test Company", :dni => "123456789")
-      ap.account_id.should eql("123456789")
-      ap.additional_account_id.should eql(SUNAT::AccountingSupplierParty::DNI_DOCUMENT_CODE)
-      ap.party.name.should eql("Test Company")
+      expect(ap.account_id).to eql("123456789")
+      expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::DNI_DOCUMENT_CODE)
+      expect(ap.party.name).to eql("Test Company")
     end
 
     it "should still continue to operatre with normal hash" do
       ap = SUNAT::AccountingSupplierParty.new(:name => "Test Company", :ruc => "123456789")
       ap = SUNAT::AccountingSupplierParty.new(ap.as_json)
-      ap.account_id.should eql("123456789")
-      ap.additional_account_id.should eql(SUNAT::AccountingSupplierParty::RUC_DOCUMENT_CODE)
-      ap.party.party_legal_entities.first.registration_name.should eql("Test Company")
+      expect(ap.account_id).to eql("123456789")
+      expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::RUC_DOCUMENT_CODE)
+      expect(ap.party.party_legal_entities.first.registration_name).to eql("Test Company")
     end   
   end
   
