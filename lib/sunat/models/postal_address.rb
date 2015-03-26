@@ -16,6 +16,7 @@ module SUNAT
         xml['cbc'].ID                   id
         xml['cbc'].StreetName           street_name
         xml['cbc'].CitySubdivisionName  city_subdivision_name
+        xml['cbc'].CityName             city_name
         xml['cbc'].CountrySubentity     country_subentity
         xml['cbc'].District             district
         

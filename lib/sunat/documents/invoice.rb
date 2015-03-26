@@ -192,8 +192,6 @@ module SUNAT
       build_own_xml xml
       xml['cbc'].DocumentCurrencyCode document_currency_code
       
-      accounting_supplier_party.build_xml xml
-      
       # sunat says if no customer exists, we must use a dash
       if customer.present?
         customer.build_xml xml
