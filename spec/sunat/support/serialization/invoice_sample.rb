@@ -16,12 +16,17 @@ Invoice.new.tap do |invoice|
   
   # TODO: Research this for all the documents.
   # 
-  # invoice.additional_monetary_totals << MonetaryTotal.new({
-  #   id: '1001',
-  #   payable_amount:   PaymentAmount.new(currency: 'PEN', value: 10000),
-  #   reference_amount: PaymentAmount.new(currency: 'PEN', value: 10000),
-  #   total_amount:     PaymentAmount.new(currency: 'PEN', value: 20000),
-  # })
+  invoice.additional_monetary_totals << AdditionalMonetaryTotal.new({
+   id: '1001',
+   name: 'Test additional total',
+   payable_amount:    PaymentAmount.new(currency: 'PEN', value: 10000),
+   reference_amount:  PaymentAmount.new(currency: 'PEN', value: 10000),
+   total_amount:      PaymentAmount.new(currency: 'PEN', value: 20000),
+   percent:           0.5
+  })
+
+  legal_monetary_total = SUNAT::PaymentAmount.new(42322500)
+
   # 
   # invoice.add_additional_property(id: '20000', value: 'COMPROBANTE DE PERCEPCION')
   

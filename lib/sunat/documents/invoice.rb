@@ -212,26 +212,8 @@ module SUNAT
       lines.each do |line|
         line.build_xml xml
       end
-
-      build_xml_for_additional_totals(xml)      
     end
 
-    protected
-
-    def build_xml_for_additional_totals(xml)
-      if additional_monetary_totals.length > 0
-        xml['ext'].UBLExtension do
-          xml['ext'].ExtensionContent do
-            xml['sac'].AdditionalInformation do
-              additional_monetary_totals.each do |amt|
-                amt.build_xml(xml)
-              end
-            end
-          end
-        end
-      end
-    end
-    
     private
     
     def get_line_number
