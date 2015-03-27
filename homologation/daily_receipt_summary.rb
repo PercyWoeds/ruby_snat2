@@ -17,7 +17,6 @@ require './config'
 doc = SUNAT::DailyReceiptSummary.new
 
 doc.reference_date = Date.new(2014, 12, 1)
-doc.legal_name     = doc.signature.party_name
 
 doc.notes = [
   "Just testing",

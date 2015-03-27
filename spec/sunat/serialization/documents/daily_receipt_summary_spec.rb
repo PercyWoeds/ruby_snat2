@@ -46,7 +46,7 @@ describe 'serialization of a daily receipt summary' do
       it "should insert a entity name into the xml" do
         entity_name_location = "//cac:AccountingSupplierParty/cac:Party/cac:PartyLegalEntity/cbc:RegistrationName"
         xml_entity_name = @xml.xpath(entity_name_location).text
-        oo_entity_name = @summary.accounting_supplier_party.party.party_legal_entities.first.registration_name
+        oo_entity_name = @summary.accounting_supplier_party.party.party_legal_entity.registration_name
         
         expect(xml_entity_name).to eq(oo_entity_name)
       end

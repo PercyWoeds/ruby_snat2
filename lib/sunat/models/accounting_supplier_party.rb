@@ -62,25 +62,18 @@ module SUNAT
 
     def parse_attributes(attrs = {})
       # Perform basic id and name handling
-      ruc  = attrs.delete(:ruc)
-      dni  = attrs.delete(:dni)
-      name = attrs.delete(:name)
+      ruc         = attrs.delete(:ruc)
+      dni         = attrs.delete(:dni)
+      legal_name  = attrs.delete(:legal_name)
+      name        = attrs.delete(:name) || attrs.delete(:legal_name)
+
       if (dni || ruc)
         # Special case! Try set the properties accordingly.
         self.additional_account_id = dni ? DNI_DOCUMENT_CODE : RUC_DOCUMENT_CODE
         self.account_id = dni || ruc
       end
-      if name
-        if dni
-          self.party = {name:name}
-        else
-          self.party = {
-            party_legal_entities: [{
-              registration_name: name
-            }]
-          }
-        end
-      end
+      
+      self.party = {party_legal_entity: {registration_name: legal_name}, name: name}
       
       # Grab or build new party
       self.party ||= (attrs.delete(:party) || {})

@@ -1,7 +1,7 @@
 
 SUNAT.configure do |config|
   config.supplier do |s|
-    s.name       = "K&G Laboratorios"
+    s.legal_name = "K&G Laboratorios"
     s.ruc        = "20100113612"
     s.address_id = "070101"
     s.street     = "Calle los Olivos 234"
@@ -14,8 +14,6 @@ end
 SUNAT::DailyReceiptSummary.new.tap do |s|
   s.reference_date  = Date.strptime("2012-06-23", "%Y-%m-%d")
   s.notes           = ["nota 1", "nota 2", "nota3"]
-  
-  s.legal_name = "K&G Laboratorios"
   
   s.add_line do |line|
     line.serial_id = "BA98"

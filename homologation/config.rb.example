@@ -17,6 +17,7 @@ SUNAT.configure do |config|
 
   config.supplier do |s|
     s.ruc        = "20100454523"
+    s.legal_name = "SOPORTE TECNOLOGICO EIRL SA"
     s.name       = "SOPORTE TECNOLOGICO EIRL"
     s.address_id = "070101"
     s.street     = "Calle los Olivos 234"

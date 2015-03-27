@@ -8,8 +8,6 @@ require './config'
 
 doc = SUNAT::DebitNote.new
 
-doc.legal_name     = doc.signature.party_name
-
 doc.requested_monetary_total = SUNAT::PaymentAmount.new(3000)
 
 doc.add_line do |line|

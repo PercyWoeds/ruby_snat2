@@ -36,6 +36,7 @@ describe 'serialization of an invoice' do
     expect(@xml.xpath("//cac:AccountingSupplierParty/cbc:CustomerAssignedAccountID").text).to eq(supplier_data.account_id.to_s)
     expect(@xml.xpath("//cac:AccountingSupplierParty/cbc:AdditionalAccountID").text).to eq(supplier_data.additional_account_id.to_s)
     expect(@xml.xpath("//cac:AccountingSupplierParty/cac:Party/cac:PartyName/cbc:Name").text).to eq(supplier_data.party.name.to_s)
+    expect(@xml.xpath("//cac:AccountingSupplierParty/cac:Party/cac:PartyLegalEntity/cbc:RegistrationName").text).to eq(supplier_data.party.party_legal_entity.registration_name.to_s)
     address = supplier_data.party.postal_addresses.first
     expect(@xml.xpath("//cac:AccountingSupplierParty/cac:Party/cac:PostalAddress/cbc:ID").text).to eq(address.id.to_s)
     expect(@xml.xpath("//cac:AccountingSupplierParty/cac:Party/cac:PostalAddress/cbc:StreetName").text).to eq(address.street_name.to_s)

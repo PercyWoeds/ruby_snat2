@@ -23,11 +23,12 @@ describe do
   end
 
   describe ".new" do
-    it "should build a new accounting party with name and ruc" do
-      ap = SUNAT::AccountingSupplierParty.new(:name => "Test Company", :ruc => "123456789")
+    it "should build a new accounting party with legal name, name and ruc" do
+      ap = SUNAT::AccountingSupplierParty.new(:legal_name => "Legal Test", :name => "Test Company", :ruc => "123456789")
       expect(ap.account_id).to eql("123456789")
       expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::RUC_DOCUMENT_CODE)
-      expect(ap.party.party_legal_entities.first.registration_name).to eql("Test Company")
+      expect(ap.party.name).to eql("Test Company")
+      expect(ap.party.party_legal_entity.registration_name).to eql("Legal Test")
     end
 
     it "should build new accounting party with name and dni" do
@@ -37,12 +38,13 @@ describe do
       expect(ap.party.name).to eql("Test Company")
     end
 
-    it "should still continue to operatre with normal hash" do
-      ap = SUNAT::AccountingSupplierParty.new(:name => "Test Company", :ruc => "123456789")
+    it "should still continue to operate with normal hash" do
+      ap = SUNAT::AccountingSupplierParty.new(:legal_name => "Legal Test", :name => "Test Company", :ruc => "123456789")
       ap = SUNAT::AccountingSupplierParty.new(ap.as_json)
       expect(ap.account_id).to eql("123456789")
       expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::RUC_DOCUMENT_CODE)
-      expect(ap.party.party_legal_entities.first.registration_name).to eql("Test Company")
+      expect(ap.party.name).to eql("Test Company")
+      expect(ap.party.party_legal_entity.registration_name).to eql("Legal Test")
     end   
   end
   

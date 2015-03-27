@@ -18,7 +18,7 @@ module SUNAT
     property :additional_properties,      [AdditionalProperty]
     property :additional_monetary_totals, [AdditionalMonetaryTotal]
     property :address,                    String
-    property :pdf_path,                 String
+    property :pdf_path,                   String
 
     def self.xml_root(root_name)
       define_method :xml_root do
@@ -93,9 +93,9 @@ module SUNAT
     def build_pdf_footer(pdf)
       pdf.bounding_box([0, 50], :width => 535, :height => 50) do
         pdf.stroke_bounds
-        pdf.text "#{self.legal_name}", :align => :center,
-                                       :valign => :center,
-                                       :style => :bold
+        pdf.text "#{self.accounting_supplier_party.party.party_legal_entity.registration_name}",  :align => :center,
+                                                                                                  :valign => :center,
+                                                                                                  :style => :bold
       end
       pdf
     end
@@ -226,6 +226,7 @@ module SUNAT
 
        # Pass control over to the xml builder
       res = xml_document.build_xml do |xml|
+        accounting_supplier_party.build_xml xml
         build_xml(xml)
       end
 

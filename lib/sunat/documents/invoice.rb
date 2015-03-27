@@ -23,7 +23,6 @@ module SUNAT
     property :legal_monetary_total,            PaymentAmount
     property :despatch_document_references,    [ReferralGuideline] # Spanish: Guías de remisión
     property :additional_document_references,  [DocumentReference]
-    property :legal_name,                      String
 
     property :client_data,                     Array
     property :invoice_summary,                 Array

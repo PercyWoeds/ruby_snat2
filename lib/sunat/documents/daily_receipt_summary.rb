@@ -14,7 +14,6 @@ module SUNAT
     property :reference_date,       Date
     property :lines,                [SummaryDocumentsLine]
     property :notes,                [String]
-    property :legal_name,           String
     property :correlative_number,   String
 
     validates :lines, presence: true

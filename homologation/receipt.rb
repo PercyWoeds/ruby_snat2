@@ -17,8 +17,6 @@ require './config'
 
 doc = SUNAT::Receipt.new
 
-doc.legal_name     = doc.signature.party_name
-
 doc.add_line do |line|
 
   line.price = SUNAT::PaymentAmount.new(3000)

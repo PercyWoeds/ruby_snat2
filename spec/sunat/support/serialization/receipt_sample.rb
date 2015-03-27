@@ -1,6 +1,6 @@
 SUNAT.configure do |config|
   config.supplier do |s|
-    s.name       = "MAXI MOBILITY PERU S.A.C."
+    s.legal_name = "MAXI MOBILITY PERU S.A.C."
     s.ruc        = "201548704261"
     s.address_id = "070101"
     s.street     = "Calle los Olivos 234"
@@ -12,8 +12,6 @@ end
 
 Receipt.new.tap do |receipt|
   receipt.id  = "BB11-00000001"
-  
-  receipt.legal_name  = "K&G Laboratorios"
   
   receipt.add_tax_total :igv, 874500, "PEN"
   

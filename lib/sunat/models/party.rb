@@ -5,15 +5,14 @@ module SUNAT
     
     property :name,                   String
     property :physical_location,      PhysicalLocation # only for tacna and only for receipts. sunat dixit
-    property :party_legal_entities,   [PartyLegalEntity]
+    property :party_legal_entity,     PartyLegalEntity
     property :postal_addresses,       [PostalAddress]
     
-    validates :party_legal_entities, existence: true, not_empty: true
+    validates :party_legal_entity, existence: true
     validates :postal_addresses, existence: true, not_empty: true
     
     def initialize(*args)
       super(*args)
-      self.party_legal_entities ||= []
       self.postal_addresses     ||= []
     end
     
@@ -29,9 +28,7 @@ module SUNAT
           address.build_xml xml
         end
         
-        party_legal_entities.each do |entity|
-          entity.build_xml xml
-        end
+        party_legal_entity.build_xml xml
         
         if physical_location.present?
           physical_location.build_xml xml
