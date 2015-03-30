@@ -18,5 +18,9 @@ describe "serialization of voided documents" do
   it "should include the lines data" do
     line = @voided_documents.lines.first
     expect(@xml.xpath("//sac:VoidedDocumentsLine/cbc:LineID").text).to eq(line.line_id)
+    expect(@xml.xpath("//sac:VoidedDocumentsLine/cbc:DocumentTypeCode").text).to eq(line.document_type_code)
+    expect(@xml.xpath("//sac:VoidedDocumentsLine/sac:DocumentSerialID").text).to eq(line.document_serial_id)
+    expect(@xml.xpath("//sac:VoidedDocumentsLine/sac:DocumentNumberID").text).to eq(line.document_number_id)
+    expect(@xml.xpath("//sac:VoidedDocumentsLine/sac:VoidReasonDescription").text).to eq(line.void_reason)
   end
 end
