@@ -54,7 +54,6 @@ Prepare the SUNAT library by defining the configuration somewhere in your projec
       end
 
       # General Company details to be included in every document generated.
-      # Only used if no alternative is provided.
       config.supplier do |s|
         s.ruc        = "20100454523"
         s.name       = "SOPORTE TECNOLOGICO EIRL"
