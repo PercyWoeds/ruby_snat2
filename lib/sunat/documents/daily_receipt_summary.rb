@@ -10,8 +10,6 @@ module SUNAT
     
     xml_root :SummaryDocuments
 
-    property :id,                   String
-    property :reference_date,       Date
     property :lines,                [SummaryDocumentsLine]
     property :notes,                [String]
     property :correlative_number,   String
@@ -54,7 +52,7 @@ module SUNAT
     private
     
     def default_id
-      plain_date = Date.today.strftime("%Y%m%d")
+      plain_date = reference_date.strftime("%Y%m%d")
       "RC-#{plain_date}"
     end
     
@@ -66,7 +64,7 @@ module SUNAT
 
     def build_pdf_body(pdf)
 
-      table_content = [SummaryDocumentsLine::TABLE_HEADERS]
+      table_content = [SummaryDocumentsLine.pdf_row_headers]
       
       lines.each do |line|
         table_content << line.build_pdf_table_row(pdf)

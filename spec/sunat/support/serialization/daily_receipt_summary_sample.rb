@@ -16,7 +16,7 @@ SUNAT::DailyReceiptSummary.new.tap do |s|
   s.notes           = ["nota 1", "nota 2", "nota3"]
   
   s.add_line do |line|
-    line.serial_id = "BA98"
+    line.document_serial_id = "BA98"
     line.start_id = "456"
     line.end_id = "764"
     

@@ -26,7 +26,7 @@ doc.notes = [
 40.times do
 
   doc.add_line do |line|
-    line.serial_id = 'BB01'
+    line.document_serial_id = 'BB01'
     line.start_id  = '1'
     line.end_id    = '123'
     line.add_billing_payment('01', 3500)

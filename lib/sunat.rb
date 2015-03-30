@@ -34,11 +34,12 @@ module SUNAT
   autoload :Document, "sunat/document"
 
   # Documents
-  autoload :CreditNote,          "sunat/documents/credit_note"
-  autoload :DailyReceiptSummary, "sunat/documents/daily_receipt_summary"
-  autoload :DebitNote,           "sunat/documents/debit_note"
-  autoload :Invoice,             "sunat/documents/invoice"
-  autoload :Receipt,             "sunat/documents/receipt"
+  autoload :CreditNote,           "sunat/documents/credit_note"
+  autoload :DailyReceiptSummary,  "sunat/documents/daily_receipt_summary"
+  autoload :DebitNote,            "sunat/documents/debit_note"
+  autoload :VoidedDocuments,      "sunat/documents/voided_documents"
+  autoload :Invoice,              "sunat/documents/invoice"
+  autoload :Receipt,              "sunat/documents/receipt"
 
   # Models
   autoload :AccountingCustomerParty,   "sunat/models/accounting_customer_party"
@@ -47,6 +48,7 @@ module SUNAT
   autoload :AdditionalProperty,        "sunat/models/additional_property"
   autoload :AllowanceCharge,           "sunat/models/allowance_charge"
   autoload :AlternativeConditionPrice, "sunat/models/alternative_condition_price"
+  autoload :BasicLine,                 "sunat/models/basic_line"
   autoload :BillingPayment,            "sunat/models/billing_payment"
   autoload :Country,                   "sunat/models/country"
   autoload :CreditNoteLine,            "sunat/models/credit_note_line"
@@ -69,6 +71,7 @@ module SUNAT
   autoload :TaxScheme,                 "sunat/models/tax_scheme"
   autoload :TaxSubTotal,               "sunat/models/tax_sub_total"
   autoload :TaxTotal,                  "sunat/models/tax_total"
+  autoload :VoidedDocumentsLine,       "sunat/models/voided_documents_line"
 
   # Delivery Preparation
   module Delivery

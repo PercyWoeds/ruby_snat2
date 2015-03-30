@@ -1,14 +1,13 @@
 module SUNAT
 
-  class SummaryDocumentsLine
+  class SummaryDocumentsLine < BasicLine
     include Model
     include HasTaxTotals
 
-    property :line_id,            String
-    property :serial_id,          String
+    xml_root :SummaryDocumentsLine
+
     property :start_id,           String
     property :end_id,             String
-    property :document_type_code, String
     property :total_amount,       PaymentAmount
     property :billing_payments,   [BillingPayment]
     property :allowance_charges,  [AllowanceCharge]
@@ -16,20 +15,22 @@ module SUNAT
     property :item,               Item
     property :quantity,           Quantity
     
-    [:line_id, :serial_id, :start_id, :end_id].each do |field|
+    [:start_id, :end_id].each do |field|
       validates field, existence: true, presence: true
     end
-
-    TABLE_HEADERS = ["ITEM", "CANTIDAD", "UNIDAD", "DESCRIPTION", "VALOR TOTAL"]
     
-    validates :document_type_code, tax_document_type_code: true
+    TABLE_HEADERS = ["CANTIDAD", "UNIDAD", "DESCRIPCIÓN", "VALOR TOTAL"]
+
+    def self.pdf_row_headers
+      headers = super || []
+      headers += TABLE_HEADERS
+    end
     
     def initialize(*args)
       super(*args)
       self.billing_payments   ||= []
       self.allowance_charges  ||= []
       self.tax_totals         ||= []
-      self.document_type_code ||= receipt_document_code
     end
     
     def add_billing_payment(code, amount, currency = "PEN")
@@ -66,8 +67,7 @@ module SUNAT
     end
     
     def build_pdf_table_row(pdf)
-      row = []
-      row << self.line_id
+      row = super
       row << self.quantity.quantity
       row << self.quantity.unit_code
       row << "#{self.item.description} - #{self.item.id}"
@@ -76,10 +76,7 @@ module SUNAT
     end
 
     def build_xml(xml)
-      xml['sac'].SummaryDocumentsLine do
-        xml['cbc'].LineID                 line_id
-        xml['cbc'].DocumentTypeCode       document_type_code
-        xml['sac'].DocumentSerialID       serial_id
+      build_base_xml(xml) do
         xml['sac'].StartDocumentNumberID  start_id
         xml['sac'].EndDocumentNumberID    end_id
         
@@ -113,10 +110,6 @@ module SUNAT
       allowance_entity.amount = PaymentAmount[amount, currency]
       
       allowance_charges << allowance_entity
-    end
-    
-    def receipt_document_code
-      SUNAT::Receipt::DOCUMENT_TYPE_CODE
     end
     
     def calculate_common_currency
