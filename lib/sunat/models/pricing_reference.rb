@@ -29,7 +29,7 @@ module SUNAT
         free = attrs.delete(:free)
         if amt
           self.alternative_condition_price = {
-            :price_amount => attrs,
+            :price_amount => amt,
             :free => free
           }
         end
