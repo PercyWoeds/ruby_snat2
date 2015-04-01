@@ -12,11 +12,41 @@ module SUNAT
       include Attributes
       include Properties
       include Validations
+
+      validate do 
+        puts "#{self.class}: #{self.class.properties}" if self.class.name == "SUNAT::AccountingCustomerParty"
+        properties_to_check = []
+        klass = self.class
+        while klass.respond_to? :properties
+          properties_to_check += klass.properties.keys
+          klass = klass.superclass
+        end
+        
+        properties_to_check.each do |property|
+          value = get_attribute(property)
+          value = [value] unless value.is_a? CastedArray
+          value.each do |element|
+            validate_value(property, element)  
+          end
+        end
+      end
     end
 
     def initialize(attrs = {})
       # Use the `Properties` module's `#set_attribtues` method
       set_attributes(attrs)
+    end
+
+    def validate_value(property, value)
+      unless property_valid?(value)
+        value.errors.full_messages.each {|error| errors.add(property, error)}
+      end
+    end
+
+    def property_valid?(value)
+      valid = true
+      valid = value.valid? if value.respond_to?(:valid?)
+      valid
     end
 
     module ClassMethods

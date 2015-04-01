@@ -51,11 +51,11 @@ describe SUNAT::Properties do
       expect(@model.properties.class).to eql(Hash)
     end
 
-    it "should be null if no properties" do
+    it "should be an empty hash if no properties" do
       model = Class.new do
         include SUNAT::Model
       end
-      expect(model.properties).to be_nil
+      expect(model.properties).to eq({})
     end
 
   end

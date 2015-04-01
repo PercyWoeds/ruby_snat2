@@ -28,8 +28,6 @@ doc.add_line do |line|
 
   line.add_tax_total(:igv, 3000)
   line.add_tax_total(:isc, 5000)
-
-
 end
 
 doc.legal_monetary_total = SUNAT::PaymentAmount.new(5000)
@@ -39,7 +37,8 @@ doc.id = "F001-211"
 File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
 
 if doc.valid?
-  File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
+  File::open("credit_note.xml", "w") { |file| file.write(doc.to_xml) }
+  doc.to_pdf
 else
   puts "Invalid document, ignoring output"
 end

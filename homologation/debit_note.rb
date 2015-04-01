@@ -39,7 +39,8 @@ doc.id = "F002-10"
 File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
 
 if doc.valid?
-  File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
+  File::open("debit-note.xml", "w") { |file| file.write(doc.to_xml) }
+  doc.to_pdf
 else
   puts "Invalid document, ignoring output"
 end

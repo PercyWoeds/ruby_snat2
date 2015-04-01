@@ -45,10 +45,8 @@ end
 doc.correlative_number = "001"
 
 if doc.valid?
+  File::open("daily_receipt_summary.xml", "w") { |file| file.write(doc.to_xml) }
   doc.to_pdf
-  # File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
 else
   puts "Invalid document, ignoring output"
-  puts doc.errors.full_messages
-  puts doc.lines.count
 end

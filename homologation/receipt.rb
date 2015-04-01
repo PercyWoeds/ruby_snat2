@@ -45,7 +45,8 @@ doc.legal_monetary_total = SUNAT::PaymentAmount.new(5000)
 doc.id = "B001-564"
 
 if doc.valid?
-  File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
+  File::open("receipt.xml", "w") { |file| file.write(doc.to_xml) }
+  doc.to_pdf
 else
   puts "Invalid document, ignoring output"
 end

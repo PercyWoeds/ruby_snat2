@@ -9,7 +9,7 @@ require './config'
 
 doc = SUNAT::VoidedDocuments.new
 
-doc.reference_date  = Date.strptime("2012-06-23", "%Y-%m-%d")
+doc.reference_date  = Date.new("2012-06-23")
 doc.id = "RA-#{doc.issue_date.strftime("%Y%m%d")}-001"
 doc.add_line do |line|
   line.document_serial_id = "F125"
@@ -17,4 +17,9 @@ doc.add_line do |line|
   line.void_reason = "Error en el proceso de generacion"
 end
 
-File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
+if doc.valid?
+  File::open("voided-document.xml", "w") { |file| file.write(doc.to_xml) }
+  doc.to_pdf
+else
+  puts "Invalid document, ignoring output"
+end

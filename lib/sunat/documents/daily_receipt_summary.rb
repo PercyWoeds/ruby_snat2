@@ -15,6 +15,7 @@ module SUNAT
     property :correlative_number,   String
 
     validates :lines, presence: true
+    validates :correlative_number, presence: true
     
     def initialize(*args)
       super(*args)
@@ -35,7 +36,7 @@ module SUNAT
     
     def add_line(&block)
       line = SummaryDocumentsLine.new.tap(&block)
-      line.line_id = get_line_number.to_s
+      line.line_id ||= get_line_number.to_s
       self.lines << line
     end
     

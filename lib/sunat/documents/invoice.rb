@@ -24,13 +24,14 @@ module SUNAT
     property :despatch_document_references,    [ReferralGuideline] # Spanish: Guías de remisión
     property :additional_document_references,  [DocumentReference]
 
-    property :client_data,                     Array
-    property :invoice_summary,                 Array
+    # property :invoice_summary,                 Array
 
     validate :id_valid?
-    validates :id, presence:true
+    validate :required_monetary_totals
+    validates :id, presence: true
     validates :document_currency_code, existence: true, currency_code: true
     validates :invoice_type_code, tax_document_type_code: true
+    validates :customer, presence: true
 
     def initialize(*args)
       self.lines ||= []
@@ -39,8 +40,6 @@ module SUNAT
       self.despatch_document_references ||= []
       self.additional_document_references ||= []
       self.document_type_name ||= "Factura Electronica"
-      self.client_data ||= []
-      self.invoice_summary ||= []
       super(*args)
     end
     
@@ -48,6 +47,13 @@ module SUNAT
       valid = (self.class::ID_FORMAT =~ self.id) == 0
       if !valid
         errors.add(:id, "doesn't match regexp #{self.class::ID_FORMAT}")
+      end
+    end
+
+    def required_monetary_totals
+      valid = additional_monetary_totals.any? {|total| ["1001", "1002", "1003"].include?(total.id) }
+      if !valid
+        errors.add(:additional_monetary_totals, "should include the total for taxable, unaffected or exempt operations")
       end
     end
 
@@ -128,16 +134,17 @@ module SUNAT
 
     def build_pdf_body(pdf)
       pdf.font "Helvetica", :size => 8
+
+      max_rows = [client_data_headers.length, invoice_headers.length, 0].max
+      rows = []
+      (1..max_rows).each do |row|
+        rows_index = row - 1
+        rows[rows_index] = []
+        rows[rows_index] += (client_data_headers.length >= row ? client_data_headers[rows_index] : ['',''])
+        rows[rows_index] += (invoice_headers.length >= row ? invoice_headers[rows_index] : ['',''])
+      end
       
-      rows = client_data
-
-      if rows.count
-
-        table_middle = rows.count/2
-
-        (0..(table_middle-1)).each do |i|
-          rows[i] += rows.delete_at table_middle
-        end
+      if rows.present?
 
         pdf.table(rows, {
           :position => :center,
@@ -166,9 +173,9 @@ module SUNAT
         table_content << line.build_pdf_table_row(pdf)
       end
 
-      pdf.table table_content, :position => :center,
-                               :header => true
-
+      result = pdf.table table_content, :position => :center,
+                                        :header => true,
+                                        :width => pdf.bounds.width
       pdf.move_down 10
 
       pdf.table invoice_summary, {
@@ -176,7 +183,7 @@ module SUNAT
         :cell_style => {:border_width => 1},
         :width => pdf.bounds.width/2
       } do 
-        columns([0, 2]).font_style = :bold
+        columns([0]).font_style = :bold
       end
 
       pdf
@@ -212,6 +219,41 @@ module SUNAT
     end
 
     private
+
+    def client_data_headers
+      client_headers = [["Cliente", customer.party.party_legal_entity.registration_name]]
+      client_headers << ["Direccion", customer.party.postal_addresses.first.to_s]
+      client_headers << [customer.type_as_text, customer.account_id]
+      client_headers
+    end
+
+    def invoice_headers
+      invoice_headers = [["Fecha de emision", issue_date]]
+      invoice_headers << ["Tipo de moneda", Currency.new(document_currency_code).singular_name.upcase]
+      invoice_headers
+    end
+
+    def invoice_summary
+      invoice_summary = []
+      monetary_totals = [{label: "Operaciones gravadas", catalog_index: 0},
+       {label: "Operaciones inafectas", catalog_index: 1},
+       {label: "Operaciones exoneradas", catalog_index: 2},
+       {label: "Operaciones gratuitas", catalog_index: 3},
+       {label: "Sub total", catalog_index: 4},
+       {label: "Total descuentos", catalog_index: 9}
+      ]
+      monetary_totals.each do |monetary_total|
+        value = get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[monetary_total[:catalog_index]])
+        if value.present?
+          invoice_summary << [monetary_total[:label], value.payable_amount.to_s]
+        end
+      end
+      total = get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0])
+      if total.present?
+        invoice_summary << ["Monto del total", total.value]
+      end
+      invoice_summary
+    end
     
     def get_line_number
       @current_line_number ||= 0

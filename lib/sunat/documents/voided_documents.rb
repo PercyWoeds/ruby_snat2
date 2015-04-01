@@ -1,14 +1,24 @@
 module SUNAT
   class VoidedDocuments < Document
 
+    SUMMARY_TYPE = 'RA'
+
   	xml_root :VoidedDocuments
 
   	property :lines, [VoidedDocumentsLine]
+    property :correlative_number,   String
+
+    validates :correlative_number, presence: true
+    validates :lines, presence: true
 
   	 def initialize(*args)
       super(*args)
       self.lines  ||= []
       self.document_type_name ||= "Comunicacion de baja"
+    end
+
+    def operation
+      :send_summary
     end
 
   	def add_line(&block)
@@ -28,5 +38,10 @@ module SUNAT
         line.build_xml xml
       end
   	end
+
+    def file_name
+      formatted_issue_date = issue_date.strftime("%Y%m%d")
+      "#{accounting_supplier_party.account_id}-#{SUMMARY_TYPE}-#{formatted_issue_date}-#{correlative_number}"
+    end
   end
 end

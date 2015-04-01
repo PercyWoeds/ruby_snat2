@@ -22,6 +22,10 @@ describe 'serialization of an invoice' do
     expect(payable_amount_tag.text).to eq(@invoice.legal_monetary_total.to_s)
   end
 
+  it "should contain the invoice lines data" do
+    expect(@xml.xpath("//cac:InvoiceLine/cbc:ID").text).to eq "1"
+  end
+
   it "should insert the additional monetary totals" do
     total = @invoice.additional_monetary_totals.first
     expect(@xml.xpath("//sac:AdditionalMonetaryTotal/cbc:ID").text).to eq(total.id)

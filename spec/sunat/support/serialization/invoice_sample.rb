@@ -33,6 +33,7 @@ Invoice.new.tap do |invoice|
   invoice.customer = {ruc: '20382170114', name: 'CECI FARMA IMPORT S.R.L.'}
   
   invoice.lines << {
+    :id => "1",
     :quantity => 300,
     :price => 67800,
     :list_price => 70000,

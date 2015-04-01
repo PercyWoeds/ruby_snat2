@@ -13,7 +13,7 @@ require 'sunat'
 require '../config'
 
 
-# Group 1
+# You can use ruby code to create your invoice
 
 doc = SUNAT::Invoice.new
 
@@ -192,43 +192,33 @@ doc.modify_monetary_total_by_id({
   :payable_amount => SUNAT::PaymentAmount.new(5923051)
 })
 
-# You can add here some cells about your client data
-# and payment data and they will be shown in the PDF
-# in a table before the items table
-# This data is totally customizable and it won't
-# modify the xml
-
-doc.client_data = [
-  ["Cliente", "CABIFY"],
-  ["Direccion", "Calle Amapolas Verdes 5, Winterfell"],
-  ["Identificacion", "1231232103"],
-  ["Fecha de emision", "01-01-2015"],
-  ["Fecha de vencimiento", "01-01-2015"],
-  ["Forma de pago", "Contado"],
-  ["Tipo de moneda", "Nuevos Soles"]
-]
-
-doc.invoice_summary = [
-  ["Operaciones gravadas", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[0]).payable_amount.to_s],
-  ["Operaciones inafectas", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[1]).payable_amount.to_s],
-  ["Operaciones exoneradas", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[2]).payable_amount.to_s],
-  ["Operaciones gratuitas", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[3]).payable_amount.to_s],
-  ["Sub total", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[4]).payable_amount.to_s],
-  ["Total descuentos", doc.get_monetary_total_by_id(SUNAT::ANNEX::CATALOG_14[9]).payable_amount.to_s],
-  ["Monto del total", doc.get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0]).value]
-]
-
-
 doc.legal_monetary_total = SUNAT::PaymentAmount.new(42322500)
 
 doc.id = "F001-4355"
 
+#Or you can define it with a hash for the properties.
+
+invoice_data = {id: "F001-4355", issue_date: "2013-03-14", customer: {legal_name: "Servicabinas S.A.", ruc: "20587896411"}, 
+                lines: [{item: {id: "GLG199", description: "Grabadora LG Externo Modelo: GE20LU10"}, quantity: 2000, unit: 'NIU', 
+                          price: {value: 8305}, pricing_reference: 9800, tax_totals: [{amount: 2690847, type: :igv, code: "10"}], line_extension_amount: 14949153},
+                        {item: {id: "MVS546", description: "Monitor LCD ViewSonic VG2028WM 20\""}, quantity: 300, unit: 'NIU', 
+                          price: {value: 52542}, pricing_reference: 62000, tax_totals: [{amount: 2411695, type: :igv, code: "10"}], line_extension_amount: 13398305},
+                        {item: {id: "MPC35", description: "Memoria DDR-3 B1333 Kingston"}, quantity: 250, unit: 'NIU', 
+                          price: {value: 5200}, pricing_reference: 5200, tax_totals: [{amount: 0, type: :igv, code: "20"}], line_extension_amount: 1300000},
+                        {item: {id: "TMS22", description: "Teclado Microsoft SideWinder X6"}, quantity: 500, unit: 'NIU', 
+                          price: {value: 16610}, pricing_reference: 19600, tax_totals: [{amount: 1494915, type: :igv, code: "10"}], line_extension_amount: 8305085},
+                        {item: {id: "WCG01", description: "Web cam Genius iSlim 310"}, quantity: 1, unit: 'NIU', 
+                          price: {value: 0}, pricing_reference: {amount: 3000, free: true}, tax_totals: [{amount: 0, type: :igv, code: "31"}], line_extension_amount: 0}],
+                additional_monetary_totals: [{id: "1001", payable_amount: 34819915}, {id: "1003", payable_amount: 1235000}, 
+                                             {id: "1004", payable_amount: 3000}, {id: "2005", payable_amount: 5923051}],
+                legal_monetary_total: 42325500, tax_totals: [{amount: 6267585, type: :igv}], additional_properties: [{id: "1000", value: SUNAT::PaymentAmount.new(42322500).textify.upcase}]
+                }
+doc = SUNAT::Invoice.new(invoice_data)
+
 if doc.valid?
-  doc.pdf_path = "invoice.pdf"
-  doc.to_pdf
+  doc.to_pdf("invoice.pdf")
   File::open("own_invoice.xml", "w") { |file| file.write(doc.to_xml) }
 else
   puts "Invalid document, ignoring output"
   puts doc.errors.full_messages
-  puts doc.lines.count
 end

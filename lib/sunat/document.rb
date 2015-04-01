@@ -17,7 +17,6 @@ module SUNAT
     property :accounting_supplier_party,  AccountingSupplierParty
     property :additional_properties,      [AdditionalProperty]
     property :additional_monetary_totals, [AdditionalMonetaryTotal]
-    property :address,                    String
     property :pdf_path,                   String
 
     def self.xml_root(root_name)
@@ -47,7 +46,7 @@ module SUNAT
     end
 
     def address
-      get_attribute(:address) || "#{supplier.street}, #{supplier.district} (#{supplier.city})"
+      "#{supplier.street}, #{supplier.district} (#{supplier.city})"
     end
 
     def operation_list
@@ -59,15 +58,14 @@ module SUNAT
     end
 
     def build_pdf_header(pdf)
-      if self.company_logo_path.nil?
-        pdf.text "#{self.company_name}", :size => 40,
-                                         :style => :bold
-      else
-        pdf.image "#{self.company_logo_path}", :width => 200
+      if self.company_logo_path.present?
+        pdf.image "#{self.company_logo_path}", :width => 100
+        pdf.move_down 4
       end
+      pdf.text "#{self.accounting_supplier_party.party.party_legal_entity.registration_name}", :size => 12,
+                                                                                               :style => :bold
       pdf.move_down 4
-      pdf.text "#{address}", :size => 12,
-                         :style => :bold
+      pdf.text "#{address}", :size => 10
       pdf.bounding_box([325, 725], :width => 200, :height => 70) do
         pdf.stroke_bounds
         pdf.move_down 15
@@ -109,8 +107,8 @@ module SUNAT
       end
     end
 
-    def to_pdf
-      build_pdf
+    def to_pdf(path=false)
+      build_pdf(path)
     end
 
     def customization_id

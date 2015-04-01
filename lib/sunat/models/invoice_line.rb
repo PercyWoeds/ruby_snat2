@@ -43,6 +43,8 @@ module SUNAT
     property :item,                   Item
     property :tax_totals,             [TaxTotal]
     
+    validates :id, presence: true
+    
     KNOWN_UNIT_CODES = {
       :product => "NIU",
       :service => "ZZ"
@@ -109,7 +111,7 @@ module SUNAT
       row << "#{self.item.description} - #{self.item.id}"
       row << "#{self.pricing_reference.alternative_condition_price.price_amount.to_s}"
       row << "#{self.price.to_s}"
-      row << "#{self.price.to_f * self.quantity.quantity}"
+      row << "#{self.line_extension_amount.to_s}"
     end
 
     def build_xml(xml)

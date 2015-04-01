@@ -29,6 +29,7 @@ module SUNAT
 
     RUC_DOCUMENT_CODE = "6"
     DNI_DOCUMENT_CODE = "1"
+    DOCUMENT_TYPES = {ruc: RUC_DOCUMENT_CODE, dni: DNI_DOCUMENT_CODE}
     
     property :account_id,             String
     property :additional_account_id,  String, :default => RUC_DOCUMENT_CODE
@@ -45,6 +46,10 @@ module SUNAT
       xml['cac'].AccountingSupplierParty do
         build_xml_payload(xml)
       end
+    end
+
+    def type_as_text
+      DOCUMENT_TYPES.key(additional_account_id).to_s.upcase
     end
 
     protected
@@ -69,7 +74,7 @@ module SUNAT
 
       if (dni || ruc)
         # Special case! Try set the properties accordingly.
-        self.additional_account_id = dni ? DNI_DOCUMENT_CODE : RUC_DOCUMENT_CODE
+        self.additional_account_id = dni ? DOCUMENT_TYPES[:dni] : DOCUMENT_TYPES[:ruc]
         self.account_id = dni || ruc
       end
       

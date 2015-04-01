@@ -36,9 +36,12 @@ module SUNAT
 
       attr_accessor :properties
 
-      def property(*args)
-        self.properties ||= {}
+      def properties
+        @properties ||= {}
+      end
 
+      def property(*args)
+        
         # Prepare the property object and methods
         property = Property.new(*args)
         properties[property.name] = property
