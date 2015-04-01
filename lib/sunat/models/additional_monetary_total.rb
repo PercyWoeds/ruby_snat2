@@ -9,6 +9,9 @@ module SUNAT
     property :total_amount,     PaymentAmount
     property :percent,          Float
     
+    validates :id, presence: true
+    validates :payable_amount, presence: true
+    
     def build_xml(xml)
       xml['sac'].AdditionalMonetaryTotal do
         xml['cbc'].ID id
