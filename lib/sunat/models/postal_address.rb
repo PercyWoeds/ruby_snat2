@@ -20,8 +20,14 @@ module SUNAT
         xml['cbc'].CountrySubentity     country_subentity
         xml['cbc'].District             district
         
-        country.build_xml xml
+        country.build_xml xml if country.present?
       end
+    end
+
+    def to_s
+      address = [street_name, city_subdivision_name, city_name, country_subentity, district].select(&:present?).join(', ')
+      address += ", #{country.identification_code}" if country.present?
+      address 
     end
   end
 end
