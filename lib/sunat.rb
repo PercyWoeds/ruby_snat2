@@ -52,6 +52,7 @@ module SUNAT
   autoload :BillingPayment,            "sunat/models/billing_payment"
   autoload :Country,                   "sunat/models/country"
   autoload :CreditNoteLine,            "sunat/models/credit_note_line"
+  autoload :Currency,                  "sunat/models/currency"
   autoload :DebitNoteLine,             "sunat/models/debit_note_line"
   autoload :DiscrepancyResponse,       "sunat/models/discrepancy_response"
   autoload :DocumentReference,         "sunat/models/document_reference"
