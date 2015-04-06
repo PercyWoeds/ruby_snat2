@@ -8,8 +8,8 @@ module SUNAT
     property :tier_range,                 String
     property :tax_scheme,                 TaxScheme
     
-    validates :tax_exemption_reason_code, inclusion: { in: ANNEX::CATALOG_07 }
-    validates :tier_range, inclusion: { in: ANNEX::CATALOG_08 }
+    validates :tax_exemption_reason_code, inclusion: { in: ANNEX::CATALOG_07 }, :allow_nil => true
+    validates :tier_range, inclusion: { in: ANNEX::CATALOG_08 }, :allow_nil => true
     
     def build_xml(xml)
       xml['cac'].TaxCategory do        

@@ -14,7 +14,6 @@ module SUNAT
       include Validations
 
       validate do 
-        puts "#{self.class}: #{self.class.properties}" if self.class.name == "SUNAT::AccountingCustomerParty"
         properties_to_check = []
         klass = self.class
         while klass.respond_to? :properties

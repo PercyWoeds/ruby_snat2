@@ -48,12 +48,13 @@ module SUNAT
       xml['ds'].SignedInfo do
         xml['ds'].CanonicalizationMethod(Algorithm: C14N_ALGORITHM)
         xml['ds'].SignatureMethod(Algorithm: SIGNATURE_ALGORITHM)
-        xml['ds'].Reference(URI: "")
-        xml['ds'].Transforms do
-          xml['ds'].Transform(Algorithm: TRANSFORMATION_ALGORITHM)
+        xml['ds'].Reference(URI: "") do
+          xml['ds'].Transforms do
+            xml['ds'].Transform(Algorithm: TRANSFORMATION_ALGORITHM)
+          end
+          xml['ds'].DigestMethod(Algorithm: DIGEST_ALGORITHM)
+          xml['ds'].DigestValue(digested_document)
         end
-        xml['ds'].DigestMethod(Algorithm: DIGEST_ALGORITHM)
-        xml['ds'].DigestValue(digested_document)
       end
     end
 
