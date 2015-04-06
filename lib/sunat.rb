@@ -50,6 +50,7 @@ module SUNAT
   autoload :AlternativeConditionPrice, "sunat/models/alternative_condition_price"
   autoload :BasicLine,                 "sunat/models/basic_line"
   autoload :BillingPayment,            "sunat/models/billing_payment"
+  autoload :BillingReference,          "sunat/models/billing_reference"
   autoload :Country,                   "sunat/models/country"
   autoload :CreditNoteLine,            "sunat/models/credit_note_line"
   autoload :Currency,                  "sunat/models/currency"

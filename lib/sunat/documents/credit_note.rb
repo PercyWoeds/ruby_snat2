@@ -10,13 +10,19 @@ module SUNAT
     xml_root :CreditNote
 
     property :discrepancy_response,      DiscrepancyResponse
+    property :billing_reference,         BillingReference
     property :requested_monetary_total,  PaymentAmount
 
     property :lines,                     [CreditNoteLine]
 
+    validates :discrepancy_response, presence: true
+    validates :billing_reference, presence: true
+
     def build_xml(xml)
       super(xml)
 
+      billing_reference.build_xml(xml)
+      
       xml['cac'].RequestedMonetaryTotal do
         requested_monetary_total.build_xml xml, :PayableAmount
       end if requested_monetary_total.present?
