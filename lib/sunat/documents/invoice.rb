@@ -22,7 +22,6 @@ module SUNAT
     property :tax_totals,                      [TaxTotal]
     property :legal_monetary_total,            PaymentAmount
     property :despatch_document_references,    [ReferralGuideline] # Spanish: Guías de remisión
-    property :additional_document_references,  [DocumentReference]
 
     # property :invoice_summary,                 Array
 
@@ -32,13 +31,13 @@ module SUNAT
     validates :document_currency_code, existence: true, currency_code: true
     validates :invoice_type_code, tax_document_type_code: true
     validates :customer, presence: true
+    validates :legal_monetary_total, existence: true
 
     def initialize(*args)
       self.lines ||= []
       self.invoice_type_code ||= self.class::DOCUMENT_TYPE_CODE
       self.tax_totals ||= []
       self.despatch_document_references ||= []
-      self.additional_document_references ||= []
       self.document_type_name ||= "Factura Electronica"
       super(*args)
     end

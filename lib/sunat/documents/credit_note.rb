@@ -18,11 +18,16 @@ module SUNAT
     validates :discrepancy_response, presence: true
     validates :billing_reference, presence: true
 
+    def initialize(*args)
+      self.document_type_name ||= "Nota de credito"
+      super(*args)
+    end
+
     def build_xml(xml)
       super(xml)
 
       billing_reference.build_xml(xml)
-      
+
       xml['cac'].RequestedMonetaryTotal do
         requested_monetary_total.build_xml xml, :PayableAmount
       end if requested_monetary_total.present?

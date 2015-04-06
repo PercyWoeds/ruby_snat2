@@ -5,40 +5,17 @@ require 'sunat'
 require './config'
 
 # Group 1
+credit_note_data = { issue_date: Date.new(2012,03,25), id: "F001-211", customer: {legal_name: "Servicabinas S.A.", ruc: "20587896411"},
+                     billing_reference: {id: "F001-4355", document_type_code: "01"},
+                     discrepancy_response: {reference_id: "F001-4355", response_code: "07", description: "Unidades defectuosas, no leen CD que contengan archivos MP3"},
+                     lines: [{id: "1", item: {id: "GLG199", description: "Grabadora LG Externo Modelo: GE20LU10"}, quantity: 100, unit: 'NIU', 
+                          price: {value: 8305}, pricing_reference: 9800, tax_totals: [{amount: 149492, type: :igv, code: "10"}], line_extension_amount: 830508}],
+                     additional_monetary_totals: [{id: "1001", payable_amount: 830508}], tax_totals: [{amount: 149492, type: :igv}], legal_monetary_total: 979999}
 
-doc = SUNAT::CreditNote.new
-
-doc.requested_monetary_total = SUNAT::PaymentAmount.new(3000)
-
-doc.add_line do |line|
-  line.price = SUNAT::PaymentAmount.new(3000)
-
-  line.quantity = SUNAT::Quantity.new
-  line.quantity.quantity = 250
-  line.quantity.unit_code = "NIU"
-  line.line_extension_amount = SUNAT::PaymentAmount.new(4000)
-
-  line.pricing_reference = SUNAT::PricingReference.new
-  line.pricing_reference.alternative_condition_price = SUNAT::AlternativeConditionPrice.new
-  line.pricing_reference.alternative_condition_price.price_amount = SUNAT::PaymentAmount.new(3000)
-
-  line.item = SUNAT::Item.new
-  line.item.description = "Cabify Journey In Rolls Royce"
-  line.item.id = "ROLLS2014"
-
-  line.add_tax_total(:igv, 3000)
-  line.add_tax_total(:isc, 5000)
-end
-
-doc.legal_monetary_total = SUNAT::PaymentAmount.new(5000)
-
-doc.id = "F001-211"
-
-File::open("output.xml", "w") { |file| file.write(doc.to_xml) }
-
-if doc.valid?
-  File::open("credit_note.xml", "w") { |file| file.write(doc.to_xml) }
-  doc.to_pdf
+credit_note = SUNAT::CreditNote.new(credit_note_data)
+if credit_note.valid?
+  File::open("credit_note.xml", "w") { |file| file.write(credit_note.to_xml) }
+  credit_note.to_pdf
 else
-  puts "Invalid document, ignoring output"
+  puts "Invalid document, ignoring output: #{credit_note.errors.messages}"
 end
