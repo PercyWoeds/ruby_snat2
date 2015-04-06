@@ -34,7 +34,7 @@ module SUNAT
     end
 
     def to_s
-      "#{int_part}.#{cents_part}"
+      sprintf "%.2f", (value / 100.0)
     end
 
     def textify

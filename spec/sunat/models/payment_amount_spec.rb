@@ -37,5 +37,9 @@ describe SUNAT::PaymentAmount do
     it "should print a string" do
       expect(SUNAT::PaymentAmount[117350, "PEN"].to_s).to eql '1173.50'
     end
+
+    it "should print lower than 10 cent values with a 0 first" do
+      expect(SUNAT::PaymentAmount[117305, "PEN"].to_s).to eql '1173.05'
+    end 
   end
 end
