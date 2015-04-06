@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/MaxiMobility/sunat-ruby.svg?branch=master)](https://travis-ci.org/MaxiMobility/sunat-ruby)
+
 # SUNAT Declaration Generator
 
 Easily generate declarations for SUNAT, Peru's state tax collection entity.
