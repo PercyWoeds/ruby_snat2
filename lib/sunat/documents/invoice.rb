@@ -247,10 +247,18 @@ module SUNAT
           invoice_summary << [monetary_total[:label], value.payable_amount.to_s]
         end
       end
-      total = get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0])
-      if total.present?
-        invoice_summary << ["Monto del total", total.value]
+      
+      tax_totals.each do |tax_total|
+        invoice_summary << [tax_total.tax_type_name, tax_total.tax_amount.to_s]
       end
+
+      invoice_summary << ["Total", legal_monetary_total.to_s]
+      if get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0])
+        total = get_additional_property_by_id(SUNAT::ANNEX::CATALOG_15[0]).value
+      else
+        total = legal_monetary_total.textify.upcase
+      end
+      invoice_summary << ["Monto del total", total]
       invoice_summary
     end
     

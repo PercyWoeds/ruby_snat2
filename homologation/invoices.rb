@@ -28,7 +28,7 @@ invoice_data = {id: "F001-4355", issue_date: "2013-03-14", customer: {legal_name
                           price: {value: 0}, pricing_reference: {amount: 3000, free: true}, tax_totals: [{amount: 0, type: :igv, code: "31"}], line_extension_amount: 0}],
                 additional_monetary_totals: [{id: "1001", payable_amount: 34819915}, {id: "1003", payable_amount: 1235000}, 
                                              {id: "1004", payable_amount: 3000}, {id: "2005", payable_amount: 5923051}],
-                legal_monetary_total: 42325500, tax_totals: [{amount: 6267585, type: :igv}], additional_properties: [{id: "1000", value: SUNAT::PaymentAmount.new(42322500).textify.upcase}]
+                legal_monetary_total: 42325500, tax_totals: [{amount: 6267585, type: :igv}]
                 }
 
 invoice = SUNAT::Invoice.new(invoice_data)

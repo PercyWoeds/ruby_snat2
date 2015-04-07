@@ -19,19 +19,19 @@ module SUNAT
     include Model
 
     property :tax_amount, PaymentAmount
-    property :sub_totals, [TaxSubTotal]
+    property :sub_total,  TaxSubTotal
     
+    validates :tax_amount, presence: true
+    validates :sub_total, presence: true
+
     def initialize(*args)
-      self.sub_totals ||=[]
       super(parse_attributes(*args))
     end
     
     def build_xml(xml)
       xml['cac'].TaxTotal do
         tax_amount.build_xml xml, :TaxAmount
-        sub_totals.each do |sub_total|
-          sub_total.build_xml(xml)
-        end
+        sub_total.build_xml(xml)
       end
     end
     
@@ -39,24 +39,22 @@ module SUNAT
       get_attribute(:tax_amount) || calculate_total
     end
 
-    def sub_total
-      result = 0
-      
-      sub_totals.each do |s|
-        result += s.tax_amount.value
+    def sub_total_amount
+      if sub_total.present?
+        sub_total.tax_amount.value
+      else
+        0
       end
+    end
 
-      result
+    def tax_type_name
+      sub_total.tax_category.tax_scheme.name
     end
 
     private
 
     def calculate_total
-      amount = 0
-      sub_totals.each do |sub|
-        amount += sub.tax_amount.value
-      end
-      PaymentAmount.new(amount)
+      PaymentAmount.new(sub_total_amount)
     end
 
     def parse_attributes(attrs = {})
@@ -80,7 +78,7 @@ module SUNAT
         when :isc
           sub.tax_category.tier_range ||= ANNEX::CATALOG_08.first
         end
-        self.sub_totals << sub
+        self.sub_total = sub
       end
       attrs
     end
