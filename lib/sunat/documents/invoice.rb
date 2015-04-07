@@ -52,7 +52,7 @@ module SUNAT
     def required_monetary_totals
       valid = additional_monetary_totals.any? {|total| ["1001", "1002", "1003"].include?(total.id) }
       if !valid
-        errors.add(:additional_monetary_totals, "should include the total for taxable, unaffected or exempt operations")
+        errors.add(:additional_monetary_totals, "has to include the total for taxable, unaffected or exempt operations")
       end
     end
 

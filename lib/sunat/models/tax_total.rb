@@ -51,6 +51,10 @@ module SUNAT
       sub_total.tax_category.tax_scheme.name
     end
 
+    def tax_type
+      sub_total.tax_category.tax_scheme.type
+    end
+
     private
 
     def calculate_total

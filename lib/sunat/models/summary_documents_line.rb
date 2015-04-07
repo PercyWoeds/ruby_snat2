@@ -12,14 +12,29 @@ module SUNAT
     property :billing_payments,   [BillingPayment]
     property :allowance_charges,  [AllowanceCharge]
     property :tax_totals,         [TaxTotal]
-    property :item,               Item
-    property :quantity,           Quantity
     
-    [:start_id, :end_id].each do |field|
+    [:start_id, :end_id, :total_amount, :billing_payments, :allowance_charges, :tax_totals].each do |field|
       validates field, existence: true, presence: true
     end
     
-    TABLE_HEADERS = ["CANTIDAD", "UNIDAD", "DESCRIPCIÓN", "VALOR TOTAL"]
+    validate :billing_payments_complete
+    validate :tax_totals_complete
+
+    def billing_payments_complete
+      instructions = billing_payments.map(&:instruction_id)
+      if ["01", "02", "03"].any? { |instruction| !instructions.include?(instruction) }
+        errors.add(:billing_payments, "has to include the total for taxable, unaffected and exempt operations")
+      end
+    end
+
+    def tax_totals_complete
+      taxes = tax_totals.map(&:tax_type)
+      if [:isc, :igv].any? { |tax_type| !taxes.include?(tax_type) }
+        errors.add(:tax_totals, "has to include the total for ISC and IGV")
+      end
+    end
+
+    TABLE_HEADERS = ["INICIO DE RANGO", "FIN DE RANGO","VALOR TOTAL"]
 
     def self.pdf_row_headers
       headers = super || []
@@ -67,11 +82,8 @@ module SUNAT
     end
     
     def build_pdf_table_row(pdf)
-      row = super
-      row << self.quantity.quantity
-      row << self.quantity.unit_code
-      row << "#{self.item.description} - #{self.item.id}"
-      row << "#{self.total_amount.value} #{self.total_amount.currency}"
+      row = super || []
+      row += [start_id, end_id, "#{self.total_amount}"]
       row
     end
 

@@ -22,7 +22,7 @@ module SUNAT
       self.notes  ||= []
       self.lines  ||= []
       self.id     ||= default_id
-      self.document_type_name ||= "Resumenes Diarios"
+      self.document_type_name ||= "Resumen de Boletas de Venta"
     end
     
     def operation
@@ -64,7 +64,21 @@ module SUNAT
     end
 
     def build_pdf_body(pdf)
+      rows = header_rows
 
+      if rows.present?
+
+        pdf.table(rows, {
+          :position => :center,
+          :cell_style => {:border_width => 0},
+          :width => pdf.bounds.width
+        }) do 
+          columns([0]).font_style = :bold
+        end
+
+        pdf.move_down 20
+
+      end
       table_content = [SummaryDocumentsLine.pdf_row_headers]
       
       lines.each do |line|
@@ -75,5 +89,11 @@ module SUNAT
       pdf
     end
     
+    def header_rows
+      rows = [["Fecha de emision de los documentos", reference_date]]
+      rows << ["Fecha de generacion del resumen", issue_date]
+      rows << ["Tipo de moneda", Currency.new(lines.first.total_amount.currency).singular_name.upcase]
+      rows 
+    end
   end
 end

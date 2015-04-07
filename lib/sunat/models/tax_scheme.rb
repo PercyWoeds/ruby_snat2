@@ -4,6 +4,7 @@ module SUNAT
     
     property :id,               String # id of the tax in sunat's catalog
     property :name,             String # name of the tax
+    property :type,             Symbol
     property :tax_type_code,    String
     
     validates :tax_type_code, tax_type_code: true
@@ -11,7 +12,7 @@ module SUNAT
     TAXES = {
       :igv => { id: "1000", name: "IGV", tax_type_code: "VAT" },
       :isc => { id: "2000", name: "ISC", tax_type_code: "EXC" },
-      :otros => { id: "9999", name: "OTROS", tax_type_code: "OTH" }
+      :other => { id: "9999", name: "OTROS", tax_type_code: "OTH" }
     }
 
     def initialize(*attrs)
@@ -30,7 +31,9 @@ module SUNAT
 
     def parse_attributes(attrs = {})
       if attrs.is_a?(Symbol)
+        type = attrs
         attrs = TAXES[attrs]
+        attrs[:type] = type
       end
       attrs
     end
