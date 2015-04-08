@@ -35,7 +35,8 @@ module SUNAT
     property :additional_account_id,  String, :default => RUC_DOCUMENT_CODE
     property :party,                  Party
     
-    validates :account_id, existence: true, presence: true, ruc_document: true
+    validates :account_id, existence: true, presence: true
+    validates :account_id, ruc_document: true, if: Proc.new { |supplier| supplier.additional_account_id == RUC_DOCUMENT_CODE}
     validates :additional_account_id, existence: true, document_type_code: true
 
     def initialize(*attrs)

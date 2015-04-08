@@ -14,6 +14,18 @@ require './config'
 
 
 # Group 1
+receipt_data = {id: "BC01-3652", customer: {dni: "00078647", legal_name: "Soledad Asuncion Carrasco Perez"},
+               lines: [{id: "1", unit: "NIU", quantity: 1, item: {id: "REF564", description: "Refrigeradora marca \"AXM\" no frost de 200 ltrs"}, pricing_reference: 99800,
+                          tax_totals: [{amount: 15224, type: :igv, code: "10"}]}]}
+
+receipt = SUNAT::Receipt.new(receipt_data)
+
+if receipt.valid?
+  File::open("receipt.xml", "w") { |file| file.write(receipt.to_xml) }
+  receipt.to_pdf
+else
+  puts "Invalid document, ignoring output: #{receipt.errors.messages}"
+end
 
 doc = SUNAT::Receipt.new
 
@@ -43,10 +55,3 @@ end
 doc.legal_monetary_total = SUNAT::PaymentAmount.new(5000)
 
 doc.id = "B001-564"
-
-if doc.valid?
-  File::open("receipt.xml", "w") { |file| file.write(doc.to_xml) }
-  doc.to_pdf
-else
-  puts "Invalid document, ignoring output"
-end

@@ -8,7 +8,7 @@ module SUNAT
   # difference being that it uses a different ID format and
   # document type code.
   #
-  class Receipt < BasicInvoice
+  class Receipt < Invoice
     xml_root :Invoice
     
     DOCUMENT_TYPE_CODE = '03' # sunat code in catalog #1
