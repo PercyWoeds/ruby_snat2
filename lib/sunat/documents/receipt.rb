@@ -8,11 +8,18 @@ module SUNAT
   # difference being that it uses a different ID format and
   # document type code.
   #
-  class Receipt < Invoice
+  class Receipt < BasicInvoice
+    xml_root :Invoice
     
     DOCUMENT_TYPE_CODE = '03' # sunat code in catalog #1
 
     ID_FORMAT = /\AB[A-Z\d]{3}-\d{1,8}\Z/
 
+    def build_xml(xml)
+      super
+      xml['cac'].LegalMonetaryTotal do
+        legal_monetary_total.build_xml xml, :PayableAmount
+      end
+    end
   end
 end

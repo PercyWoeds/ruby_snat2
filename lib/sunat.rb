@@ -34,6 +34,7 @@ module SUNAT
   autoload :Document, "sunat/document"
 
   # Documents
+  autoload :BasicInvoice,         "sunat/documents/basic_invoice"
   autoload :CreditNote,           "sunat/documents/credit_note"
   autoload :DailyReceiptSummary,  "sunat/documents/daily_receipt_summary"
   autoload :DebitNote,            "sunat/documents/debit_note"

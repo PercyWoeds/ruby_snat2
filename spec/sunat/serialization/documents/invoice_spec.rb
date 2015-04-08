@@ -18,7 +18,7 @@ describe 'serialization of an invoice' do
   end
   
   it "should insert the payment amount into the xml body" do
-    payable_amount_tag = @xml.xpath("//sac:LegalMonetaryTotal/cbc:PayableAmount")
+    payable_amount_tag = @xml.xpath("//cac:LegalMonetaryTotal/cbc:PayableAmount")
     expect(payable_amount_tag.text).to eq(@invoice.legal_monetary_total.to_s)
   end
 

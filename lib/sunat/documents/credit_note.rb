@@ -1,5 +1,5 @@
 module SUNAT
-  class CreditNote < Invoice
+  class CreditNote < BasicInvoice
 
     XML_NAMESPACE       = 'urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2'
     XSI_SCHEMA_LOCATION = nil
@@ -11,8 +11,7 @@ module SUNAT
 
     property :discrepancy_response,      DiscrepancyResponse
     property :billing_reference,         BillingReference
-    property :requested_monetary_total,  PaymentAmount
-
+    
     property :lines,                     [CreditNoteLine]
 
     validates :discrepancy_response, presence: true
@@ -24,15 +23,15 @@ module SUNAT
     end
 
     def build_xml(xml)
-      super(xml)
+      super
 
       billing_reference.build_xml(xml)
 
-      xml['cac'].RequestedMonetaryTotal do
-        requested_monetary_total.build_xml xml, :PayableAmount
-      end if requested_monetary_total.present?
-
       discrepancy_response.build_xml(xml) unless discrepancy_response.nil?
+
+      xml['cac'].LegalMonetaryTotal do
+        legal_monetary_total.build_xml xml, :PayableAmount
+      end
     end
 
     def build_own(xml)

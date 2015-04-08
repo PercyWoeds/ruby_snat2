@@ -25,7 +25,7 @@ Invoice.new.tap do |invoice|
    percent:           0.5
   })
 
-  legal_monetary_total = SUNAT::PaymentAmount.new(42322500)
+  invoice.legal_monetary_total = SUNAT::PaymentAmount.new(42322500)
 
   # 
   # invoice.add_additional_property(id: '20000', value: 'COMPROBANTE DE PERCEPCION')
