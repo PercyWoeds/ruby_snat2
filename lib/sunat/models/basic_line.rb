@@ -11,7 +11,7 @@ module SUNAT
     end
     validates :document_type_code, existence: true, presence: true, tax_document_type_code: true
 
-    TABLE_HEADERS = ["ITEM"]
+    TABLE_HEADERS = ["ITEM", "SERIE DEL DOCUMENTO"]
 
     def self.pdf_row_headers
       TABLE_HEADERS
@@ -34,7 +34,7 @@ module SUNAT
 
     def build_pdf_table_row(pdf)
       row = []
-      row << self.line_id
+      row += [self.line_id, document_serial_id]
       row
     end
 

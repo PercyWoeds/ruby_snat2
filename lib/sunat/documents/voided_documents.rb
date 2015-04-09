@@ -43,5 +43,37 @@ module SUNAT
       formatted_issue_date = issue_date.strftime("%Y%m%d")
       "#{accounting_supplier_party.account_id}-#{SUMMARY_TYPE}-#{formatted_issue_date}-#{correlative_number}"
     end
+
+    def build_pdf_body(pdf)
+      rows = header_rows
+
+      if rows.present?
+
+        pdf.table(rows, {
+          :position => :center,
+          :cell_style => {:border_width => 0},
+          :width => pdf.bounds.width
+        }) do 
+          columns([0]).font_style = :bold
+        end
+
+        pdf.move_down 20
+
+      end
+      table_content = [VoidedDocumentsLine.pdf_row_headers]
+      
+      lines.each do |line|
+        table_content << line.build_pdf_table_row(pdf)
+      end
+
+      pdf.table table_content, :position => :center
+      pdf
+    end
+    
+    def header_rows
+      rows = [["Fecha de emision de los documentos", reference_date]]
+      rows << ["Fecha de generacion del resumen", issue_date]
+      rows 
+    end
   end
 end
