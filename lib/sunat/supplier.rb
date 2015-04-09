@@ -4,7 +4,7 @@ module SUNAT
   # by default in all delarations where no alternative is provided.
   class Supplier
    
-    KEYS = :legal_name, :name, :ruc, :address_id, :street, :zone, :city, :province, :district, :country
+    KEYS = :legal_name, :name, :ruc, :address_id, :street, :zone, :city, :province, :district, :country, :logo_path
 
     attr_accessor *KEYS
 

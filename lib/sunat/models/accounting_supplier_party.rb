@@ -34,6 +34,7 @@ module SUNAT
     property :account_id,             String
     property :additional_account_id,  String, :default => RUC_DOCUMENT_CODE
     property :party,                  Party
+    property :logo_path,              String
     
     validates :account_id, existence: true, presence: true
     validates :account_id, ruc_document: true, if: Proc.new { |supplier| supplier.additional_account_id == RUC_DOCUMENT_CODE}

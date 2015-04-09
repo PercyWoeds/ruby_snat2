@@ -11,7 +11,6 @@ module SUNAT
     property :issue_date,                 Date
     property :reference_date,             Date
     property :customization_id,           String
-    property :company_logo_path,          String
     property :company_name,               String
     property :document_type_name,         String
     property :accounting_supplier_party,  AccountingSupplierParty
@@ -58,8 +57,8 @@ module SUNAT
     end
 
     def build_pdf_header(pdf)
-      if self.company_logo_path.present?
-        pdf.image "#{self.company_logo_path}", :width => 100
+      if self.accounting_supplier_party.logo_path.present?
+        pdf.image "#{self.accounting_supplier_party.logo_path}", :width => 100
         pdf.move_down 4
       end
       pdf.text "#{self.accounting_supplier_party.party.party_legal_entity.registration_name}", :size => 12,

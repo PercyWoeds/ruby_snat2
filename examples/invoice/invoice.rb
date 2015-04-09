@@ -17,8 +17,6 @@ require '../config'
 
 doc = SUNAT::Invoice.new
 
-doc.company_logo_path = "#{File.dirname(__FILE__)}/../logo.png"
-
 # line example
 
 doc.add_line do |line|

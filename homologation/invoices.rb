@@ -33,8 +33,6 @@ invoice_data = {id: "F001-4355", issue_date: "2013-03-14", customer: {legal_name
 
 invoice = SUNAT::Invoice.new(invoice_data)
 
-invoice.company_logo_path = "./logo.png"
-
 if invoice.valid?
   File::open("invoice.xml", "w") { |file| file.write(invoice.to_xml) }
   invoice.to_pdf
