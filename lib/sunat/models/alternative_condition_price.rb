@@ -12,6 +12,13 @@ module SUNAT
     end
     
     def build_xml(xml)
+      if free?
+        xml['cac'].AlternativeConditionPrice do
+          PaymentAmount.new(0).build_xml xml, :PriceAmount
+          
+          xml['cbc'].PriceTypeCode '01'
+        end
+      end
       xml['cac'].AlternativeConditionPrice do
         price_amount.build_xml xml, :PriceAmount
         
@@ -20,6 +27,10 @@ module SUNAT
     end
 
     protected
+
+    def free?
+      self.price_type == '02'
+    end
 
     def parse_attributes(attrs = {})
       if attrs.delete(:free)
