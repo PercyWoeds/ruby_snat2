@@ -16,6 +16,7 @@ module SUNAT
 
     validates :discrepancy_response, presence: true
     validates :billing_reference, presence: true
+    validates :lines, presence: true
 
     def initialize(*args)
       self.document_type_name ||= "Nota de credito"
