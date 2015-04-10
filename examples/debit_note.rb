@@ -6,7 +6,7 @@ require './config'
 
 # Group 1
 debit_note_data = {id: "F001-0005", issue_date: Date.new(2012,7,21), customer: {legal_name: "Servicabinas S.A.", ruc: "20587896411"}, 
-                   discrepancy_response: {description: "Ampliación garantía de memoria DDR-3 B1333 Kingston", reference_id: "F001-4355", response_code: "02"}, requested_monetary_total: 125000, 
+                   discrepancy_response: {description: "Ampliación garantía de memoria DDR-3 B1333 Kingston", reference_id: "F001-4355", response_code: "02"}, 
                    lines: [{id: "1", quantity: 1, unit: "ZZ", item: {description: "Ampliación de garantía de 6 a 12 meses de Memoria DDR-3 B1333 Kingston"}, 
                       price: 500, pricing_reference: 500, tax_totals: [{type: :igv, code: "20", amount: 0}], line_extension_amount:  125000}],
                       legal_monetary_total: 125000, billing_reference: {id: "F001-4355", document_type_code: "01"}}
@@ -22,7 +22,7 @@ end
 
 doc = SUNAT::DebitNote.new
 
-doc.requested_monetary_total = SUNAT::PaymentAmount.new(3000)
+doc.legal_monetary_total = SUNAT::PaymentAmount.new(3000)
 
 doc.add_line do |line|
   line.price = SUNAT::PaymentAmount.new(3000)

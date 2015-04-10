@@ -2,18 +2,17 @@ module SUNAT
   class DebitNote < BasicInvoice
 
     ID_FORMAT = /\A[F][A-Z\d]{3}-\d{1,8}\Z/
-    DOCUMENT_TYPE_CODE = '08' # NOTA DE CREDITO
+    DOCUMENT_TYPE_CODE = '08' # NOTA DE DEBITO
 
     xml_root :DebitNote
 
     property :lines, [DebitNoteLine]
     property :discrepancy_response,      DiscrepancyResponse
     property :billing_reference,         BillingReference
-    property :requested_monetary_total,  PaymentAmount
 
     validates :discrepancy_response, presence: true
     validates :billing_reference, presence: true
-    validates :requested_monetary_total, presence: true
+    validates :lines, presence: true
 
     def initialize(*args)
       self.document_type_name ||= "Nota de debito"
@@ -35,6 +34,7 @@ module SUNAT
         legal_monetary_total.build_xml xml, :PayableAmount
       end
     end
+    
     def build_own(xml)
 
     end
