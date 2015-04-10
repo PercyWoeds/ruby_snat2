@@ -15,6 +15,11 @@ module SUNAT
 
     ID_FORMAT = /\AB[A-Z\d]{3}-\d{1,8}\Z/
 
+    def initialize(*args)
+      self.document_type_name ||= "Boleta de Venta"
+      super(*args)
+    end
+
     def build_xml(xml)
       super
       xml['cac'].LegalMonetaryTotal do

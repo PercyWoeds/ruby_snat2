@@ -1,7 +1,8 @@
 module SUNAT
   class DebitNote < BasicInvoice
 
-    ID_FORMAT = /\A[F][A-Z\d]{3}-\d{1,8}\Z/
+    ID_FORMAT = /\A[F|B][A-Z\d]{3}-\d{1,8}\Z/
+    
     DOCUMENT_TYPE_CODE = '08' # NOTA DE DEBITO
 
     xml_root :DebitNote

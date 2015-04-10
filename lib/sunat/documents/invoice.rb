@@ -1,5 +1,8 @@
 module SUNAT
   class Invoice < BasicInvoice
+
+    ID_FORMAT = /\AF[A-Z\d]{3}-\d{1,8}\Z/
+    
     xml_root :Invoice
 
     validate :required_monetary_totals

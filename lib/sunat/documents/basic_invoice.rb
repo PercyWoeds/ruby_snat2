@@ -9,8 +9,6 @@ module SUNAT
     
     DOCUMENT_TYPE_CODE = '01' # sunat code in catalog #1
     
-    ID_FORMAT = /\AF[A-Z\d]{3}-\d{1,8}\Z/
-
     include HasTaxTotals
 
     property :invoice_type_code,               String
