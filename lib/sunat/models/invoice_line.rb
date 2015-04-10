@@ -43,7 +43,7 @@ module SUNAT
     property :item,                   Item
     property :tax_totals,             [TaxTotal]
     
-    validates :id, presence: true
+    validates :id, :quantity, :line_extension_amount, :price, :pricing_reference, :tax_totals, :item, presence: true
     
     KNOWN_UNIT_CODES = {
       :product => "NIU",
