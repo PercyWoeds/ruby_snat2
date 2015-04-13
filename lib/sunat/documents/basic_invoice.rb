@@ -78,7 +78,7 @@ module SUNAT
     def total_tax_totals
       total = 0
 
-      if self.lines.count
+      if self.lines.present?
         self.lines.each do |line|
           total += line.calculate_tax_total
         end
@@ -90,7 +90,7 @@ module SUNAT
     def total_sub_totals
       subtotal = 0
 
-      if self.lines.count
+      if self.lines.present?
         self.lines.each do |line|
           subtotal += line.calculate_tax_sub_total
         end
@@ -102,7 +102,7 @@ module SUNAT
     def calculated_tax_totals
       totals = []
 
-      if self.lines.count
+      if self.lines.present?
         self.lines.each do |line|
           totals.push line.calculate_tax_total * line.quantity.quantity
         end

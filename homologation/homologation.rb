@@ -61,6 +61,9 @@ case_40 = DebitNoteGenerator.new(4, 40, "FF14").for_discount_invoice(case_33, tr
 case_41 = DebitNoteGenerator.new(4, 41, "FF14").for_discount_invoice(case_34)
 case_42 = DebitNoteGenerator.new(4, 42, "FF14").for_discount_invoice(case_36)
 
+#Group 5
+case_43 = InvoiceGenerator.new(5, 43, 5, "FF30").with_isc
+
 #Group 8
 case_52 = ReceiptGenerator.new(8, 52, 3, "BB11").with_igv
 case_53 = ReceiptGenerator.new(8, 53, 2, "BB11").with_igv
