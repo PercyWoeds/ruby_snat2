@@ -25,14 +25,24 @@ class CreditNoteGenerator < DocumentGenerator
   def for_discount_invoice(associated_document, pdf=false)
     line = associated_document.lines.first
     credit_note = SUNAT::CreditNote.new(credit_note_data_for_line(line, associated_document))
+    
     taxable_total = credit_note.get_monetary_total_by_id("1001")
     discount = (taxable_total.payable_amount.value * 0.05).round
     taxable_total.payable_amount = taxable_total.payable_amount.value - discount
     credit_note.add_additional_monetary_total({id: "2005", payable_amount: discount})
     credit_note.modify_monetary_total(taxable_total)
+    
     new_tax_totals = {amount: (taxable_total.payable_amount.to_f * 18).round, type: :igv}
     credit_note.legal_monetary_total = new_tax_totals[:amount] + taxable_total.payable_amount.value
     credit_note.tax_totals = [new_tax_totals]
+    
+    generate_documents(credit_note, pdf)
+    credit_note
+  end
+
+  def for_isc_document(associated_document, pdf=false)
+    line = associated_document.lines.last
+    credit_note = SUNAT::CreditNote.new(credit_note_data_for_line(line, associated_document))
     generate_documents(credit_note, pdf)
     credit_note
   end
