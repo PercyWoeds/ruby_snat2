@@ -15,9 +15,9 @@ class DebitNoteGenerator < DocumentGenerator
   end
 
   def for_exempt_document(associated_document, pdf=false)
-    exempt_line = @associated_document.lines.last
+    exempt_line = associated_document.lines.last
     debit_note = SUNAT::DebitNote.new(debit_note_data_for_line(exempt_line, associated_document))
-    generate_documents(credit_note, pdf)
+    generate_documents(debit_note, pdf)
     debit_note
   end
 

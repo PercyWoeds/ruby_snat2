@@ -35,9 +35,9 @@ case_16 = InvoiceGenerator.new(2, 16, 6, "FF12").exempt
 case_17 = CreditNoteGenerator.new(2, 17, "FF12").for_exempt_document(case_12)
 case_18 = CreditNoteGenerator.new(2, 18, "FF12").for_exempt_document(case_14, true)
 case_19 = CreditNoteGenerator.new(2, 19, "FF12").for_exempt_document(case_16)
-case_20 = CreditNoteGenerator.new(2, 20, "FF12").for_exempt_document(case_12)
-case_21 = CreditNoteGenerator.new(2, 21, "FF12").for_exempt_document(case_14, true)
-case_22 = CreditNoteGenerator.new(2, 22, "FF12").for_exempt_document(case_16)
+case_20 = DebitNoteGenerator.new(2, 20, "FF12").for_exempt_document(case_12)
+case_21 = DebitNoteGenerator.new(2, 21, "FF12").for_exempt_document(case_14, true)
+case_22 = DebitNoteGenerator.new(2, 22, "FF12").for_exempt_document(case_16)
 
 #Group 3
 case_23 = InvoiceGenerator.new(3, 23, 7, "FF13").free
@@ -77,9 +77,9 @@ case_67 = ReceiptGenerator.new(9, 67, 1, "BB12").exempt
 case_68 = CreditNoteGenerator.new(9, 68, "BB12").for_exempt_document(case_63)
 case_69 = CreditNoteGenerator.new(9, 69, "BB12").for_exempt_document(case_66, true)
 case_70 = CreditNoteGenerator.new(9, 70, "BB12").for_exempt_document(case_67)
-case_71 = CreditNoteGenerator.new(9, 71, "BB12").for_exempt_document(case_63)
-case_72 = CreditNoteGenerator.new(9, 72, "BB12").for_exempt_document(case_66, true)
-case_73 = CreditNoteGenerator.new(9, 73, "BB12").for_exempt_document(case_67)
+case_71 = DebitNoteGenerator.new(9, 71, "BB12").for_exempt_document(case_63)
+case_72 = DebitNoteGenerator.new(9, 72, "BB12").for_exempt_document(case_66, true)
+case_73 = DebitNoteGenerator.new(9, 73, "BB12").for_exempt_document(case_67)
 
 #Group 10
 case_74 = ReceiptGenerator.new(10, 74, 7, "BB13").free
