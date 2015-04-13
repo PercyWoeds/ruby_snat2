@@ -36,6 +36,20 @@ class InvoiceGenerator < DocumentGenerator
     invoice
   end
 
+  def with_discount(pdf=false)
+    invoice_data = data(@items)
+    invoice_data[:additional_monetary_totals] << {id: "2005", payable_amount: 5000}
+    invoice = document_class.new(invoice_data)
+    taxable_total = invoice.get_monetary_total_by_id("1001")
+    taxable_total.payable_amount = taxable_total.payable_amount.value - 5000
+    invoice.modify_monetary_total(taxable_total)
+    new_tax_totals = {amount: (taxable_total.payable_amount.to_f * 18).round, type: :igv}
+    invoice.legal_monetary_total = new_tax_totals[:amount] + taxable_total.payable_amount.value
+    invoice.tax_totals = [new_tax_totals]
+    generate_documents(invoice, pdf)
+    invoice
+  end
+
   protected
 
   def document_class

@@ -46,6 +46,15 @@ case_25 = InvoiceGenerator.new(3, 25, 5, "FF13").free
 case_26 = InvoiceGenerator.new(3, 26, 4, "FF13").free
 case_27 = InvoiceGenerator.new(3, 27, 3, "FF13").free
 
+#For some reason group 4 case numbers are not consecutive to case 3 ones.
+
+#Group 4
+case_32 = InvoiceGenerator.new(4, 32, 2, "FF14").with_discount
+case_33 = InvoiceGenerator.new(4, 33, 1, "FF14").with_discount(true)
+case_34 = InvoiceGenerator.new(4, 34, 4, "FF14").with_discount
+case_35 = InvoiceGenerator.new(4, 35, 3, "FF14").with_discount
+case_36 = InvoiceGenerator.new(4, 36, 5, "FF14").with_discount
+
 #Group 8
 case_52 = ReceiptGenerator.new(8, 52, 3, "BB11").with_igv
 case_53 = ReceiptGenerator.new(8, 53, 2, "BB11").with_igv

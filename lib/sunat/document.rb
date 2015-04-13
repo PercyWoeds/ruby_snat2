@@ -197,7 +197,7 @@ module SUNAT
       results
     end
 
-    def modify_monetary_total_by_id(amt)
+    def modify_monetary_total(amt)
       remove_monetary_totals_by_property(:id, amt[:id])
       add_additional_monetary_total amt
     end
