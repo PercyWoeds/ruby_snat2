@@ -10,7 +10,7 @@ class InvoiceGenerator < DocumentGenerator
   end
 
   def with_igv(pdf=false)
-    invoice = SUNAT::Invoice.new(data(@items))
+    invoice = document_class.new(data(@items))
     generate_documents(invoice, pdf)
     invoice
   end
@@ -20,7 +20,7 @@ class InvoiceGenerator < DocumentGenerator
     invoice_data[:lines] << {id: @items.to_s, quantity: 1, line_extension_amount: 10000, pricing_reference: 10000, price: 10000,
                              item: {id: @items.to_s, description: "Item #{@items}"}, tax_totals: [{amount: 0, type: :igv, code: "20"}], line_extension_amount: 10000}
     invoice_data[:additional_monetary_totals] << {id: "1003", payable_amount: 10000}
-    invoice = SUNAT::Invoice.new(invoice_data)
+    invoice = document_class.new(invoice_data)
     invoice.legal_monetary_total.value = invoice.legal_monetary_total.value + 10000
     generate_documents(invoice, pdf)
     invoice
@@ -31,9 +31,15 @@ class InvoiceGenerator < DocumentGenerator
     invoice_data[:lines] << {id: @items.to_s, quantity: 1, line_extension_amount: 0, pricing_reference: {amount: 10000, free: true}, price: 0,
                              item: {id: @items.to_s, description: "Item #{@items}"}, tax_totals: [{amount: 0, type: :igv, code: "31"}], line_extension_amount: 0}
     invoice_data[:additional_monetary_totals] << {id: "1002", payable_amount: 10000}
-    invoice = SUNAT::Invoice.new(invoice_data)
+    invoice = document_class.new(invoice_data)
     generate_documents(invoice, pdf)
     invoice
+  end
+
+  protected
+
+  def document_class
+    SUNAT::Invoice
   end
 
   private

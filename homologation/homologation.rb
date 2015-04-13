@@ -44,7 +44,7 @@ case_23 = InvoiceGenerator.new(3, 23, 7, "FF13").free
 case_24 = InvoiceGenerator.new(3, 24, 2, "FF13").free(true)
 case_25 = InvoiceGenerator.new(3, 25, 5, "FF13").free
 case_26 = InvoiceGenerator.new(3, 26, 4, "FF13").free
-case_27 = InvoiceGenerator.new(3, 27, 5, "FF13").free
+case_27 = InvoiceGenerator.new(3, 27, 3, "FF13").free
 
 #Group 8
 case_52 = ReceiptGenerator.new(8, 52, 3, "BB11").with_igv
@@ -60,14 +60,21 @@ case_61 = DebitNoteGenerator.new(8, 61, "BB11").for_igv_invoice(case_54,true)
 case_62 = DebitNoteGenerator.new(8, 62, "BB11").for_igv_invoice(case_55)
 
 #Group 9
-case_63 = ReceiptGenerator.new(9, 63, 2, "FF12").exempt
-case_64 = ReceiptGenerator.new(9, 64, 4, "FF12").exempt
-case_65 = ReceiptGenerator.new(9, 65, 7, "FF12").exempt(true)
-case_66 = ReceiptGenerator.new(9, 66, 5, "FF12").exempt
-case_67 = ReceiptGenerator.new(9, 67, 1, "FF12").exempt
-case_68 = CreditNoteGenerator.new(9, 68, "FF12").for_exempt_invoice(case_63)
-case_69 = CreditNoteGenerator.new(9, 69, "FF12").for_exempt_invoice(case_66, true)
-case_70 = CreditNoteGenerator.new(9, 70, "FF12").for_exempt_invoice(case_67)
-case_71 = CreditNoteGenerator.new(9, 71, "FF12").for_exempt_invoice(case_63)
-case_72 = CreditNoteGenerator.new(9, 72, "FF12").for_exempt_invoice(case_66, true)
-case_73 = CreditNoteGenerator.new(9, 73, "FF12").for_exempt_invoice(case_67)
+case_63 = ReceiptGenerator.new(9, 63, 2, "BB12").exempt
+case_64 = ReceiptGenerator.new(9, 64, 4, "BB12").exempt
+case_65 = ReceiptGenerator.new(9, 65, 7, "BB12").exempt(true)
+case_66 = ReceiptGenerator.new(9, 66, 5, "BB12").exempt
+case_67 = ReceiptGenerator.new(9, 67, 1, "BB12").exempt
+case_68 = CreditNoteGenerator.new(9, 68, "BB12").for_exempt_invoice(case_63)
+case_69 = CreditNoteGenerator.new(9, 69, "BB12").for_exempt_invoice(case_66, true)
+case_70 = CreditNoteGenerator.new(9, 70, "BB12").for_exempt_invoice(case_67)
+case_71 = CreditNoteGenerator.new(9, 71, "BB12").for_exempt_invoice(case_63)
+case_72 = CreditNoteGenerator.new(9, 72, "BB12").for_exempt_invoice(case_66, true)
+case_73 = CreditNoteGenerator.new(9, 73, "BB12").for_exempt_invoice(case_67)
+
+#Group 10
+case_74 = ReceiptGenerator.new(10, 74, 7, "BB13").free
+case_75 = ReceiptGenerator.new(10, 75, 2, "BB13").free
+case_76 = ReceiptGenerator.new(10, 76, 5, "BB13").free(true)
+case_77 = ReceiptGenerator.new(10, 77, 4, "BB13").free
+case_78 = ReceiptGenerator.new(10, 78, 9, "BB13").free
