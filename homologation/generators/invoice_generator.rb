@@ -26,6 +26,16 @@ class InvoiceGenerator < DocumentGenerator
     invoice
   end
   
+  def free(pdf=false)
+    invoice_data = data(@items - 1)
+    invoice_data[:lines] << {id: @items.to_s, quantity: 1, line_extension_amount: 0, pricing_reference: {amount: 10000, free: true}, price: 0,
+                             item: {id: @items.to_s, description: "Item #{@items}"}, tax_totals: [{amount: 0, type: :igv, code: "31"}], line_extension_amount: 0}
+    invoice_data[:additional_monetary_totals] << {id: "1002", payable_amount: 10000}
+    invoice = SUNAT::Invoice.new(invoice_data)
+    generate_documents(invoice, pdf)
+    invoice
+  end
+
   private
     def data(items)
       invoice_data = {id: "#{@serie}-#{"%03d" % @@document_serial_id}", customer: {legal_name: "Servicabinas S.A.", ruc: "20587896411"}, 

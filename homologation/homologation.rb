@@ -14,7 +14,7 @@ files_to_clean.each do |file|
 end
 
 #Group 1
-case_1 = InvoiceGenerator.new(1, 1, 3, "FF11"). with_igv
+case_1 = InvoiceGenerator.new(1, 1, 3, "FF11").with_igv
 case_2 = InvoiceGenerator.new(1, 2, 2, "FF11").with_igv
 case_3 = InvoiceGenerator.new(1, 3, 1, "FF11").with_igv(true)
 case_4 = InvoiceGenerator.new(1, 4, 5, "FF11").with_igv
@@ -38,6 +38,13 @@ case_19 = CreditNoteGenerator.new(2, 19, "FF12").for_exempt_invoice(case_16)
 case_20 = CreditNoteGenerator.new(2, 20, "FF12").for_exempt_invoice(case_12)
 case_21 = CreditNoteGenerator.new(2, 21, "FF12").for_exempt_invoice(case_14, true)
 case_22 = CreditNoteGenerator.new(2, 22, "FF12").for_exempt_invoice(case_16)
+
+#Group 3
+case_23 = InvoiceGenerator.new(3, 23, 7, "FF13").free
+case_24 = InvoiceGenerator.new(3, 24, 2, "FF13").free(true)
+case_25 = InvoiceGenerator.new(3, 25, 5, "FF13").free
+case_26 = InvoiceGenerator.new(3, 26, 4, "FF13").free
+case_27 = InvoiceGenerator.new(3, 27, 5, "FF13").free
 
 #Group 8
 case_52 = ReceiptGenerator.new(8, 52, 3, "BB11").with_igv
