@@ -7,14 +7,14 @@ class DebitNoteGenerator < DocumentGenerator
     @serie = serie
   end
 
-  def for_igv_invoice(associated_document, pdf=false)
+  def for_igv_document(associated_document, pdf=false)
     line = associated_document.lines.first
     debit_note = SUNAT::DebitNote.new(debit_note_data_for_line(line, associated_document))
     generate_documents(debit_note, pdf)
     debit_note
   end
 
-  def for_exempt_invoice(associated_document, pdf=false)
+  def for_exempt_document(associated_document, pdf=false)
     exempt_line = @associated_document.lines.last
     debit_note = SUNAT::DebitNote.new(debit_note_data_for_line(exempt_line, associated_document))
     generate_documents(credit_note, pdf)

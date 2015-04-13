@@ -7,14 +7,14 @@ class CreditNoteGenerator < DocumentGenerator
     @serie = serie
   end
 
-  def for_igv_invoice(associated_document, pdf=false)
+  def for_igv_document(associated_document, pdf=false)
     line = associated_document.lines.first
     credit_note = SUNAT::CreditNote.new(credit_note_data_for_line(line, associated_document))
     generate_documents(credit_note, pdf)
     credit_note
   end
 
-  def for_exempt_invoice(associated_document, pdf=false)
+  def for_exempt_document(associated_document, pdf=false)
     exempt_line = associated_document.lines.last
     
     credit_note = SUNAT::CreditNote.new(credit_note_data_for_line(exempt_line, associated_document))
