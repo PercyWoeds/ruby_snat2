@@ -1,7 +1,15 @@
 class DocumentGenerator
   TYPES = {"SUNAT::Invoice" => "01", "SUNAT::Receipt" => "03"}
   @@document_serial_id = 1
-  def self.generate_documents(group, group_case, document, pdf=false)
+
+  attr_reader :group, :group_case
+  
+  def initialize(group, group_case)
+    @group = group
+    @group_case = group_case
+  end
+
+  def generate_documents(document, pdf=false)
     if document.valid?
       File::open("#{document.file_name}.xml", "w") { |file| file.write(document.to_xml) }
       #document.deliver!
