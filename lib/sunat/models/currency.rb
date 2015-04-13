@@ -1,6 +1,8 @@
 module SUNAT
   class Currency
-    CURRENCIES = {pen: {singular: 'nuevo sol', plural: 'nuevos soles'}}
+    CURRENCIES = {pen: {singular: 'nuevo sol', plural: 'nuevos soles'},
+                  eur: {singular: 'euro', plural: 'euros'},
+                  usd: {singular: 'dolar', plural: 'dolares'}}
     
     def initialize(code)
       @code = code.downcase.to_sym
