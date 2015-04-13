@@ -34,7 +34,10 @@ case_15 = InvoiceGenerator.exempt(2, 15, 5, "FF12")
 case_16 = InvoiceGenerator.exempt(2, 16, 6, "FF12")
 case_17 = CreditNoteGenerator.for_exempt_invoice(2, 17, case_12, "FF12")
 case_18 = CreditNoteGenerator.for_exempt_invoice(2, 18, case_14, "FF12", true)
-case_19 = CreditNoteGenerator.for_exempt_invoice(2, 17, case_16, "FF12")
+case_19 = CreditNoteGenerator.for_exempt_invoice(2, 19, case_16, "FF12")
+case_20 = CreditNoteGenerator.for_exempt_invoice(2, 20, case_12, "FF12")
+case_21 = CreditNoteGenerator.for_exempt_invoice(2, 21, case_14, "FF12", true)
+case_22 = CreditNoteGenerator.for_exempt_invoice(2, 22, case_16, "FF12")
 
 #Groupo 8
 case_52 = ReceiptGenerator.with_igv(12, 52, 3, "BB11")
