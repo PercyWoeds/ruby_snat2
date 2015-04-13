@@ -93,3 +93,16 @@ case_75 = ReceiptGenerator.new(10, 75, 2, "BB13").free
 case_76 = ReceiptGenerator.new(10, 76, 5, "BB13").free(true)
 case_77 = ReceiptGenerator.new(10, 77, 4, "BB13").free
 case_78 = ReceiptGenerator.new(10, 78, 9, "BB13").free
+
+#Group 11
+case_85 = ReceiptGenerator.new(11, 85, 10, "BB14").with_discount
+case_86 = ReceiptGenerator.new(11, 86, 7, "BB14").with_discount(true)
+case_87 = ReceiptGenerator.new(11, 87, 6, "BB14").with_discount
+case_88 = ReceiptGenerator.new(11, 88, 9, "BB14").with_discount
+case_89 = ReceiptGenerator.new(11, 89, 4, "BB14").with_discount
+case_90 = CreditNoteGenerator.new(11, 90, "BB14").for_discount_invoice(case_85)
+case_91 = CreditNoteGenerator.new(11, 91, "BB14").for_discount_invoice(case_86, true)
+case_92 = CreditNoteGenerator.new(11, 92, "BB14").for_discount_invoice(case_88)
+case_93 = DebitNoteGenerator.new(11, 92, "BB14").for_discount_invoice(case_85)
+case_94 = DebitNoteGenerator.new(11, 94, "BB14").for_discount_invoice(case_86, true)
+case_95 = DebitNoteGenerator.new(11, 95, "BB14").for_discount_invoice(case_88)
