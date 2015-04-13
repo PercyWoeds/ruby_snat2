@@ -13,7 +13,7 @@ files_to_clean.each do |file|
   File.delete(file)
 end
 
-#Groupo 1
+#Group 1
 case_1 = InvoiceGenerator.new(1, 1, 3, "FF11"). with_igv
 case_2 = InvoiceGenerator.new(1, 2, 2, "FF11").with_igv
 case_3 = InvoiceGenerator.new(1, 3, 1, "FF11").with_igv(true)
@@ -39,15 +39,28 @@ case_20 = CreditNoteGenerator.new(2, 20, "FF12").for_exempt_invoice(case_12)
 case_21 = CreditNoteGenerator.new(2, 21, "FF12").for_exempt_invoice(case_14, true)
 case_22 = CreditNoteGenerator.new(2, 22, "FF12").for_exempt_invoice(case_16)
 
-#Groupo 8
-case_52 = ReceiptGenerator.new(12, 52, 3, "BB11").with_igv
-case_53 = ReceiptGenerator.new(12, 53, 2, "BB11").with_igv
-case_54 = ReceiptGenerator.new(12, 54, 1, "BB11").with_igv(true)
-case_55 = ReceiptGenerator.new(12, 55, 5, "BB11").with_igv
-case_56 = ReceiptGenerator.new(12, 56, 4, "BB11").with_igv
-case_57 = CreditNoteGenerator.new(12, 57, "BB11").for_igv_invoice(case_53)
-case_58 = CreditNoteGenerator.new(12, 58, "BB11").for_igv_invoice(case_54, true)
-case_59 = CreditNoteGenerator.new(12, 59, "BB11").for_igv_invoice(case_55)
-case_60 = DebitNoteGenerator.new(12, 60, "BB11").for_igv_invoice(case_53)
-case_61 = DebitNoteGenerator.new(12, 61, "BB11").for_igv_invoice(case_54,true)
-case_62 = DebitNoteGenerator.new(12, 62, "BB11").for_igv_invoice(case_55)
+#Group 8
+case_52 = ReceiptGenerator.new(8, 52, 3, "BB11").with_igv
+case_53 = ReceiptGenerator.new(8, 53, 2, "BB11").with_igv
+case_54 = ReceiptGenerator.new(8, 54, 1, "BB11").with_igv(true)
+case_55 = ReceiptGenerator.new(8, 55, 5, "BB11").with_igv
+case_56 = ReceiptGenerator.new(8, 56, 4, "BB11").with_igv
+case_57 = CreditNoteGenerator.new(8, 57, "BB11").for_igv_invoice(case_53)
+case_58 = CreditNoteGenerator.new(8, 58, "BB11").for_igv_invoice(case_54, true)
+case_59 = CreditNoteGenerator.new(8, 59, "BB11").for_igv_invoice(case_55)
+case_60 = DebitNoteGenerator.new(8, 60, "BB11").for_igv_invoice(case_53)
+case_61 = DebitNoteGenerator.new(8, 61, "BB11").for_igv_invoice(case_54,true)
+case_62 = DebitNoteGenerator.new(8, 62, "BB11").for_igv_invoice(case_55)
+
+#Group 9
+case_63 = ReceiptGenerator.new(9, 63, 2, "FF12").exempt
+case_64 = ReceiptGenerator.new(9, 64, 4, "FF12").exempt
+case_65 = ReceiptGenerator.new(9, 65, 7, "FF12").exempt(true)
+case_66 = ReceiptGenerator.new(9, 66, 5, "FF12").exempt
+case_67 = ReceiptGenerator.new(9, 67, 1, "FF12").exempt
+case_68 = CreditNoteGenerator.new(9, 68, "FF12").for_exempt_invoice(case_63)
+case_69 = CreditNoteGenerator.new(9, 69, "FF12").for_exempt_invoice(case_66, true)
+case_70 = CreditNoteGenerator.new(9, 70, "FF12").for_exempt_invoice(case_67)
+case_71 = CreditNoteGenerator.new(9, 71, "FF12").for_exempt_invoice(case_63)
+case_72 = CreditNoteGenerator.new(9, 72, "FF12").for_exempt_invoice(case_66, true)
+case_73 = CreditNoteGenerator.new(9, 73, "FF12").for_exempt_invoice(case_67)
