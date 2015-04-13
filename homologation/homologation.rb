@@ -54,6 +54,9 @@ case_33 = InvoiceGenerator.new(4, 33, 1, "FF14").with_discount(true)
 case_34 = InvoiceGenerator.new(4, 34, 4, "FF14").with_discount
 case_35 = InvoiceGenerator.new(4, 35, 3, "FF14").with_discount
 case_36 = InvoiceGenerator.new(4, 36, 5, "FF14").with_discount
+case_37 = CreditNoteGenerator.new(4, 37, "FF14").for_discount_invoice(case_33, true)
+case_38 = CreditNoteGenerator.new(4, 38, "FF14").for_discount_invoice(case_34)
+case_39 = CreditNoteGenerator.new(4, 39, "FF14").for_discount_invoice(case_36)
 
 #Group 8
 case_52 = ReceiptGenerator.new(8, 52, 3, "BB11").with_igv
