@@ -82,6 +82,12 @@ class InvoiceGenerator < DocumentGenerator
     generate_documents(invoice, pdf)
     invoice
   end
+
+  def with_different_currency(pdf=false)
+    invoice = document_class.new(data(@items, 'EUR'))
+    generate_documents(invoice, pdf)
+    invoice
+  end
   
   protected
 
@@ -90,16 +96,17 @@ class InvoiceGenerator < DocumentGenerator
   end
 
   private
-    def data(items)
+    def data(items, currency = 'PEN')
       invoice_data = {id: "#{@serie}-#{"%03d" % @@document_serial_id}", customer: {legal_name: "Servicabinas S.A.", ruc: "20587896411"}, 
-                    tax_totals: [{amount: items*1800, type: :igv}], legal_monetary_total: 11800 * items, 
-                    additional_monetary_totals: [{id: "1001", payable_amount: 10000 * items}]}
+                    tax_totals: [{amount: {value: items*1800, currency: currency}, type: :igv}], legal_monetary_total: {value: 11800 * items, currency: currency}, 
+                    additional_monetary_totals: [{id: "1001", payable_amount: {value: 10000 * items, currency: currency}}]}
       @@document_serial_id += 1
       invoice_data[:lines] = []
       if items > 0
         invoice_data[:lines] = (1..items).map do |item|
-          {id: item.to_s, quantity: 1, line_extension_amount: 10000, pricing_reference: 11800, price: 10000, tax_totals: [{amount: 1800, type: :igv}],
-            item: {id: item.to_s, description: "Item #{item}"}}
+          {id: item.to_s, quantity: 1, line_extension_amount: {value: 10000, currency: currency}, pricing_reference: {alternative_condition_price: {price_amount: {value: 11800, currency: currency}}}, 
+           price: {value: 10000, currency: currency}, tax_totals: [{amount: {value: 1800, currency: currency}, type: :igv}], 
+           item: {id: item.to_s, description: "Item #{item}"}}
         end
       end
       invoice_data

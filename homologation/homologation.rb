@@ -71,6 +71,9 @@ case_46 = InvoiceGenerator.new(6, 46, 5, "FF40").with_reception
 case_47 = CreditNoteGenerator.new(6, 47, "FF40").for_reception_document(case_46)
 case_48 = DebitNoteGenerator.new(6, 48, "FF40").for_reception_document(case_46)
 
+#Group 7
+case_49 = InvoiceGenerator.new(7, 49, 5, "FF50").with_different_currency
+
 #Group 8
 case_52 = ReceiptGenerator.new(8, 52, 3, "BB11").with_igv
 case_53 = ReceiptGenerator.new(8, 53, 2, "BB11").with_igv

@@ -8,11 +8,12 @@ module SUNAT
   class BasicInvoice < Document
     
     DOCUMENT_TYPE_CODE = '01' # sunat code in catalog #1
+    DEFAULT_CURRENCY_CODE = 'PEN'
     
     include HasTaxTotals
 
     property :invoice_type_code,               String
-    property :document_currency_code,          String, :default => "PEN"
+    property :document_currency_code,          String
     property :customer,                        AccountingCustomerParty
     property :lines,                           [InvoiceLine]
     property :tax_totals,                      [TaxTotal]
@@ -34,7 +35,18 @@ module SUNAT
       self.document_type_name ||= "Factura Electronica"
       super(*args)
     end
-    
+
+    def document_currency_code
+      currency = get_attribute(:document_currency_code)
+      if currency
+        currency
+      elsif legal_monetary_total
+        legal_monetary_total.currency
+      else
+        DEFAULT_CURRENCY_CODE
+      end
+    end
+
     def id_valid?
       valid = (self.class::ID_FORMAT =~ self.id) == 0
       if !valid
