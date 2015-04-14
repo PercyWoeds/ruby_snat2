@@ -37,8 +37,7 @@ class InvoiceGenerator < DocumentGenerator
   end
 
   def with_discount(pdf=false)
-    invoice_data = data(@items)
-    invoice = document_class.new(invoice_data)
+    invoice = document_class.new(data(@items))
     
     taxable_total = invoice.get_monetary_total_by_id("1001")
     discount = (taxable_total.payable_amount.value * 0.05).round
@@ -71,6 +70,15 @@ class InvoiceGenerator < DocumentGenerator
     new_tax_totals = [{amount: invoice.total_tax_totals + 1800, type: :igv}, {amount: 1700, type: :isc}]
     invoice.tax_totals = new_tax_totals
 
+    generate_documents(invoice, pdf)
+    invoice
+  end
+
+  def with_reception(pdf=false)
+    invoice = document_class.new(data(@items))
+    payable_amount = (invoice.legal_monetary_total.value * 0.02).round
+    invoice.add_additional_monetary_total({id: "2001", reference_amount: invoice.legal_monetary_total, payable_amount: payable_amount, total_amount: invoice.legal_monetary_total.value + payable_amount})
+    invoice.add_additional_property({id: "2000", value: "COMPROBANTE PERCEPCION"})
     generate_documents(invoice, pdf)
     invoice
   end

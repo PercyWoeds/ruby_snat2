@@ -46,6 +46,13 @@ class DebitNoteGenerator < DocumentGenerator
     debit_note
   end
 
+  def for_reception_document(associated_document, pdf=false)
+    line = associated_document.lines.first
+    debit_note = SUNAT::DebitNote.new(debit_note_data_for_line(line, associated_document))
+    generate_documents(debit_note, pdf)
+    debit_note
+  end
+
   private
   def debit_note_data_for_line(line, associated_document)
     legal_monetary_total = line.line_extension_amount.value + line.tax_totals.inject(0){|sum, tax| sum + tax.tax_amount.value}

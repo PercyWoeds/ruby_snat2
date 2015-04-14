@@ -66,6 +66,11 @@ case_43 = InvoiceGenerator.new(5, 43, 5, "FF30").with_isc
 case_44 = CreditNoteGenerator.new(5, 44, "FF30").for_isc_document(case_43)
 case_45 = DebitNoteGenerator.new(5, 45, "FF30").for_isc_document(case_43)
 
+#Group 6
+case_46 = InvoiceGenerator.new(6, 46, 5, "FF40").with_reception
+case_47 = CreditNoteGenerator.new(6, 47, "FF40").for_reception_document(case_46)
+case_48 = DebitNoteGenerator.new(6, 48, "FF40").for_reception_document(case_46)
+
 #Group 8
 case_52 = ReceiptGenerator.new(8, 52, 3, "BB11").with_igv
 case_53 = ReceiptGenerator.new(8, 53, 2, "BB11").with_igv
