@@ -49,9 +49,9 @@ class CreditNoteGenerator < DocumentGenerator
 
   def for_reception_document(associated_document, pdf=false)
     line = associated_document.lines.first
-    debit_note = SUNAT::DebitNote.new(debit_note_data_for_line(line, associated_document))
-    generate_documents(debit_note, pdf)
-    debit_note
+    credit_note = SUNAT::DebitNote.new(credit_note_data_for_line(line, associated_document))
+    generate_documents(credit_note, pdf)
+    credit_note
   end
   
   private 
