@@ -26,6 +26,7 @@ module SUNAT
 
     def initialize(*args)
       super(parse_attributes(*args))
+      self.tax_amount ||= sub_total.tax_amount
     end
     
     def build_xml(xml)
@@ -35,10 +36,6 @@ module SUNAT
       end
     end
     
-    def tax_amount
-      get_attribute(:tax_amount) || calculate_total
-    end
-
     def sub_total_amount
       if sub_total.present?
         sub_total.tax_amount.value
