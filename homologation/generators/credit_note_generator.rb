@@ -53,7 +53,14 @@ class CreditNoteGenerator < DocumentGenerator
     generate_documents(credit_note, pdf)
     credit_note
   end
-  
+
+  def for_different_currency_document(associated_document, pdf=false)
+    line = associated_document.lines.first
+    credit_note = SUNAT::CreditNote.new(credit_note_data_for_line(line, associated_document))
+    generate_documents(credit_note, pdf)
+    credit_note
+  end
+
   private 
 
   def credit_note_data_for_line(line, associated_document)
@@ -64,7 +71,7 @@ class CreditNoteGenerator < DocumentGenerator
                         lines: [{id: "1", quantity: line.quantity.quantity, unit: 'NIU', item: line.item,
                           price: line.price, pricing_reference: line.pricing_reference, tax_totals: line.tax_totals, line_extension_amount: line.line_extension_amount}],
                         additional_monetary_totals: [{id: "1001", payable_amount: line.price}], tax_totals: line.tax_totals, 
-                        legal_monetary_total: legal_monetary_total}
+                        legal_monetary_total: {value: legal_monetary_total, currency: associated_document.document_currency_code}}
     @@document_serial_id += 1
     credit_note_data  
   end
