@@ -8,18 +8,11 @@ class CreditNoteGenerator < DocumentGenerator
   end
 
   def for_igv_document(associated_document, pdf=false)
-    line = associated_document.lines.first
-    credit_note = SUNAT::CreditNote.new(credit_note_data_for_line(line, associated_document))
-    generate_documents(credit_note, pdf)
-    credit_note
+    generate_document_for_line(:first, associated_document, pdf)
   end
 
   def for_exempt_document(associated_document, pdf=false)
-    exempt_line = associated_document.lines.last
-    
-    credit_note = SUNAT::CreditNote.new(credit_note_data_for_line(exempt_line, associated_document))
-    generate_documents(credit_note, pdf)
-    credit_note
+    generate_document_for_line(:last, associated_document, pdf)
   end
 
   def for_discount_invoice(associated_document, pdf=false)
@@ -41,27 +34,25 @@ class CreditNoteGenerator < DocumentGenerator
   end
 
   def for_isc_document(associated_document, pdf=false)
-    line = associated_document.lines.last
-    credit_note = SUNAT::CreditNote.new(credit_note_data_for_line(line, associated_document))
-    generate_documents(credit_note, pdf)
-    credit_note
+    generate_document_for_line(:last, associated_document, pdf)
   end
 
   def for_reception_document(associated_document, pdf=false)
-    line = associated_document.lines.first
-    credit_note = SUNAT::DebitNote.new(credit_note_data_for_line(line, associated_document))
-    generate_documents(credit_note, pdf)
-    credit_note
+    generate_document_for_line(:first, associated_document, pdf)
   end
 
   def for_different_currency_document(associated_document, pdf=false)
-    line = associated_document.lines.first
+    generate_document_for_line(:first, associated_document, pdf)
+  end
+
+  private 
+
+  def generate_document_for_line(line_position, associated_document, pdf)
+    line = associated_document.lines.send(line_position)
     credit_note = SUNAT::CreditNote.new(credit_note_data_for_line(line, associated_document))
     generate_documents(credit_note, pdf)
     credit_note
   end
-
-  private 
 
   def credit_note_data_for_line(line, associated_document)
     legal_monetary_total = line.line_extension_amount.value + line.tax_totals.inject(0){|sum, tax| sum + tax.tax_amount.value}
