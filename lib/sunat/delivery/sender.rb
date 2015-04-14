@@ -40,8 +40,8 @@ module SUNAT
       private
       
       def new_client
-        login     = credentials.login
-        password  = credentials.password
+        login     = @credentials.login
+        password  = @credentials.password
         
         Savon.client(
           wsdl:               WSDL,
@@ -66,7 +66,7 @@ module SUNAT
       end
       
       def need_credentials
-        if credentials.nil?
+        if @credentials.nil?
           raise "We need credentials object to be filled"
         else
           yield
