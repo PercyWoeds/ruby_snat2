@@ -121,3 +121,8 @@ case_92 = CreditNoteGenerator.new(11, 92, "BB14").for_discount_invoice(case_88)
 case_93 = DebitNoteGenerator.new(11, 92, "BB14").for_discount_invoice(case_85)
 case_94 = DebitNoteGenerator.new(11, 94, "BB14").for_discount_invoice(case_86, true)
 case_95 = DebitNoteGenerator.new(11, 95, "BB14").for_discount_invoice(case_88)
+
+#Group 12
+case_96 = ReceiptGenerator.new(12, 96, 5, "BB50").with_different_currency
+case_97 = CreditNoteGenerator.new(12, 97, "BB50").for_different_currency_document(case_96)
+case_98 = DebitNoteGenerator.new(12, 98, "BB50").for_different_currency_document(case_96)
