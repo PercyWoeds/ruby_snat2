@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/MaxiMobility/sunat-ruby.svg?branch=master)](https://travis-ci.org/MaxiMobility/sunat-ruby)
+[![Build Status](https://travis-ci.org/Cabify/sunat-ruby.svg?branch=master)](https://travis-ci.org/MaxiMobility/sunat-ruby)
 
 # SUNAT Declaration Generator
 
