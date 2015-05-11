@@ -7,6 +7,8 @@ require './generators/invoice_generator'
 require './generators/credit_note_generator'
 require './generators/debit_note_generator'
 require './generators/receipt_generator'
+require './generators/daily_receipt_summary_generator'
+require './generators/voided_documents_generator'
 
 files_to_clean = Dir.glob("*.xml") + Dir.glob("./pdf_output/*.pdf")
 files_to_clean.each do |file|
@@ -126,3 +128,9 @@ case_95 = DebitNoteGenerator.new(11, 95, "BB14").for_discount_invoice(case_88)
 case_96 = ReceiptGenerator.new(12, 96, 5, "BB50").with_different_currency
 case_97 = CreditNoteGenerator.new(12, 97, "BB50").for_different_currency_document(case_96)
 case_98 = DebitNoteGenerator.new(12, 98, "BB50").for_different_currency_document(case_96)
+
+#Resumen Diario boletas de venta
+DailyReceiptSummaryGenerator.new.generate
+
+#Comunicacion de baja
+VoidedDocumentsGenerator.new.generate
