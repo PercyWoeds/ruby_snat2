@@ -22,7 +22,7 @@ module SUNAT
     end
     
     def build_xml(xml, tag_name)
-      xml[xml_namespace].send(tag_name, { currencyId: currency }, to_s)
+      xml[xml_namespace].send(tag_name, { currencyID: currency }, to_s)
     end
     
     def int_part
