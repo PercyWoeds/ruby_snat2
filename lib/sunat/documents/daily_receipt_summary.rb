@@ -13,6 +13,7 @@ module SUNAT
     property :lines,                [SummaryDocumentsLine]
     property :notes,                [String]
     property :correlative_number,   String
+    property :reference_date,       Date
 
     validates :lines, presence: true
     validates :correlative_number, presence: true
@@ -21,8 +22,8 @@ module SUNAT
       super(*args)
       self.notes  ||= []
       self.lines  ||= []
-      self.id     ||= default_id
-      self.document_type_name ||= "Resumen de Boletas de Venta"
+      self.reference_date ||= Date.today
+        self.document_type_name ||= "Resumen de Boletas de Venta"
     end
     
     def operation
@@ -41,15 +42,22 @@ module SUNAT
     end
     
     def build_xml(xml)
+      xml['cbc'].ReferenceDate format_date(self.reference_date) if reference_date.present?
+      xml['cbc'].IssueDate format_date(self.issue_date)
       notes.each do |note|
         xml['cbc'].Note note
       end
-      
+      signature.xml_metadata xml
+      accounting_supplier_party.build_xml xml
       lines.each do |line|
         line.build_xml xml
       end
     end
     
+    def id
+      get_attribute(:id) || default_id
+    end
+
     private
     
     def default_id

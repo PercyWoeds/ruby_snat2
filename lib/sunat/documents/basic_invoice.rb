@@ -187,28 +187,8 @@ module SUNAT
 
     end
 
-    def build_own_xml(xml)
-      xml['cbc'].InvoiceTypeCode      invoice_type_code
-    end
-
     def build_xml(xml)
-      build_own_xml xml
-      xml['cbc'].DocumentCurrencyCode document_currency_code
-      
-      # sunat says if no customer exists, we must use a dash
-      if customer.present?
-        customer.build_xml xml
-      else
-        xml['cac'].AccountingCustomerParty "-"
-      end
-      
-      tax_totals.each do |total|
-        total.build_xml xml
-      end
-
-      lines.each do |line|
-        line.build_xml xml
-      end
+      xml['cbc'].IssueDate format_date(self.issue_date)
     end
 
     private

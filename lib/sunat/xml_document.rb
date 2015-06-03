@@ -10,10 +10,6 @@ module SUNAT
     SAC_NAMESPACE       = 'urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1'
     XSI_NAMESPACE       = 'http://www.w3.org/2001/XMLSchema-instance'
     
-    XSI_SCHEMA_LOCATION = 'urn:sunat:names:specification:ubl:peru:schema:xsd:InvoiceSummary-1 D:\UBL_SUNAT\SUNAT_xml_20110112\20110112\xsd\maindoc\UBLPE-InvoiceSummary-1.0.xsd'
-        
-    DATE_FORMAT = "%Y-%m-%d"
-    
     CUSTOMIZATION_ID = "1.0"
     UBL_VERSION_ID = "2.0"
     
@@ -21,7 +17,6 @@ module SUNAT
       make_basic_builder do |xml|
         build_ubl_extensions xml
         build_general_data xml
-        signature.xml_metadata xml
         block.call xml unless block.nil?
       end
     end
@@ -44,10 +39,6 @@ module SUNAT
       end
     end
     
-    def format_date(date)
-      date.strftime(DATE_FORMAT)
-    end
-    
     def declaration
       @_declaration ||= '<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>'
     end
@@ -60,8 +51,7 @@ module SUNAT
         'xmlns:ds'            => DS_NAMESPACE,
         'xmlns:ext'           => EXT_NAMESPACE,
         'xmlns:sac'           => SAC_NAMESPACE,
-        'xmlns:xsi'           => XSI_NAMESPACE,
-        'xsi:schemaLocation'  => XSI_SCHEMA_LOCATION
+        'xmlns:xsi'           => XSI_NAMESPACE
       }
       # self.xml_root comes from the document being decorated
       xml.send(self.xml_root, attributes, &block)
@@ -76,8 +66,6 @@ module SUNAT
       xml['cbc'].UBLVersionID         UBL_VERSION_ID
       xml['cbc'].CustomizationID      CUSTOMIZATION_ID
       xml['cbc'].ID                   self.id
-      xml['cbc'].IssueDate            format_date(self.issue_date)
-      xml['cbc'].ReferenceDate        format_date(self.reference_date)
     end
     
     def build_ubl_extensions(xml)

@@ -13,7 +13,7 @@ module SUNAT
       end
     
       def zip
-        zipper.zip(@name, @document)
+        zipper.zip_file(@name, @document)
       end
     
       def byte_array(zip_str)

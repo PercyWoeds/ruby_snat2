@@ -4,7 +4,7 @@ module SUNAT
     C14N_ALGORITHM            = "http://www.w3.org/TR/2001/REC-xml-c14n-20010315"
     DIGEST_ALGORITHM          = "http://www.w3.org/2000/09/xmldsig#sha1"
     SIGNATURE_ALGORITHM       = "http://www.w3.org/2000/09/xmldsig#rsa-sha1"
-    TRANSFORMATION_ALGORITHM  = "http://www.w3.org/2000/09/xmldsig#enveloped- signature"
+    TRANSFORMATION_ALGORITHM  = "http://www.w3.org/2000/09/xmldsig#enveloped-signature"
     
     # decorator for XMLDocuments
     def sign(xml_string)

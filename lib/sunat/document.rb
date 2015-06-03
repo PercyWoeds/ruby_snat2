@@ -6,10 +6,10 @@ module SUNAT
     include Model
 
     DEFAULT_CUSTOMIZATION_ID = "1.0"
+    DATE_FORMAT = "%Y-%m-%d"
 
     property :id,                         String # Usually: serial + correlative number
     property :issue_date,                 Date
-    property :reference_date,             Date
     property :customization_id,           String
     property :company_name,               String
     property :document_type_name,         String
@@ -31,7 +31,6 @@ module SUNAT
     def initialize(*args)
       super(*args)
       self.issue_date ||= Date.today
-      self.reference_date ||= Date.today
       self.additional_properties ||= []
       self.additional_monetary_totals ||= []
     end
@@ -223,7 +222,6 @@ module SUNAT
 
        # Pass control over to the xml builder
       res = xml_document.build_xml do |xml|
-        accounting_supplier_party.build_xml xml
         build_xml(xml)
       end
 
@@ -245,6 +243,10 @@ module SUNAT
 
     def to_zip
       @zip ||= Delivery::Chef.new(file_name + ".xml", to_xml).prepare
+    end
+
+    def format_date(date)
+      date.strftime(DATE_FORMAT)
     end
   end
 end

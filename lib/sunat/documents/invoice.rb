@@ -16,9 +16,25 @@ module SUNAT
 
     def build_xml(xml)
       super
-
+      xml['cbc'].InvoiceTypeCode      invoice_type_code
+      xml['cbc'].DocumentCurrencyCode document_currency_code
+      signature.xml_metadata xml
+      accounting_supplier_party.build_xml xml
+      # sunat says if no customer exists, we must use a dash
+      if customer.present?
+        customer.build_xml xml
+      else
+        xml['cac'].AccountingCustomerParty "-"
+      end
+      
+      tax_totals.each do |total|
+        total.build_xml xml
+      end
       xml['cac'].LegalMonetaryTotal do
         legal_monetary_total.build_xml xml, :PayableAmount
+      end
+      lines.each do |line|
+        line.build_xml xml
       end
     end
   end

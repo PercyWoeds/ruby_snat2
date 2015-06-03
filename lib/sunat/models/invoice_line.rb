@@ -57,10 +57,18 @@ module SUNAT
                      "PRECIO UNITARIO",
                      "VALOR UNITARIO",
                      "VALOR TOTAL"]
-    
+
     def initialize(*args)
       self.tax_totals ||=[]
       super(parse_attributes(*args))
+    end
+
+    def xml_line_id
+      :InvoiceLine
+    end
+
+    def xml_quantity
+      :InvoicedQuantity
     end
 
     def total_price
@@ -115,35 +123,24 @@ module SUNAT
     end
 
     def build_xml(xml)
-      xml['cac'].InvoiceLine do
-        build_xml_generic_payload(xml)
-        quantity.build_xml(xml, :InvoicedQuantity) if quantity.present?
+      xml['cac'].send(xml_line_id) do
+        xml['cbc'].ID id
+        quantity.build_xml(xml, xml_quantity) if quantity.present?
+        line_extension_amount.build_xml(xml, :LineExtensionAmount) if line_extension_amount.present?
+        pricing_reference.build_xml(xml) if pricing_reference.present?
+        unless tax_totals.nil?
+          tax_totals.each do |tax_total|
+            tax_total.build_xml(xml)
+          end
+        end
+        item.build_xml(xml) unless item.nil?
+        xml['cac'].Price do
+          price.build_xml xml, :PriceAmount
+        end
       end
     end
 
     protected
-
-    # Provide the middle part of the invoice line. Useful
-    # for other models that use the invoice line.
-    def build_xml_generic_payload(xml)
-      xml['cbc'].ID id
-      
-      line_extension_amount.build_xml(xml, :LineExtensionAmount) if line_extension_amount.present?
-      pricing_reference.build_xml(xml) if pricing_reference.present?
-      
-      item.build_xml(xml) unless item.nil?
-			
-			unless tax_totals.nil?
-      	tax_totals.each do |tax_total|
-        	tax_total.build_xml(xml)
-      	end
-			end
-      
-      xml['cac'].Price do
-        price.build_xml xml, :PriceAmount
-      end
-    end
-
 
     def parse_attributes(attrs = {})
       handle_item(attrs)

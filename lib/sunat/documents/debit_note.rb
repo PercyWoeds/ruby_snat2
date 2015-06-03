@@ -4,6 +4,7 @@ module SUNAT
     ID_FORMAT = /\A[F|B][A-Z\d]{3}-\d{1,8}\Z/
     
     DOCUMENT_TYPE_CODE = '08' # NOTA DE DEBITO
+    XML_NAMESPACE = 'urn:oasis:names:specification:ubl:schema:xsd:DebitNote-2'
 
     xml_root :DebitNote
 
@@ -27,17 +28,27 @@ module SUNAT
 
     def build_xml(xml)
       super
+      xml['cbc'].DocumentCurrencyCode document_currency_code
+      discrepancy_response.build_xml(xml) unless discrepancy_response.nil?
+      billing_reference.build_xml(xml)
+      signature.xml_metadata xml
+      accounting_supplier_party.build_xml xml
+      # sunat says if no customer exists, we must use a dash
+      if customer.present?
+        customer.build_xml xml
+      else
+        xml['cac'].AccountingCustomerParty "-"
+      end
       
-      discrepancy_response.build_xml xml
-      billing_reference.build_xml xml
-
+      tax_totals.each do |total|
+        total.build_xml xml
+      end
       xml['cac'].RequestedMonetaryTotal do
         legal_monetary_total.build_xml xml, :PayableAmount
       end
-    end
-    
-    def build_own(xml)
-
+      lines.each do |line|
+        line.build_xml xml
+      end
     end
 
   end
