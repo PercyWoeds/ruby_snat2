@@ -8,8 +8,9 @@ module SUNAT
     
     # decorator for XMLDocuments
     def sign(xml_string)
-      digested_document = digest_for(xml_string)
+      #File.open("before.xml", "w").write(xml_string)
       document          = build_from_xml(xml_string)
+      digested_document = digest_for(canonicalize(document))
       
       search_signature_location(document) do |signature_location|
         # We built a basic_builder to get the namespaces
@@ -86,7 +87,7 @@ module SUNAT
     end
 
     def canonicalize(signed_info)
-      signed_info.canonicalize(Nokogiri::XML::XML_C14N_EXCLUSIVE_1_0, ['soap', 'web'])
+      signed_info.canonicalize(Nokogiri::XML::XML_C14N_1_0, ['soap', 'web'])
     end
 
     def signature_for(text)

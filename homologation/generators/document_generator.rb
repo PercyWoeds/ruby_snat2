@@ -1,6 +1,6 @@
 class DocumentGenerator
   TYPES = {"SUNAT::Invoice" => "01", "SUNAT::Receipt" => "03"}
-  @@document_serial_id = 36
+  @@document_serial_id = 47
 
   attr_reader :group, :group_case
 
