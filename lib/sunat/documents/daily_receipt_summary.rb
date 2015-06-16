@@ -73,8 +73,8 @@ module SUNAT
     private
     
     def default_id
-      plain_date = reference_date.strftime("%Y%m%d")
-      "RC-#{plain_date}"
+      plain_date = issue_date.strftime("%Y%m%d")
+      "RC-#{plain_date}-#{correlative_number}"
     end
     
     def get_line_number

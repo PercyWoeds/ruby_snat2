@@ -16,16 +16,8 @@ describe Sender do
   end
   
   let :sender do
-    sender = Sender.new(@name, @encoded_zip, @operation)
+    sender = Sender.new
     sender
-  end
-  
-  describe "#initialize" do  
-    it "receives a name and encoded_zip" do
-      expect(sender.name).to eq @name
-      expect(sender.encoded_zip).to eq @encoded_zip
-      expect(sender.operation).to eq @operation
-    end
   end
   
   describe "#connect" do
@@ -45,7 +37,7 @@ describe Sender do
     it "should not raise an error" do
       if SUNAT::CREDENTIALS.ruc.present?
         expect do
-          sender.call
+          sender.submit_file(@name, @encoded_zip)
         end.to_not raise_error
       end
     end

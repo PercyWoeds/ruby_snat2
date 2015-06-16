@@ -24,12 +24,10 @@ describe DailyReceiptSummary do
       expect(summary.id).to_not be_empty
     end
     
-    it "should have a default id starting with RC- and containing the current date in format YYYYMMDD" do
+    it "should have a default id starting with RC-, the current date in format YYYYMMDD and the serial number" do
       formatted_date = Date.today.strftime("%Y%m%d")
-      
-      expect(summary.id).to_not be_nil
-      expect(summary.id).to start_with("RC-")
-      expect(summary.id).to end_with(formatted_date)
+      summary.correlative_number = "001"
+      expect(summary.id).to eq "RC-#{formatted_date}-001"
     end
   end
 
