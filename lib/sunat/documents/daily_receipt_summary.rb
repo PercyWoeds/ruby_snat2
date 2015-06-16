@@ -26,13 +26,16 @@ module SUNAT
         self.document_type_name ||= "Resumen de Boletas de Venta"
     end
     
+    def document_namespace
+      "urn:sunat:names:specification:ubl:peru:schema:xsd:SummaryDocuments-1"
+    end
+
     def operation
       :send_summary
     end
     
     def file_name
-      formatted_issue_date = issue_date.strftime("%Y%m%d")
-      "#{accounting_supplier_party.account_id}-#{SUMMARY_TYPE}-#{formatted_issue_date}-#{correlative_number}"
+      "#{accounting_supplier_party.account_id}-#{id}"
     end
     
     def add_line(&block)
@@ -56,6 +59,15 @@ module SUNAT
     
     def id
       get_attribute(:id) || default_id
+    end
+
+    def deliver!
+      sender.submit_summary(file_name, to_zip)
+    end
+
+    def self.generate_id(issue_date, correlative_number)
+      formatted_issue_date = issue_date.strftime("%Y%m%d")
+      "RC-#{formatted_issue_date}-#{correlative_number}"
     end
 
     private

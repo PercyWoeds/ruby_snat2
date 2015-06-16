@@ -5,7 +5,13 @@ module SUNAT
     
     xml_root :Invoice
 
+    property :allowance_total_amount, AllowanceTotalAmount
+
     validate :required_monetary_totals
+
+    def document_namespace
+      'urn:oasis:names:specification:ubl:schema:xsd:Invoice-2'
+    end
 
     def required_monetary_totals
       valid = additional_monetary_totals.any? {|total| ["1001", "1002", "1003"].include?(total.id) }
@@ -31,6 +37,7 @@ module SUNAT
         total.build_xml xml
       end
       xml['cac'].LegalMonetaryTotal do
+        allowance_total_amount.build_xml xml if allowance_total_amount.present?
         legal_monetary_total.build_xml xml, :PayableAmount
       end
       lines.each do |line|

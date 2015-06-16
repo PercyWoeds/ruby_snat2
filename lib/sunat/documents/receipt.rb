@@ -19,12 +19,5 @@ module SUNAT
       self.document_type_name ||= "Boleta de Venta"
       super(*args)
     end
-
-    def build_xml(xml)
-      super
-      xml['cac'].LegalMonetaryTotal do
-        legal_monetary_total.build_xml xml, :PayableAmount
-      end
-    end
   end
 end

@@ -71,14 +71,6 @@ module SUNAT
       :InvoicedQuantity
     end
 
-    def total_price
-      price.value * quantity.quantity
-    end
-
-    def total_alternave_condition_price_amount
-      pricing_reference.alternative_condition_price.price_amount.value * quantity.quantity
-    end
-
     def add_tax_total(tax_name, amount, code=nil)      
       
       opts = {

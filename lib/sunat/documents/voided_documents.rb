@@ -2,8 +2,7 @@ module SUNAT
   class VoidedDocuments < Document
 
     SUMMARY_TYPE = 'RA'
-    XML_NAMESPACE = 'urn:sunat:names:specification:ubl:peru:schema:xsd:VoidedDocuments-1'
-
+    
   	xml_root :VoidedDocuments
 
   	property :lines, [VoidedDocumentsLine]
@@ -18,6 +17,10 @@ module SUNAT
       self.lines  ||= []
       self.document_type_name ||= "Comunicacion de baja"
       self.reference_date ||= Date.today
+    end
+
+    def document_namespace
+      'urn:sunat:names:specification:ubl:peru:schema:xsd:VoidedDocuments-1'
     end
 
     def operation
@@ -47,8 +50,7 @@ module SUNAT
   	end
 
     def file_name
-      formatted_issue_date = issue_date.strftime("%Y%m%d")
-      "#{accounting_supplier_party.account_id}-#{SUMMARY_TYPE}-#{formatted_issue_date}-#{correlative_number}"
+      "#{accounting_supplier_party.account_id}-#{id}"
     end
 
     def build_pdf_body(pdf)
@@ -82,5 +84,15 @@ module SUNAT
       rows << ["Fecha de generacion del resumen", issue_date]
       rows 
     end
+
+    def deliver!
+      sender.submit_summary(file_name, to_zip)
+    end
+
+    def self.generate_id(issue_date, correlative_number)
+      formatted_issue_date = issue_date.strftime("%Y%m%d")
+      "RA-#{formatted_issue_date}-#{correlative_number}"
+    end
+
   end
 end

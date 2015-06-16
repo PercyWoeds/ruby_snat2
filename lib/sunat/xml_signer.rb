@@ -8,7 +8,6 @@ module SUNAT
     
     # decorator for XMLDocuments
     def sign(xml_string)
-      #File.open("before.xml", "w").write(xml_string)
       document          = build_from_xml(xml_string)
       digested_document = digest_for(canonicalize(document))
       
@@ -71,7 +70,8 @@ module SUNAT
         xml['ds'].X509Data do
           certificate = signature.certificate
           xml['ds'].X509SubjectName certificate.issuer
-          xml['ds'].X509Certificate certificate.cert
+          certificate_value = certificate.cert.to_s.gsub("-----BEGIN CERTIFICATE-----", "").gsub("-----END CERTIFICATE-----", "")
+          xml['ds'].X509Certificate certificate_value
         end
       end
     end

@@ -26,7 +26,7 @@ describe do
     it "should build a new accounting party with legal name, name and ruc" do
       ap = SUNAT::AccountingSupplierParty.new(:legal_name => "Legal Test", :name => "Test Company", :ruc => "123456789")
       expect(ap.account_id).to eql("123456789")
-      expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::RUC_DOCUMENT_CODE)
+      expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::DOCUMENT_TYPES_DATA[:ruc])
       expect(ap.party.name).to eql("Test Company")
       expect(ap.party.party_legal_entity.registration_name).to eql("Legal Test")
     end
@@ -34,7 +34,7 @@ describe do
     it "should build new accounting party with name and dni" do
       ap = SUNAT::AccountingSupplierParty.new(:name => "Test Company", :dni => "123456789")
       expect(ap.account_id).to eql("123456789")
-      expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::DNI_DOCUMENT_CODE)
+      expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::DOCUMENT_TYPES_DATA[:dni])
       expect(ap.party.name).to eql("Test Company")
     end
 
@@ -42,7 +42,7 @@ describe do
       ap = SUNAT::AccountingSupplierParty.new(:legal_name => "Legal Test", :name => "Test Company", :ruc => "123456789")
       ap = SUNAT::AccountingSupplierParty.new(ap.as_json)
       expect(ap.account_id).to eql("123456789")
-      expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::RUC_DOCUMENT_CODE)
+      expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::DOCUMENT_TYPES_DATA[:ruc])
       expect(ap.party.name).to eql("Test Company")
       expect(ap.party.party_legal_entity.registration_name).to eql("Legal Test")
     end   

@@ -6,7 +6,6 @@ module SUNAT
     property :response_code, String
     property :description,   String
 
-    validates :response_code, inclusion: {:in => ANNEX::CATALOG_09} 
     validates :reference_id, presence: true
     validates :description, presence: true
 

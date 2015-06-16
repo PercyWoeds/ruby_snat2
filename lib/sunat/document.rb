@@ -17,6 +17,7 @@ module SUNAT
     property :additional_properties,      [AdditionalProperty]
     property :additional_monetary_totals, [AdditionalMonetaryTotal]
     property :pdf_path,                   String
+    property :global_discount_percent,    Float            
 
     def self.xml_root(root_name)
       define_method :xml_root do
@@ -235,18 +236,16 @@ module SUNAT
       raise "This method must be overriden!"
     end
 
-    # returns a savon response (an httpi response)
-    def deliver!
-      sender = Delivery::Sender.new(file_name, to_zip, operation)
-      sender.call
-    end
-
     def to_zip
       @zip ||= Delivery::Chef.new(file_name + ".xml", to_xml).prepare
     end
 
     def format_date(date)
       date.strftime(DATE_FORMAT)
+    end
+
+    def sender
+      @sender ||= SUNAT::Delivery::Sender.new
     end
   end
 end

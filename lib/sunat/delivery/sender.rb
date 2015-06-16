@@ -5,16 +5,15 @@ module SUNAT
     class Sender
       attr_reader :name, :encoded_zip, :operation, :client, :operation
       
-      # PRODUCTION
-      # WSDL = "https://www.sunat.gob.pe/ol-ti-itcpgem/billService?wsdl"
 
-      # HOMOLOGATION
-      WSDL = "https://www.sunat.gob.pe/ol-ti-itcpgem-sqa/billService?wsdl"
+      ADDRESSES = {:homologation => "https://www.sunat.gob.pe/ol-ti-itcpgem-sqa/billService?wsdl",
+                   :production => "https://www.sunat.gob.pe/ol-ti-itcpgem/billService?wsdl"}
       
-      def initialize(name, encoded_zip, operation)
-        @operation = operation
-        @encoded_zip = encoded_zip
-        @name = name
+      def address
+        ADDRESSES[SUNAT.environment]
+      end
+
+      def initialize
         @credentials = credentials
       end
       
@@ -26,14 +25,32 @@ module SUNAT
         @client = new_client
       end
       
-      def call
+      def submit_file(name, encoded_zip)
         need_credentials do
           connect
-          response = client.call operation, message: {
+          response = client.call :send_bill, message: {
             fileName: "#{name}.zip",
             contentFile: encoded_zip
           }
-          response
+        end
+      end
+
+      def submit_summary(name, encoded_zip)
+        need_credentials do
+          connect
+          response = client.call :send_summary, message: {
+            fileName: "#{name}.zip",
+            contentFile: encoded_zip
+          }
+          SummaryResponse.new(response.body)
+        end
+      end
+
+      def get_status(ticket)
+        need_credentials do
+          connect
+          response = client.call :get_status, message: { ticket: ticket }
+          StatusResponse.new(response.body)
         end
       end
       
@@ -44,7 +61,7 @@ module SUNAT
         password  = @credentials.password
         
         Savon.client(
-          wsdl:               WSDL,
+          wsdl:               address,
           namespace:          "http://service.sunat.gob.pe",
           wsse_auth:          [login, password],
           ssl_cert_file:      cert_file,

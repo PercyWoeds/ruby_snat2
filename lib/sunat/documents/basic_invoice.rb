@@ -63,66 +63,12 @@ module SUNAT
       :send_bill
     end
 
-    def total_price
-      operation = 0
-      lines.each do |line|
-        operation += line.total_price
-      end
-      SUNAT::PaymentAmount.new(operation)
-    end
-
-    def total_alternave_condition_price_amount
-      operation = 0
-      lines.each do |line|
-        operation += line.total_alternave_condition_price_amount
-      end
-      SUNAT::PaymentAmount.new(operation)
-    end
-
-    def total_extension_amount
-      operation = 0
-      lines.each do |line|
-        operation += line.line_extension_amount.value
-      end
-      SUNAT::PaymentAmount.new(operation)
-    end
-
     def total_tax_totals
-      total = 0
-
-      if self.lines.present?
-        self.lines.each do |line|
-          total += line.calculate_tax_total
-        end
-      end
-
+      total = PaymentAmount.new(value:0, currency: document_currency_code)
+      tax_totals.each {|tax_total| total = total + tax_total.tax_amount}
       total
     end
 
-    def total_sub_totals
-      subtotal = 0
-
-      if self.lines.present?
-        self.lines.each do |line|
-          subtotal += line.calculate_tax_sub_total
-        end
-      end
-
-      subtotal
-    end
-
-    def calculated_tax_totals
-      totals = []
-
-      if self.lines.present?
-        self.lines.each do |line|
-          totals.push line.calculate_tax_total * line.quantity.quantity
-        end
-      end
-
-      totals
-    end
-    
     def add_line(&block)
       line = InvoiceLine.new.tap(&block)
       line.id = get_line_number.to_s
@@ -191,6 +137,10 @@ module SUNAT
       xml['cbc'].IssueDate format_date(self.issue_date)
     end
 
+    def deliver!
+      sender.submit_file(file_name, to_zip)
+    end
+
     private
 
     def client_data_headers
@@ -241,7 +191,6 @@ module SUNAT
       @current_line_number += 1
       @current_line_number
     end
-
 
   end
 end

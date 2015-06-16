@@ -1,7 +1,6 @@
 module SUNAT
   class CreditNote < BasicInvoice
 
-    XML_NAMESPACE       = 'urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2'
     XSI_SCHEMA_LOCATION = nil
 
     ID_FORMAT = /\A[F|B][A-Z\d]{3}-\d{1,8}\Z/
@@ -9,7 +8,7 @@ module SUNAT
 
     xml_root :CreditNote
 
-    property :discrepancy_response,      DiscrepancyResponse
+    property :discrepancy_response,      CreditNoteDiscrepancyResponse
     property :billing_reference,         BillingReference
     
     property :lines,                     [CreditNoteLine]
@@ -17,6 +16,10 @@ module SUNAT
     validates :discrepancy_response, presence: true
     validates :billing_reference, presence: true
     validates :lines, presence: true
+
+    def document_namespace
+      'urn:oasis:names:specification:ubl:schema:xsd:CreditNote-2'
+    end
 
     def initialize(*args)
       self.document_type_name ||= "Nota de credito"

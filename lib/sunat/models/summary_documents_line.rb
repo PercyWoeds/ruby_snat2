@@ -96,17 +96,18 @@ module SUNAT
           amount.xml_namespace = 'sac'
         end.build_xml xml, 'TotalAmount'
         
-        tax_totals.each do |total|
-          total.build_xml xml
+        billing_payments.each do |billing_payment|
+          billing_payment.build_xml xml
         end
-        
+
         allowance_charges.each do |charge|
           charge.build_xml xml
         end
         
-        billing_payments.each do |billing_payment|
-          billing_payment.build_xml xml
+        tax_totals.each do |total|
+          total.build_xml xml
         end
+        
       end
     end
     

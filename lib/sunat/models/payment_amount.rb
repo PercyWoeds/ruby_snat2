@@ -48,6 +48,14 @@ module SUNAT
     def to_f
       self.to_s.to_f
     end
+
+    def +(payment) 
+      if payment.currency != currency
+        raise "You can only sum payments with the same currency"
+      else
+        PaymentAmount.new(currency: currency, value: payment.value.to_i + value.to_i)
+      end
+    end
     
     def xml_namespace
       @xml_namespace ||= 'cbc'

@@ -4,12 +4,11 @@ module SUNAT
     ID_FORMAT = /\A[F|B][A-Z\d]{3}-\d{1,8}\Z/
     
     DOCUMENT_TYPE_CODE = '08' # NOTA DE DEBITO
-    XML_NAMESPACE = 'urn:oasis:names:specification:ubl:schema:xsd:DebitNote-2'
-
+    
     xml_root :DebitNote
 
     property :lines, [DebitNoteLine]
-    property :discrepancy_response,      DiscrepancyResponse
+    property :discrepancy_response,      DebitNoteDiscrepancyResponse
     property :billing_reference,         BillingReference
 
     validates :discrepancy_response, presence: true
@@ -19,6 +18,10 @@ module SUNAT
     def initialize(*args)
       self.document_type_name ||= "Nota de debito"
       super(*args)
+    end
+
+    def document_namespace
+      'urn:oasis:names:specification:ubl:schema:xsd:DebitNote-2'
     end
 
     def add_line(&block)

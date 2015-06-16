@@ -27,17 +27,15 @@ module SUNAT
   class AccountingSupplierParty
     include Model
 
-    RUC_DOCUMENT_CODE = "6"
-    DNI_DOCUMENT_CODE = "1"
-    DOCUMENT_TYPES = {ruc: RUC_DOCUMENT_CODE, dni: DNI_DOCUMENT_CODE}
+    DOCUMENT_TYPES_DATA = SUNAT::ANNEX::CATALOG_06
     
     property :account_id,             String
-    property :additional_account_id,  String, :default => RUC_DOCUMENT_CODE
+    property :additional_account_id,  String, :default => DOCUMENT_TYPES_DATA[:ruc]
     property :party,                  Party
     property :logo_path,              String
     
     validates :account_id, existence: true, presence: true
-    validates :account_id, ruc_document: true, if: Proc.new { |supplier| supplier.additional_account_id == RUC_DOCUMENT_CODE}
+    validates :account_id, ruc_document: true, if: Proc.new { |supplier| supplier.additional_account_id == DOCUMENT_TYPES_DATA[:ruc]}
     validates :additional_account_id, existence: true, document_type_code: true
 
     def initialize(*attrs)
@@ -51,7 +49,7 @@ module SUNAT
     end
 
     def type_as_text
-      DOCUMENT_TYPES.key(additional_account_id).to_s.upcase
+      DOCUMENT_TYPES_DATA.key(additional_account_id).to_s.upcase
     end
 
     protected
@@ -69,15 +67,16 @@ module SUNAT
 
     def parse_attributes(attrs = {})
       # Perform basic id and name handling
-      ruc         = attrs.delete(:ruc)
-      dni         = attrs.delete(:dni)
+      kind_of_documents = DOCUMENT_TYPES_DATA.keys
+      document_type = kind_of_documents.find { |kind| attrs[kind].present? }
+        
       legal_name  = attrs.delete(:legal_name)
       name        = attrs.delete(:name) || attrs.delete(:legal_name)
 
-      if (dni || ruc)
+      if (document_type)
         # Special case! Try set the properties accordingly.
-        self.additional_account_id = dni ? DOCUMENT_TYPES[:dni] : DOCUMENT_TYPES[:ruc]
-        self.account_id = dni || ruc
+        self.additional_account_id = DOCUMENT_TYPES_DATA[document_type]
+        self.account_id = attrs.delete(document_type)
       end
       
       self.party = {party_legal_entity: {registration_name: legal_name}, name: name}

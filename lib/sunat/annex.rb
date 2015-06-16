@@ -25,14 +25,14 @@ module SUNAT
     ]
 
     # Códigos de Tipos de Documentos de Identidad
-    CATALOG_06 = [
-      '0', # DOC.TRIB.NO.DOM.SIN.RUC
-      '1', # DOC. NACIONAL DE IDENTIDAD
-      '4', # CARNET DE EXTRANJERIA
-      '6', # REG. UNICO DE CONTRIBUYENTES
-      '7', # PASAPORTE
-      'A'  # CED. DIPLOMATICA DE IDENTIDAD
-    ]
+    CATALOG_06 = {
+      :no_ruc => '0', # DOC.TRIB.NO.DOM.SIN.RUC
+      :dni => '1', # DOC. NACIONAL DE IDENTIDAD
+      :alien_registration_certificate => '4', # CARNET DE EXTRANJERIA
+      :ruc => '6', # REG. UNICO DE CONTRIBUYENTES
+      :passport => '7', # PASAPORTE
+      :diplomatic_id => 'A'  # CED. DIPLOMATICA DE IDENTIDAD
+    }
 
     # Códigos de Tipo de Afectación del IGV
     CATALOG_07 = [

@@ -10,7 +10,9 @@ require './generators/receipt_generator'
 require './generators/daily_receipt_summary_generator'
 require './generators/voided_documents_generator'
 
-files_to_clean = Dir.glob("*.xml") + Dir.glob("./pdf_output/*.pdf")
+SUNAT.environment = :homologation
+
+files_to_clean = Dir.glob("*.xml") + Dir.glob("./pdf_output/*.pdf") + Dir.glob("*.zip")
 files_to_clean.each do |file|
   File.delete(file)
 end
@@ -29,7 +31,7 @@ case_10 = DebitNoteGenerator.new(1, 10, "FF11").for_igv_document(case_3, true)
 case_11 = DebitNoteGenerator.new(1, 11, "FF11").for_igv_document(case_4)
 
 #Group 2
-case_12 = InvoiceGenerator.new(2, 12, 3, "FF12").exempt
+case_12 = InvoiceGenerator.new(2, 12, 1, "FF12").exempt
 case_13 = InvoiceGenerator.new(2, 13, 4, "FF12").exempt
 case_14 = InvoiceGenerator.new(2, 14, 7, "FF12").exempt(true)
 case_15 = InvoiceGenerator.new(2, 15, 5, "FF12").exempt
@@ -47,8 +49,6 @@ case_24 = InvoiceGenerator.new(3, 24, 2, "FF13").free(true)
 case_25 = InvoiceGenerator.new(3, 25, 5, "FF13").free
 case_26 = InvoiceGenerator.new(3, 26, 4, "FF13").free
 case_27 = InvoiceGenerator.new(3, 27, 3, "FF13").free
-
-#For some reason group 4 case numbers are not consecutive to case 3 ones.
 
 #Group 4
 case_32 = InvoiceGenerator.new(4, 32, 2, "FF14").with_discount
@@ -78,12 +78,15 @@ case_49 = InvoiceGenerator.new(7, 49, 5, "FF50").with_different_currency
 case_50 = CreditNoteGenerator.new(7, 50, "FF50").for_different_currency_document(case_49)
 case_51 = DebitNoteGenerator.new(7, 51, "FF50").for_different_currency_document(case_49)
 
+#Comunicacion de baja
+VoidedDocumentsGenerator.new.generate
+
 #Group 8
-case_52 = ReceiptGenerator.new(8, 52, 3, "BB11").with_igv
-case_53 = ReceiptGenerator.new(8, 53, 2, "BB11").with_igv
-case_54 = ReceiptGenerator.new(8, 54, 1, "BB11").with_igv(true)
-case_55 = ReceiptGenerator.new(8, 55, 5, "BB11").with_igv
-case_56 = ReceiptGenerator.new(8, 56, 4, "BB11").with_igv
+case_52 = ReceiptGenerator.new(8, 52, 4, "BB11").with_igv
+case_53 = ReceiptGenerator.new(8, 53, 7, "BB11").with_igv
+case_54 = ReceiptGenerator.new(8, 54, 5, "BB11").with_igv(true)
+case_55 = ReceiptGenerator.new(8, 55, 3, "BB11").with_igv
+case_56 = ReceiptGenerator.new(8, 56, 2, "BB11").with_igv
 case_57 = CreditNoteGenerator.new(8, 57, "BB11").for_igv_document(case_53)
 case_58 = CreditNoteGenerator.new(8, 58, "BB11").for_igv_document(case_54, true)
 case_59 = CreditNoteGenerator.new(8, 59, "BB11").for_igv_document(case_55)
@@ -131,6 +134,3 @@ case_98 = DebitNoteGenerator.new(12, 98, "BB50").for_different_currency_document
 
 #Resumen Diario boletas de venta
 DailyReceiptSummaryGenerator.new.generate
-
-#Comunicacion de baja
-VoidedDocumentsGenerator.new.generate

@@ -2,12 +2,15 @@ module SUNAT
   # decorator for Documents
   class XMLDocument < SimpleDelegator
 
-    XML_NAMESPACE       = 'urn:oasis:names:specification:ubl:schema:xsd:Invoice-2'
     DS_NAMESPACE        = 'http://www.w3.org/2000/09/xmldsig#'
     CAC_NAMESPACE       = 'urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2'
     CBC_NAMESPACE       = 'urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2'
     EXT_NAMESPACE       = 'urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2'
     SAC_NAMESPACE       = 'urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1'
+    CCTS_NAMESPACE      = 'urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2'
+    QDT_NAMESPACE       = 'urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2'
+    STAT_NAMESPACE      = 'urn:oasis:names:specification:ubl:schema:xsd:DocumentStatusCode-1.0'
+    UDT_NAMESPACE       = 'urn:un:unece:uncefact:data:draft:UnqualifiedDataTypesSchemaModule:2'
     XSI_NAMESPACE       = 'http://www.w3.org/2001/XMLSchema-instance'
     
     CUSTOMIZATION_ID = "1.0"
@@ -45,12 +48,16 @@ module SUNAT
     
     def build_root(xml, &block)
       attributes = {
-        'xmlns'               => XML_NAMESPACE,
+        'xmlns'               => document_namespace,
         'xmlns:cac'           => CAC_NAMESPACE,
         'xmlns:cbc'           => CBC_NAMESPACE,
+        'xmlns:ccts'          => CCTS_NAMESPACE,
         'xmlns:ds'            => DS_NAMESPACE,
         'xmlns:ext'           => EXT_NAMESPACE,
+        'xmlns:qdt'           => QDT_NAMESPACE,
         'xmlns:sac'           => SAC_NAMESPACE,
+        'xmlns:stat'          => STAT_NAMESPACE,
+        'xmlns:udt'           => UDT_NAMESPACE,
         'xmlns:xsi'           => XSI_NAMESPACE
       }
       # self.xml_root comes from the document being decorated
