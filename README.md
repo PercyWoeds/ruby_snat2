@@ -101,7 +101,7 @@ In Bash:
   export SUNAT_USERNAME=username # sol user
   export SUNAT_PASSWORD=password # sol password
 
-
+Or you can replace them in the config.rb file. But remember not to push it to any public place!
 ## Serialization
 
 Every model can be serialized and de-serialized from JSON. This is extremely useful for storing a declaration a more readily usable form.
@@ -110,7 +110,9 @@ Every model can be serialized and de-serialized from JSON. This is extremely use
 
 SUNAT requires that all clients of their system first go through a homolgation process to test all possible combinations of invoices, receipts, credit and debit notes, and summary documents.
 
-Its an increadibly teadious process made more frustrating by the fact you probably only need a couple of standard documents for your project. Fortunately, this library makes the process a bit simpler by including the default set of test cases. Simply enter the `homologation` directory, create your own `config.rb` file, and call rake. All of the available yaml definitions in the `cases` directory will be compiled and sent to SUNAT using your own details.
+Its an increadibly teadious process made more frustrating by the fact you probably only need a couple of standard documents for your project. Fortunately, this library makes the process a bit simpler by including the default set of test cases. Simply enter the `homologation` directory, create your own `config.rb` file, and call `ruby homologation.rb`. All the defined cases will be executed.
+
+You can also provide as a param the groups of cases that you need to execute calling `ruby homologation.rb 1,4,12`
 
 
 
