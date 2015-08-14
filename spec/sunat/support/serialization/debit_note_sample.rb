@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 SUNAT.configure do |config|
   config.supplier do |s|
     s.legal_name = "K&G Laboratorios"
