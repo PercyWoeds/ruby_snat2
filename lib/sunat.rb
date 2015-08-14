@@ -93,6 +93,7 @@ module SUNAT
     autoload :Sender,           "sunat/delivery/sender"
     autoload :StatusResponse,   "sunat/delivery/status_response"
     autoload :SummaryResponse,  "sunat/delivery/summary_response"
+    autoload :BillResponse,     "sunat/delivery/bill_response"
     autoload :Zipper,           "sunat/delivery/zipper"
   end
 end
