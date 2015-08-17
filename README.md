@@ -8,15 +8,11 @@ Easily generate declarations for SUNAT, Peru's state tax collection entity.
 
 Add this line to your application's Gemfile:
 
-    gem 'sunat'
+    gem 'sunat', github: 'cabify/sunat-ruby'
 
 And then execute:
 
     $ bundle
-
-Or install it yourself as:
-
-    $ gem install sunat
 
 ##QuickStart
 Pull this repo and check the **examples** folder.
@@ -40,7 +36,7 @@ Prepare the SUNAT library by defining the configuration somewhere in your projec
         c.username  = "USERNAME"
         c.password  = "PASSWORD"
       end
-      
+
       config.signature do |s|
         # A company ID (Should be RUC)
         s.party_id    = "20100454523"
@@ -68,8 +64,8 @@ Prepare the SUNAT library by defining the configuration somewhere in your projec
 
 
     end
- 
- 
+
+
 After writing your config file lets proceed with our keys generation
 
 You can get some certificates to work with using this command
@@ -80,7 +76,7 @@ You can get some certificates to work with using this command
 	openssl rsa -in server.key.org -out server.key
 	openssl rsa -in cert.key -out cert.key
 	openssl x509 -req -days 365 -in cert.csr -signkey cert.key -out cert.crt
-	
+
 Name them as you want to, but remember to replace your config.rb file to use them. If you want to pass sunat homologation process you should use Sunat approved certificates, you can do it verifying them at their webpage
 
 
@@ -96,7 +92,7 @@ In Fish:
   set -gx SUNAT_PASSWORD password # sol password
 
 In Bash:
-  
+
   export SUNAT_RUC=ruc # ruc
   export SUNAT_USERNAME=username # sol user
   export SUNAT_PASSWORD=password # sol password
