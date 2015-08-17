@@ -16,15 +16,15 @@ module SUNAT
       def initialize
         @credentials = credentials
       end
-      
+
       def connect
         @client ||= new_client
       end
-      
+
       def connect!
         @client = new_client
       end
-      
+
       def submit_file(name, encoded_zip)
         need_credentials do
           connect
@@ -32,6 +32,7 @@ module SUNAT
             fileName: "#{name}.zip",
             contentFile: encoded_zip
           }
+          BillResponse.new(response.body)
         end
       end
 
@@ -53,13 +54,13 @@ module SUNAT
           StatusResponse.new(response.body)
         end
       end
-      
+
       private
-      
+
       def new_client
         login     = @credentials.login
         password  = @credentials.password
-        
+
         Savon.client(
           wsdl:               address,
           namespace:          "http://service.sunat.gob.pe",
@@ -69,19 +70,19 @@ module SUNAT
           ssl_version:        :SSLv3
         )
       end
-      
+
       def credentials
         SUNAT::CREDENTIALS
       end
-      
+
       def cert_file
         SUNAT::SIGNATURE.cert_file
       end
-      
+
       def pk_file
         SUNAT::SIGNATURE.pk_file
       end
-      
+
       def need_credentials
         if @credentials.nil?
           raise "We need credentials object to be filled"
