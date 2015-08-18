@@ -4,11 +4,12 @@ module SUNAT
   module Delivery
     class Sender
       attr_reader :name, :encoded_zip, :operation, :client, :operation
-      
+
 
       ADDRESSES = {:homologation => "https://www.sunat.gob.pe/ol-ti-itcpgem-sqa/billService?wsdl",
-                   :production => "https://www.sunat.gob.pe/ol-ti-itcpgem/billService?wsdl"}
-      
+                   :production => "https://www.sunat.gob.pe/ol-ti-itcpgem/billService?wsdl",
+                   :test => "https://www.sunat.gob.pe:443/ol-ti-itcpgem-beta/billService?wsdl"}
+
       def address
         ADDRESSES[SUNAT.environment]
       end

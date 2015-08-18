@@ -3,6 +3,7 @@ module SUNAT
     class BillResponse
       CORRECT_CODE = 0
       RESPONSE_CODE_KEY = 'cbc:ResponseCode'
+      RESPONSE_DESCRIPTION_KEY = 'cbc:Description'
 
       attr_reader :content
 
@@ -19,16 +20,21 @@ module SUNAT
       end
 
       def status_code
-        @code ||=  begin
-                    data = zipper.read_string(Base64.decode64(@content))
-                    Nokogiri::XML(data.first).xpath("//#{RESPONSE_CODE_KEY}").first.text.to_i
-                  end
+        @code ||= Nokogiri::XML(data.first).xpath("//#{RESPONSE_CODE_KEY}").first.text.to_i
+      end
+
+      def description
+        @description ||= Nokogiri::XML(data.first).xpath("//#{RESPONSE_DESCRIPTION_KEY}").first.text
       end
 
       private
 
       def zipper
         @zipper ||= Zipper.new
+      end
+
+      def data
+        @data ||= zipper.read_string(Base64.decode64(@content))
       end
     end
   end
