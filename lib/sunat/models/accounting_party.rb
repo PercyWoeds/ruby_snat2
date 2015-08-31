@@ -1,6 +1,6 @@
 module SUNAT
 
-  # The AccountingSupplierParty contains the basic details of the supplier of
+  # The AccountingParty contains the basic details of the supplier and customer of
   # the current invoice being generated.
   #
   # Rather then being forced to use the complex XML structure, helper attributes
@@ -24,7 +24,7 @@ module SUNAT
   #  * country - use 2 digit identification code, like 'PE' or 'ES'
   #
 
-  class AccountingSupplierParty
+  class AccountingParty
     include Model
 
     DOCUMENT_TYPES_DATA = SUNAT::ANNEX::CATALOG_06
@@ -33,10 +33,6 @@ module SUNAT
     property :additional_account_id,  String, :default => DOCUMENT_TYPES_DATA[:ruc]
     property :party,                  Party
     property :logo_path,              String
-
-    validates :account_id, existence: true, presence: true
-    validates :account_id, ruc_document: true, if: Proc.new { |supplier| supplier.additional_account_id == DOCUMENT_TYPES_DATA[:ruc] }
-    validates :additional_account_id, existence: true, document_type_code: true, if: Proc.new { |supplier| supplier.additional_account_id != '-' }
 
     def initialize(*attrs)
       super(parse_attributes(*attrs))
@@ -70,7 +66,7 @@ module SUNAT
       kind_of_documents = DOCUMENT_TYPES_DATA.keys
       document_type = kind_of_documents.find { |kind| attrs[kind].present? }
 
-      legal_name  = attrs.delete(:legal_name) || '-'
+      legal_name  = attrs.delete(:legal_name)
       name        = attrs.delete(:name) || attrs.delete(:legal_name)
 
       if (document_type)
@@ -79,7 +75,7 @@ module SUNAT
         self.account_id = attrs.delete(document_type)
       end
 
-      self.party = { party_legal_entity: {registration_name: legal_name}, name: name }
+      self.party = {party_legal_entity: {registration_name: legal_name}, name: name}
 
       # Grab or build new party
       self.party ||= (attrs.delete(:party) || {})
