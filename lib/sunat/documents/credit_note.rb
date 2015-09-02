@@ -10,7 +10,7 @@ module SUNAT
 
     property :discrepancy_response,      CreditNoteDiscrepancyResponse
     property :billing_reference,         BillingReference
-    
+
     property :lines,                     [CreditNoteLine]
 
     validates :discrepancy_response, presence: true
@@ -33,13 +33,8 @@ module SUNAT
       billing_reference.build_xml(xml)
       signature.xml_metadata xml
       accounting_supplier_party.build_xml xml
-      # sunat says if no customer exists, we must use a dash
-      if customer.present?
-        customer.build_xml xml
-      else
-        xml['cac'].AccountingCustomerParty "-"
-      end
-      
+      customer.build_xml xml
+
       tax_totals.each do |total|
         total.build_xml xml
       end
