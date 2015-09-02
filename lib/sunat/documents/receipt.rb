@@ -17,11 +17,6 @@ module SUNAT
 
     def initialize(*args)
       self.document_type_name ||= "Boleta de Venta"
-      self.customer ||= AccountingCustomerParty.new({
-        account_id: '-',
-        additional_account_id: '-'
-      })
-
       super(*args)
     end
   end

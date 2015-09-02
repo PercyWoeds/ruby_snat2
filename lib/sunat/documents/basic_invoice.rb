@@ -4,12 +4,12 @@ module SUNAT
   # used to generate an XML document suitable for presentation.
   # Represents a legal payment for SUNAT. Spanish: Factura
   #
-  
+
   class BasicInvoice < Document
-    
+
     DOCUMENT_TYPE_CODE = '01' # sunat code in catalog #1
     DEFAULT_CURRENCY_CODE = 'PEN'
-    
+
     include HasTaxTotals
 
     property :invoice_type_code,               String
@@ -33,6 +33,11 @@ module SUNAT
       self.tax_totals ||= []
       self.despatch_document_references ||= []
       self.document_type_name ||= "Factura Electronica"
+      self.customer ||= AccountingCustomerParty.new({
+        account_id: '-',
+        additional_account_id: '-'
+      })
+
       super(*args)
     end
 
@@ -58,7 +63,7 @@ module SUNAT
       document_type_code = self.class::DOCUMENT_TYPE_CODE
       "#{accounting_supplier_party.account_id}-#{document_type_code}-#{id}"
     end
-    
+
     def operation
       :send_bill
     end
@@ -86,14 +91,14 @@ module SUNAT
         rows[rows_index] += (client_data_headers.length >= row ? client_data_headers[rows_index] : ['',''])
         rows[rows_index] += (invoice_headers.length >= row ? invoice_headers[rows_index] : ['',''])
       end
-      
+
       if rows.present?
 
         pdf.table(rows, {
           :position => :center,
           :cell_style => {:border_width => 0},
           :width => pdf.bounds.width
-        }) do 
+        }) do
           columns([0, 2]).font_style = :bold
         end
 
@@ -103,7 +108,7 @@ module SUNAT
 
       headers = []
       table_content = []
-      
+
       InvoiceLine::TABLE_HEADERS.each do |header|
         cell = pdf.make_cell(:content => header)
         cell.background_color = "FFFFCC"
@@ -111,7 +116,7 @@ module SUNAT
       end
 
       table_content << headers
-      
+
       lines.each do |line|
         table_content << line.build_pdf_table_row(pdf)
       end
@@ -125,7 +130,7 @@ module SUNAT
         :position => :right,
         :cell_style => {:border_width => 1},
         :width => pdf.bounds.width/2
-      } do 
+      } do
         columns([0]).font_style = :bold
       end
 
@@ -171,7 +176,7 @@ module SUNAT
           invoice_summary << [monetary_total[:label], value.payable_amount.to_s]
         end
       end
-      
+
       tax_totals.each do |tax_total|
         invoice_summary << [tax_total.tax_type_name, tax_total.tax_amount.to_s]
       end
@@ -185,7 +190,7 @@ module SUNAT
       invoice_summary << ["Monto del total", total]
       invoice_summary
     end
-    
+
     def get_line_number
       @current_line_number ||= 0
       @current_line_number += 1
