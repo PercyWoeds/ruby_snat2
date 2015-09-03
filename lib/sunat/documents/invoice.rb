@@ -2,7 +2,7 @@ module SUNAT
   class Invoice < BasicInvoice
 
     ID_FORMAT = /\AF[A-Z\d]{3}-\d{1,8}\Z/
-    
+
     xml_root :Invoice
 
     property :allowance_total_amount, AllowanceTotalAmount
@@ -25,14 +25,10 @@ module SUNAT
       xml['cbc'].InvoiceTypeCode      invoice_type_code
       xml['cbc'].DocumentCurrencyCode document_currency_code
       signature.xml_metadata xml
+
       accounting_supplier_party.build_xml xml
-      # sunat says if no customer exists, we must use a dash
-      if customer.present?
-        customer.build_xml xml
-      else
-        xml['cac'].AccountingCustomerParty "-"
-      end
-      
+      customer.build_xml xml
+
       tax_totals.each do |total|
         total.build_xml xml
       end

@@ -10,7 +10,7 @@ module SUNAT
   #
   class Receipt < Invoice
     xml_root :Invoice
-    
+
     DOCUMENT_TYPE_CODE = '03' # sunat code in catalog #1
 
     ID_FORMAT = /\AB[A-Z\d]{3}-\d{1,8}\Z/

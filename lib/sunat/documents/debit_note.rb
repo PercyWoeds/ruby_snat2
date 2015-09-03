@@ -2,9 +2,9 @@ module SUNAT
   class DebitNote < BasicInvoice
 
     ID_FORMAT = /\A[F|B][A-Z\d]{3}-\d{1,8}\Z/
-    
+
     DOCUMENT_TYPE_CODE = '08' # NOTA DE DEBITO
-    
+
     xml_root :DebitNote
 
     property :lines, [DebitNoteLine]
@@ -36,13 +36,8 @@ module SUNAT
       billing_reference.build_xml(xml)
       signature.xml_metadata xml
       accounting_supplier_party.build_xml xml
-      # sunat says if no customer exists, we must use a dash
-      if customer.present?
-        customer.build_xml xml
-      else
-        xml['cac'].AccountingCustomerParty "-"
-      end
-      
+      customer.build_xml xml
+
       tax_totals.each do |total|
         total.build_xml xml
       end

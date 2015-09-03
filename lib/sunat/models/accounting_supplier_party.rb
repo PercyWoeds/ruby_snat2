@@ -5,14 +5,14 @@ module SUNAT
   #
   # Rather then being forced to use the complex XML structure, helper attributes
   # can be provided to quickly generate a usable object. If necessary, attributes
-  # will be forwarded to a party object. The following fields are supported: 
+  # will be forwarded to a party object. The following fields are supported:
   #
   # Basic fields:
   #
   #  * name - name of the company
   #  * ruc  - Peruvian SUNAT ID
   #  * or dni - National ID number, for exports
-  # 
+  #
   # Address fields:
   #
   #  * address_id - Geographical location (UBIGEO) or post code, eg. "070101"
@@ -28,20 +28,20 @@ module SUNAT
     include Model
 
     DOCUMENT_TYPES_DATA = SUNAT::ANNEX::CATALOG_06
-    
+
     property :account_id,             String
     property :additional_account_id,  String, :default => DOCUMENT_TYPES_DATA[:ruc]
     property :party,                  Party
     property :logo_path,              String
-    
+
     validates :account_id, existence: true, presence: true
-    validates :account_id, ruc_document: true, if: Proc.new { |supplier| supplier.additional_account_id == DOCUMENT_TYPES_DATA[:ruc]}
-    validates :additional_account_id, existence: true, document_type_code: true
+    validates :account_id, ruc_document: true, if: Proc.new { |supplier| supplier.additional_account_id == DOCUMENT_TYPES_DATA[:ruc] }
+    validates :additional_account_id, existence: true, document_type_code: true, if: Proc.new { |supplier| supplier.additional_account_id != '-' }
 
     def initialize(*attrs)
       super(parse_attributes(*attrs))
     end
-    
+
     def build_xml(xml)
       xml['cac'].AccountingSupplierParty do
         build_xml_payload(xml)
@@ -61,7 +61,7 @@ module SUNAT
       # field must be empty string when nil.
       xml['cbc'].CustomerAssignedAccountID  (account_id || '')
       xml['cbc'].AdditionalAccountID        additional_account_id
-      
+
       party.build_xml xml
     end
 
@@ -69,8 +69,8 @@ module SUNAT
       # Perform basic id and name handling
       kind_of_documents = DOCUMENT_TYPES_DATA.keys
       document_type = kind_of_documents.find { |kind| attrs[kind].present? }
-        
-      legal_name  = attrs.delete(:legal_name)
+
+      legal_name  = attrs.delete(:legal_name) || '-'
       name        = attrs.delete(:name) || attrs.delete(:legal_name)
 
       if (document_type)
@@ -78,9 +78,9 @@ module SUNAT
         self.additional_account_id = DOCUMENT_TYPES_DATA[document_type]
         self.account_id = attrs.delete(document_type)
       end
-      
-      self.party = {party_legal_entity: {registration_name: legal_name}, name: name}
-      
+
+      self.party = { party_legal_entity: {registration_name: legal_name}, name: name }
+
       # Grab or build new party
       self.party ||= (attrs.delete(:party) || {})
 
