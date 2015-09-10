@@ -26,6 +26,7 @@ module SUNAT
 
     def add_line(&block)
       line = DebitNoteLine.new.tap(&block)
+      line.id = get_line_number.to_s
       self.lines << line
     end
 
