@@ -77,6 +77,11 @@ module SUNAT
         # Special case! Try set the properties accordingly.
         self.additional_account_id = DOCUMENT_TYPES_DATA[document_type]
         self.account_id = attrs.delete(document_type)
+      else
+        # For facturas, boletas and notas de default values for the
+        # account info is '-'
+        self.additional_account_id = '-'
+        self.account_id = '-'
       end
 
       self.party = { party_legal_entity: {registration_name: legal_name}, name: name }

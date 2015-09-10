@@ -2,20 +2,20 @@ require 'spec_helper'
 
 describe do
   include ValidationSpecHelpers
-  
+
   let :accounting_party do
-    SUNAT::AccountingSupplierParty.new
+    SUNAT::AccountingSupplierParty.new(additional_account_id: AccountingSupplierParty::DOCUMENT_TYPES_DATA[:ruc])
   end
-  
+
   describe "validations" do
     let(:invalid_code) { "124" }
     let(:valid_code) { ActiveModel::Validations::DocumentTypeCodeValidator::VALID_CODES.sample }
-    
-    it "should validate that the account_id needs to have 11 characters" do
+
+    it "should validate that the account_id needs to have 11 characters for ruc ids" do
       expect_invalid  accounting_party, :account_id, "1" * 5
       expect_valid    accounting_party, :account_id, "1" * 11
     end
-    
+
     it "should validate that the additional_account_id is a valid document type code" do
       expect_invalid accounting_party,  :additional_account_id, invalid_code
       expect_valid accounting_party,    :additional_account_id, valid_code
@@ -45,7 +45,7 @@ describe do
       expect(ap.additional_account_id).to eql(SUNAT::AccountingSupplierParty::DOCUMENT_TYPES_DATA[:ruc])
       expect(ap.party.name).to eql("Test Company")
       expect(ap.party.party_legal_entity.registration_name).to eql("Legal Test")
-    end   
+    end
   end
-  
+
 end
