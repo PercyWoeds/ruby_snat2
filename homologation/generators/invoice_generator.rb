@@ -18,7 +18,7 @@ class InvoiceGenerator < DocumentGenerator
   def exempt(pdf=false)
     invoice_data = data
     invoice_data[:lines] = (1..@items).map do |item|
-      {id: item.to_s, quantity: 1, line_extension_amount: 10000, pricing_reference: 10000, price: 10000,
+      {id: item.to_s, quantity: 1.0, line_extension_amount: 10000, pricing_reference: 10000, price: 10000,
        item: {id: item.to_s, description: "Item #{item}"}, tax_totals: [{amount: 0, type: :igv, code: "20"}], line_extension_amount: 10000}
     end
     invoice_data[:additional_monetary_totals] << {id: "1003", payable_amount: @items*10000}
@@ -31,7 +31,7 @@ class InvoiceGenerator < DocumentGenerator
   def free(pdf=false)
     invoice_data = data
     invoice_data[:lines] = (1..@items).map do |item|
-      {id: @items.to_s, quantity: 1, line_extension_amount: 0, pricing_reference: {amount: 10000, free: true}, price: 0,
+      {id: @items.to_s, quantity: 1.0, line_extension_amount: 0, pricing_reference: {amount: 10000, free: true}, price: 0,
        item: {id: @items.to_s, description: "Item #{@items}"}, tax_totals: [{amount: 0, type: :igv, code: "31"}], line_extension_amount: 0}
     end
     invoice_data[:additional_monetary_totals] << {id: "1004", payable_amount: @items*10000}
@@ -61,7 +61,7 @@ class InvoiceGenerator < DocumentGenerator
 
   def with_isc(pdf=false)
     invoice_data = data(@items - 1)
-    invoice_data[:lines] << {id: @items.to_s, quantity: 1, line_extension_amount: 10000, pricing_reference: 13500, price: 10000, 
+    invoice_data[:lines] << {id: @items.to_s, quantity: 1.0, line_extension_amount: 10000, pricing_reference: 13500, price: 10000, 
                              item: {id: @items.to_s, description: "Item #{@items}"}, tax_totals: [{amount: 1800, type: :igv}, {amount: 1700, type: :isc}]}
     invoice = document_class.new(invoice_data)
     
@@ -113,7 +113,7 @@ class InvoiceGenerator < DocumentGenerator
       invoice_data[:lines] = []
       if items > 0
         invoice_data[:lines] = (1..items).map do |item|
-          {id: item.to_s, quantity: 1, line_extension_amount: {value: 10000, currency: currency}, pricing_reference: {alternative_condition_price: {price_amount: {value: 11800, currency: currency}}}, 
+          {id: item.to_s, quantity: 1.0, line_extension_amount: {value: 10000, currency: currency}, pricing_reference: {alternative_condition_price: {price_amount: {value: 11800, currency: currency}}}, 
            price: {value: 10000, currency: currency}, tax_totals: [{amount: {value: 1800, currency: currency}, type: :igv}], 
            item: {id: item.to_s, description: "Item #{item}"}}
         end

@@ -34,7 +34,7 @@ Invoice.new.tap do |invoice|
   
   invoice.lines << {
     :id => "1",
-    :quantity => 300,
+    :quantity => 300.0,
     :price => 67800,
     :list_price => 70000,
     :total => 172890,
