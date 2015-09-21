@@ -73,7 +73,7 @@ module SUNAT
           pdf.text "#{self.document_type_name.upcase}", :align => :center
           pdf.text "#{self.id}", :align => :center,
                                  :style => :bold
-          pdf.text "Rectifica: #{self.billing_reference.invoice_document_reference.id}", :align => :center, :size => 8 if self.billing_reference.present?
+          pdf.text "Rectifica: #{self.billing_reference.invoice_document_reference.id}", :align => :center, :size => 8 if self.try(:billing_reference).present?
         end
       end
       pdf.move_down 25
