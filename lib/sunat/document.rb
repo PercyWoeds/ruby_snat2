@@ -17,7 +17,7 @@ module SUNAT
     property :additional_properties,      [AdditionalProperty]
     property :additional_monetary_totals, [AdditionalMonetaryTotal]
     property :pdf_path,                   String
-    property :global_discount_percent,    Float            
+    property :global_discount_percent,    Float
 
     def self.xml_root(root_name)
       define_method :xml_root do
@@ -44,10 +44,6 @@ module SUNAT
       raise not_implemented_exception
     end
 
-    def address
-      "#{supplier.street}, #{supplier.district} (#{supplier.city})"
-    end
-
     def operation_list
       raise not_implemented_exception
     end
@@ -59,12 +55,16 @@ module SUNAT
     def build_pdf_header(pdf)
       if self.accounting_supplier_party.logo_path.present?
         pdf.image "#{self.accounting_supplier_party.logo_path}", :width => 100
-        pdf.move_down 4
+        pdf.move_down 6
       end
       pdf.text "#{self.accounting_supplier_party.party.party_legal_entity.registration_name}", :size => 12,
                                                                                                :style => :bold
       pdf.move_down 4
-      pdf.text "#{address}", :size => 10
+      pdf.text supplier.street, :size => 10
+      pdf.text supplier.district, :size => 10
+      pdf.text supplier.city, :size => 10
+      pdf.move_down 4
+
       pdf.bounding_box([325, 725], :width => 200, :height => 70) do
         pdf.stroke_bounds
         pdf.move_down 15
