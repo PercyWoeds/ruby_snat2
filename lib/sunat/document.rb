@@ -65,7 +65,7 @@ module SUNAT
       pdf.text supplier.city, :size => 10
       pdf.move_down 4
 
-      pdf.bounding_box([325, 725], :width => 200, :height => 70) do
+      pdf.bounding_box([325, 725], :width => 200, :height => 80) do
         pdf.stroke_bounds
         pdf.move_down 15
         pdf.font "Helvetica", :style => :bold do
@@ -73,6 +73,7 @@ module SUNAT
           pdf.text "#{self.document_type_name.upcase}", :align => :center
           pdf.text "#{self.id}", :align => :center,
                                  :style => :bold
+          pdf.text "Rectifica: #{self.billing_reference.invoice_document_reference.id}", :align => :center, :size => 8 if self.billing_reference.present?
         end
       end
       pdf.move_down 25
