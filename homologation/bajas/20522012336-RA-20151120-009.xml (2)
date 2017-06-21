@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<VoidedDocuments xmlns="urn:sunat:names:specification:ubl:peru:schema:xsd:VoidedDocuments-1" xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" xmlns:ccts="urn:oasis:names:specification:ubl:schema:xsd:CoreComponentParameters-2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:ext="urn:oasis:names:specification:ubl:schema:xsd:CommonExtensionComponents-2" xmlns:qdt="urn:oasis:names:specification:ubl:schema:xsd:QualifiedDatatypes-2" xmlns:sac="urn:sunat:names:specification:ubl:peru:schema:xsd:SunatAggregateComponents-1" xmlns:stat="urn:oasis:names:specification:ubl:schema:xsd:DocumentStatusCode-1.0" xmlns:udt="urn:un:unece:uncefact:data:draft:UnqualifiedDataTypesSchemaModule:2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ext:UBLExtensions>
+    <ext:UBLExtension>
+      <ext:ExtensionContent><ds:Signature Id="IDSignKG"><ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/><ds:SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><ds:Reference URI=""><ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><ds:DigestValue>eCtp4/PUINdQvrYvuIOteeGShx4=</ds:DigestValue></ds:Reference></ds:SignedInfo><ds:SignatureValue>bo0gxu1Wh1pDd5uWOR719hkYkrgqUYuMwpxgfZOUjHf8HvQooOnokbESiy/j4d7BBy55DkqrrWSvTYP17kwbjUHDkz9n6E+TPkiPAofPUwtVf/n3jkv8K/eOfEvktMBsHE3yaBgmM6eAhYmMQl+kPOjJrP4N9/ehg1g+1JN+I96RXZczN1UaZTzUeRO4859f3jrunre9Xwdr/ZMB2R+wP0ASwiH0qOrI8jKAiQXH/g2+oo/0Ue53AV0cNLdc3frGkvvTt2/Z8GllFs2ppa7DDX+jq1MimXXOddB6ommpx+/8CbK75MQeBwiXp9b5SuwsUBFHOfURz7/xaMJV+ih/Gw==</ds:SignatureValue><ds:KeyInfo><ds:X509Data><ds:X509SubjectName>C=BE,O=GlobalSign nv-sa,CN=GlobalSign PersonalSign 2 CA - G2</ds:X509SubjectName><ds:X509Certificate>
+MIIFkTCCBHmgAwIBAgIRAJZpZsDepakv5Caheb14uq8wDQYJKoZIhvcNAQEFBQAw
+VDELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYtc2ExKjAoBgNV
+BAMTIUdsb2JhbFNpZ24gUGVyc29uYWxTaWduIDIgQ0EgLSBHMjAeFw0xNTA1MTYx
+NjI2MTZaFw0xNzA1MTYxNjI2MTZaMIHgMQswCQYDVQQGEwJQRTENMAsGA1UECBME
+TGltYTENMAsGA1UEBxMETGltYTEYMBYGA1UEChMPSElEUk9UUkFOU1AgU0FDMSUw
+IwYDVQQLExxETkkgMjY3MTUyODggUlVDIDIwNTIyMDEyMzM2MSUwIwYDVQQLExxE
+TkkgMjY3MTUyODggUlVDIDIwNTIyMDEyMzM2MSMwIQYDVQQDExpDRVNBUiBKQUlN
+RSBNQU5SSVFVRSBNSUxMQTEmMCQGCSqGSIb3DQEJARYXenBvcnRhbEBoaWRyb3Ry
+YW5zcC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDtCJ0qd0C4
+eQ9zyqUyV/YBKLc88Q+SMnr2vWMpoVWtNKW7wW6OyO+C91BuZ2hKcp0LoCPDhz3g
+mbKzuFJBMq3QZDxcWGTrz98khcD1ts9VMIYZ8FD7Xa39653V9ZqVp3zJC39UwJdE
+yIZ1ZolX0CXbWV6Bj/+Q7Y75XxXdkTNbqQqQU+qmfRtg8FstYvcK3x56arUJXLp3
+iLqUPDEWaW9Iv944q1UfCz83qu45GlZp0zr9wwgwTI7OQILPIOHj3v3qV88vXcTF
+PL4NoUH8Hg7mZ3jmN235CK7njAEOC1+9RyGXhd6OwMSeGZTMmAhTFsIsKZF12RXl
+KlYK+Lnx/IgHAgMBAAGjggHPMIIByzAOBgNVHQ8BAf8EBAMCBaAwTQYDVR0gBEYw
+RDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
+bHNpZ24uY29tL3JlcG9zaXRvcnkvMCIGA1UdEQQbMBmBF3pwb3J0YWxAaGlkcm90
+cmFuc3AuY29tMAkGA1UdEwQCMAAwHQYDVR0lBBYwFAYIKwYBBQUHAwIGCCsGAQUF
+BwMEMEMGA1UdHwQ8MDowOKA2oDSGMmh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20v
+Z3MvZ3NwZXJzb25hbHNpZ24yZzIuY3JsMIGWBggrBgEFBQcBAQSBiTCBhjBJBggr
+BgEFBQcwAoY9aHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3Nw
+ZXJzb25hbHNpZ24yZzJvY3NwLmNydDA5BggrBgEFBQcwAYYtaHR0cDovL29jc3Ay
+Lmdsb2JhbHNpZ24uY29tL2dzcGVyc29uYWxzaWduMmcyMB0GA1UdDgQWBBSKvIOl
+3AUNr5/16MSObuE9RxM0nTAfBgNVHSMEGDAWgBQ/FdJtfC/nMZ5DCgaolGwsO8Xu
+ZTANBgkqhkiG9w0BAQUFAAOCAQEAiWend5pqIO7naHrz6SW31Mu6klHcTehPzu92
+aWN+aYZMHbaa4+UL4si0d6yc3TqLaWfWEdmBIDpNxoREZhIum8Q0T6ay3/S/zl25
+LHhT2Iiy6fRj6dAfXV9rjtkE398h0JycqJuuY26iSST3zr7W/iUfTw+aMJwsMM3R
+xZ0V7uteqcjydweycSnxjD9GRcbQaG/YP6meTWdJcpp4Wv/aksilqObwsPBFkbao
+xMZGx77wdeWMAzOsQQbe6pp4EmqwqISlVMPe5DmKH7fJFFcQtYrX/Kbh8u9t+TcU
+nmCJ1GLNmFSu0jEPlxCj8Werc8LpI7yY7tBXbNfiW1wtHUm5pA==
+
+</ds:X509Certificate></ds:X509Data></ds:KeyInfo></ds:Signature></ext:ExtensionContent>
+    </ext:UBLExtension>
+  </ext:UBLExtensions>
+  <cbc:UBLVersionID>2.0</cbc:UBLVersionID>
+  <cbc:CustomizationID>1.0</cbc:CustomizationID>
+  <cbc:ID>RA-20151120-009</cbc:ID>
+  <cbc:ReferenceDate>2015-11-20</cbc:ReferenceDate>
+  <cbc:IssueDate>2015-11-20</cbc:IssueDate>
+  <cac:Signature>
+    <cbc:ID>IDSignKG</cbc:ID>
+    <cac:SignatoryParty>
+      <cac:PartyIdentification>
+        <cbc:ID>20522012336</cbc:ID>
+      </cac:PartyIdentification>
+      <cac:PartyName>
+        <cbc:Name>HIDROTRANSP S.A.C.</cbc:Name>
+      </cac:PartyName>
+    </cac:SignatoryParty>
+    <cac:DigitalSignatureAttachment>
+      <cac:ExternalReference>
+        <cbc:URI>#signatureKG</cbc:URI>
+      </cac:ExternalReference>
+    </cac:DigitalSignatureAttachment>
+  </cac:Signature>
+  <cac:AccountingSupplierParty>
+    <cbc:CustomerAssignedAccountID>20522012336</cbc:CustomerAssignedAccountID>
+    <cbc:AdditionalAccountID>6</cbc:AdditionalAccountID>
+    <cac:Party>
+      <cac:PartyName>
+        <cbc:Name>Cesar Jaime Manrique Milla</cbc:Name>
+      </cac:PartyName>
+      <cac:PostalAddress>
+        <cbc:ID>150117</cbc:ID>
+        <cbc:StreetName>JR. TOMAS CATARI NRO. 405 URB. EL TREBOL 1RA. ETAPA</cbc:StreetName>
+        <cbc:CitySubdivisionName/>
+        <cbc:CityName>LIMA</cbc:CityName>
+        <cbc:CountrySubentity/>
+        <cbc:District>LOS OLIVOS</cbc:District>
+        <cac:Country>
+          <cbc:IdentificationCode>PE</cbc:IdentificationCode>
+        </cac:Country>
+      </cac:PostalAddress>
+      <cac:PartyLegalEntity>
+        <cbc:RegistrationName>HIDROTRANSP S.A.C.</cbc:RegistrationName>
+      </cac:PartyLegalEntity>
+    </cac:Party>
+  </cac:AccountingSupplierParty>
+  <sac:VoidedDocumentsLine>
+    <cbc:LineID>1</cbc:LineID>
+    <cbc:DocumentTypeCode>01</cbc:DocumentTypeCode>
+    <sac:DocumentSerialID>FF01</sac:DocumentSerialID>
+    <sac:DocumentNumberID>61</sac:DocumentNumberID>
+    <sac:VoidReasonDescription>Error en datos consignados</sac:VoidReasonDescription>
+  </sac:VoidedDocumentsLine>
+</VoidedDocuments>

@@ -38,6 +38,7 @@ module SUNAT
       tax_totals.each do |total|
         total.build_xml xml
       end
+      
       xml['cac'].LegalMonetaryTotal do
         legal_monetary_total.build_xml xml, :PayableAmount
       end

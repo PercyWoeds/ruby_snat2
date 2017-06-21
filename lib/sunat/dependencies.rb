@@ -11,8 +11,12 @@ require 'active_support/json'
 
 require 'openssl'
 require 'nokogiri'
-require 'prawn'
+
 require 'prawn/table'
+require 'prawn'
+
+
+
 require 'i18n'
 require 'numbers_and_words'
 require 'savon'

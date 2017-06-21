@@ -1,6 +1,6 @@
 module SUNAT
   class Currency
-    CURRENCIES = {pen: {singular: 'nuevo sol', plural: 'nuevos soles'},
+    CURRENCIES = {pen: {singular: ' sol', plural: ' soles'},
                   eur: {singular: 'euro', plural: 'euros'},
                   usd: {singular: 'dolar', plural: 'dolares'}}
     

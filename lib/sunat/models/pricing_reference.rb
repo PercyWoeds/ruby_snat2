@@ -3,7 +3,8 @@ module SUNAT
     include Model
     
     property :alternative_condition_price, AlternativeConditionPrice
-    
+    # property :alternative_condition_price, Float
+
     def initialize(*args)
       super(parse_attributes(*args))
     end
@@ -24,9 +25,11 @@ module SUNAT
             :price_amount => attrs
           }
         }
+        
       else
         amt  = attrs.delete(:amount)
         free = attrs.delete(:free)
+
         if amt
           self.alternative_condition_price = {
             :price_amount => amt,

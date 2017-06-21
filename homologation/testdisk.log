@@ -1,0 +1,18 @@
+
+
+Tue Nov 24 23:06:57 2015
+Command line: TestDisk
+
+TestDisk 6.14, Data Recovery Utility, July 2013
+Christophe GRENIER <grenier@cgsecurity.org>
+http://www.cgsecurity.org
+OS: Linux, kernel 3.19.0-30-generic (#34~14.04.1-Ubuntu SMP Fri Oct 2 22:09:39 UTC 2015) x86_64
+Compiler: GCC 4.8
+Compilation date: 2013-10-29T01:29:29
+ext2fs lib: 1.42.9, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none
+User is not root!
+Hard disk list
+Disk /dev/sr0 - 1955 MB / 1864 MiB - 954768 sectors (RO), sector size=2048 - HL-DT-ST DVDRAM GT20L, S/N:M3N96GL0134, FW:DC03
+
+
+TestDisk exited normally.

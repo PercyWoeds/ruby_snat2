@@ -14,7 +14,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'sunat'
 require './config'
 
-daily_receipt_summary_data = {reference_date: Date.new(2012, 6, 23), issue_date: Date.new(2012, 6, 24), id: "RC-20120624-001", correlative_number: "001",
+daily_receipt_summary_data = {reference_date: Date.new(2015, 6, 23), issue_date: Date.new(2015, 6, 24), id: "RC-20120624-001", correlative_number: "001",
                               lines: [{line_id: "1", document_type_code: "03", document_serial_id: "BA98", start_id: "456", end_id: "764", 
                                   billing_payments: [{paid_amount: 9823200, instruction_id: "01"}, {paid_amount: 0, instruction_id: "02"}, {paid_amount: 23200, instruction_id: "03"}],
                                   allowance_charges: [{amount: 500, charge_indicator: 'true'}], tax_totals: [{amount: 1768176, type: :igv}, {amount: 0, type: :isc}, {amount: 120000, type: :other}]},

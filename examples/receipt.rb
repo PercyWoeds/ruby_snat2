@@ -62,3 +62,5 @@ end
 doc.legal_monetary_total = SUNAT::PaymentAmount.new(5000)
 
 doc.id = "B001-564"
+
+

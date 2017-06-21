@@ -17,7 +17,7 @@ files_to_clean.each do |file|
   File.delete(file)
 end
 
-groups = ARGV.present? ? ARGV[0].split(",").map(&:to_i) : (1..12).to_a
+groups = ARGV.present? ? ARGV[0].split(",").map(&:to_i) : (1..14).to_a
 
 #Group 1
 if groups.include?(1)
@@ -150,7 +150,7 @@ end
 
 #Group 12
 if groups.include?(12)
-  case_96 = ReceiptGenerator.new(12, 96, 5, "BB50").with_different_currency
+  case_96 = ReceiptGenerator.new(12, 96, 3, "BB50").with_different_currency
   case_97 = CreditNoteGenerator.new(12, 97, "BB50").for_different_currency_document(case_96)
   case_98 = DebitNoteGenerator.new(12, 98, "BB50").for_different_currency_document(case_96)
 end
@@ -164,3 +164,6 @@ end
 if groups.include?(14)
   VoidedDocumentsGenerator.new.generate
 end
+
+
+

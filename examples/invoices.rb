@@ -15,7 +15,7 @@ require './config'
 
 # Group 1
 
-invoice_data = {id: "F001-4355", issue_date: "2013-03-14", customer: {legal_name: "Servicabinas S.A.", ruc: "20587896411"}, 
+invoice_data = {id: "F001-4355", issue_date: "2013-03-14", customer: {legal_name: "XServicabinas S.A.", ruc: "20587896411",addresses: [{ address_id:"15017", street:"Av. Ayacucho 9090 " , zone:"Surco", city:"Lima", province:"Lima", district:"Lima", country:"PE"}],
                 lines: [{id: "1", item: {id: "GLG199", description: "Grabadora LG Externo Modelo: GE20LU10"}, quantity: 2000.0, unit: 'NIU', 
                           price: {value: 8305}, pricing_reference: 9800, tax_totals: [{amount: 2690847, type: :igv, code: "10"}], line_extension_amount: 14949153},
                         {id: "2", item: {id: "MVS546", description: "Monitor LCD ViewSonic VG2028WM 20\""}, quantity: 300.0, unit: 'NIU', 

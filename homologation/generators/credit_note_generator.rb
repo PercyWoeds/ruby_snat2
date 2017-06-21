@@ -9,6 +9,7 @@ class CreditNoteGenerator < DocumentGenerator
 
   def for_igv_document(associated_document, pdf=false)
     generate_document_for_line(:first, associated_document, pdf)
+
   end
 
   def for_exempt_document(associated_document, pdf=false)
@@ -65,5 +66,12 @@ class CreditNoteGenerator < DocumentGenerator
                         legal_monetary_total: {value: legal_monetary_total, currency: associated_document.document_currency_code}}
     @@document_serial_id += 1
     credit_note_data  
+#if credit_note.valid?
+#  File::open("credit_note.xml", "w") { |file| file.write(credit_note.to_xml) }
+#  credit_note.to_pdf
+#else
+#  puts "Invalid document, ignoring output: #{credit_note.errors.messages}"
+#end
+
   end
 end

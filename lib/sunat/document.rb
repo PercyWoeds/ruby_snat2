@@ -31,7 +31,8 @@ module SUNAT
 
     def initialize(*args)
       super(*args)
-      self.issue_date ||= Date.today
+      #self.issue_date ||= Date.today
+      self.issue_date ||= "2016-09-09"
       self.additional_properties ||= []
       self.additional_monetary_totals ||= []
     end
@@ -54,15 +55,15 @@ module SUNAT
 
     def build_pdf_header(pdf)
       if self.accounting_supplier_party.logo_path.present?
-        pdf.image "#{self.accounting_supplier_party.logo_path}", :width => 100
+        pdf.image "#{self.accounting_supplier_party.logo_path}", :width => 150
         pdf.move_down 6
       end
-      pdf.text "#{self.accounting_supplier_party.party.party_legal_entity.registration_name}", :size => 12,
+      pdf.text "#{self.accounting_supplier_party.party.party_legal_entity.registration_name}", :size => 8,
                                                                                                :style => :bold
       pdf.move_down 4
-      pdf.text supplier.street, :size => 10
-      pdf.text supplier.district, :size => 10
-      pdf.text supplier.city, :size => 10
+      pdf.text supplier.street, :size => 8
+      pdf.text supplier.district, :size => 8
+      pdf.text supplier.city, :size => 8
       pdf.move_down 4
 
       pdf.bounding_box([325, 725], :width => 200, :height => 80) do
@@ -88,14 +89,19 @@ module SUNAT
       raise not_implemented_exception
     end
 
+
+
     def build_pdf_footer(pdf)
-      pdf.bounding_box([0, 50], :width => 535, :height => 50) do
-        pdf.stroke_bounds
-        pdf.text "#{self.accounting_supplier_party.party.party_legal_entity.registration_name}",  :align => :center,
-                                                                                                  :valign => :center,
-                                                                                                  :style => :bold
+      
+      pdf.bounding_box([0, 50], :width => 535, :height => 70) do
+      pdf.stroke_bounds
+      pdf.text $lcAutorizacion<<$lcCuentas, :align => :center,:valign => :center, :style => :bold, :size=>8
+      #pdf.text $lcAutorizacion<<$lcCuentas  ,  :align => :center,:valign => :center, :style => :bold
       end
       pdf
+      $lcGuiaRemision=""
+      $lcAutorizacion<<$lcCuentas=""
+      
     end
 
     def build_pdf(path=false)

@@ -16,6 +16,10 @@ require "sunat/config"
 require "sunat/xml_document"
 require "sunat/xml_signer"
 
+  require 'httpclient'
+  HTTPI.adapter = :httpclient
+  
+
 
 # Modules and classes that can be autoloaded
 module SUNAT

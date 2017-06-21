@@ -132,6 +132,7 @@ module SUNAT
         :width => pdf.bounds.width/2
       } do
         columns([0]).font_style = :bold
+        columns([1]).align = :right
       end
 
       pdf
@@ -149,15 +150,19 @@ module SUNAT
     private
 
     def client_data_headers
-      client_headers = [["Cliente", customer.party.party_legal_entity.registration_name]]
-      client_headers << ["Direccion", customer.party.postal_addresses.first.to_s]
+      client_headers = [["Cliente   :", customer.party.party_legal_entity.registration_name]]
+      #client_headers << ["Direccion", customer.party.postal_addresses.first.to_s]
+      client_headers << ["Dirección :",$lcDirCli]
+      client_headers << ["Distrito  :",$lcDisCli]
       client_headers << [customer.type_as_text, customer.account_id]
       client_headers
     end
 
     def invoice_headers
-      invoice_headers = [["Fecha de emision", issue_date]]
-      invoice_headers << ["Tipo de moneda", Currency.new(document_currency_code).singular_name.upcase]
+      invoice_headers = [["Fecha de emisión :", issue_date]]
+      #invoice_headers = [["Fecha de emisión :", "2015-12-09"]]
+      invoice_headers << ["Tipo de moneda : ", Currency.new(document_currency_code).singular_name.upcase]
+      invoice_headers << ["Guia Remision :", $lcGuiaRemision]
       invoice_headers
     end
 
